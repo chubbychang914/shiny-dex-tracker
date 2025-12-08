@@ -20,5 +20,7 @@ import Footer from './components/layouts/Footer.vue'
 .main-content {
   flex: 1;
   padding-top: 56px;
+  padding-bottom: 60px;
+  background: lightgreen;
 }
 </style>
