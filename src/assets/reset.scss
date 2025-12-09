@@ -11,11 +11,21 @@ html {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE 和 Edge
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
 }
 
 body {
   min-height: 100%;
   line-height: 1.5;
+  scrollbar-width: none; // Firefox
+  -ms-overflow-style: none; // IE 和 Edge
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
 }
 
 img,
