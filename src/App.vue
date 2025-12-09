@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import NavbarLayout from './components/layouts/NavbarLayout.vue'
+import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
+
+const bottomDrawerStore = useBottomDrawerStore()
 </script>
 
 <template>
@@ -10,6 +13,12 @@ import NavbarLayout from './components/layouts/NavbarLayout.vue'
       <RouterView />
       <el-backtop :bottom="50" :right="12" />
     </main>
+    <el-drawer
+      v-model="bottomDrawerStore.isOpen"
+      direction="btt"
+      >
+      <h1>test</h1>
+    </el-drawer>
   </div>
 </template>
 

@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Region, RegionOption, SortBy,SortByOption } from '@/types'
+import type { Region, RegionOption, SortBy, SortByOption } from '@/types'
+import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
+// Stores
+const bottomDrawerStore = useBottomDrawerStore()
 
+// State
 const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
@@ -21,10 +25,11 @@ const sortOptions = ref<SortByOption[]>([
   { value: 'name-desc', label: 'Z-A' }
 ])
 
+// Methods
 const clickSettings = () => {
   console.log('clickSettings')
+  bottomDrawerStore.toggleDrawer()
 }
-
 </script>
 
 <template>
