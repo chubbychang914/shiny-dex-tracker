@@ -15,3 +15,6 @@ export type SortByOption = {
   value: SortBy
   label: string
 }
+
+// Bottom Drawer Types
+export type DrawerComponentName = 'settings' | 'advanced-filters' | null

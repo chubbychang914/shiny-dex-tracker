@@ -2,10 +2,9 @@
 import { ref } from 'vue'
 import type { Region, RegionOption, SortBy, SortByOption } from '@/types'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
-// Stores
 const bottomDrawerStore = useBottomDrawerStore()
 
-// State
+// Data ==============================
 const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
@@ -25,10 +24,12 @@ const sortOptions = ref<SortByOption[]>([
   { value: 'name-desc', label: 'Z-A' }
 ])
 
-// Methods
-const clickSettings = () => {
-  console.log('clickSettings')
-  bottomDrawerStore.toggleDrawer()
+// Methods ==============================
+const handleClickSettings = () => {
+  bottomDrawerStore.openDrawer('settings')
+}
+const handleClickAdvancedFilters = () => {
+  bottomDrawerStore.openDrawer('advanced-filters')
 }
 </script>
 
@@ -36,7 +37,10 @@ const clickSettings = () => {
   <div class="navbar">
     <div class="navbar__top">
       <h1>Navbar</h1>
-      <el-icon class="icon__settings" @click="clickSettings"><Setting /></el-icon>
+      <div class="icon-container">
+        <el-icon class="icon__settings" @click="handleClickAdvancedFilters"><Filter /></el-icon>
+        <el-icon class="icon__settings" @click="handleClickSettings"><Setting /></el-icon>
+      </div>
     </div>
     <div class="navbar__middle">
       <el-input
@@ -50,8 +54,7 @@ const clickSettings = () => {
     <div class="navbar__bottom">
       <el-select
         v-model="selectedRegion"
-        placeholder="Select"
-        style="width: 240px"
+        style="width: 100%"
       >
         <el-option
           v-for="item in regionOptions"
@@ -62,8 +65,7 @@ const clickSettings = () => {
       </el-select>
       <el-select
         v-model="selectedSortOption"
-        placeholder="Select"
-        style="width: 240px"
+        style="width: 100%"
       >
         <el-option
           v-for="item in sortOptions"
@@ -79,11 +81,12 @@ const clickSettings = () => {
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
-  background-color: $PrimaryColor;
+  background-color: $color-primary;
   position: sticky;
   z-index: 1000;
   top: 0;
   left: 0;
+  color: $color-text;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -108,7 +111,7 @@ const clickSettings = () => {
     font-size: 30px;
     color: black;
     cursor: pointer;
-    background-color: lightgrey;
+    background-color: $color-icon-background;
     border-radius: 50%;
     padding: 5px;
   }
@@ -116,9 +119,10 @@ const clickSettings = () => {
     font-size: 30px;
     color: black;
     cursor: pointer;
-    background-color: lightgrey;
-    border-radius: 50%;
+    background-color: $color-icon-background;
+    border-radius: 10px;
     padding: 5px;
+    margin-left: 10px;
   }
 }
 </style>

@@ -42,7 +42,8 @@ $width: calc((100vw - 20px - 20px) / 3);
   width: $width;
   height: calc($width * 1.2);
   border-radius: 5px;
-  background-color: #fff;
+  background-color: $color-card;
+  color: $color-text;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   &__header {
     flex: 3;
@@ -51,6 +52,7 @@ $width: calc((100vw - 20px - 20px) / 3);
     align-items: center;
     width: 100%;
     padding: 0 10px;
+    color: $color-text-secondary;
   }
   &__body {
     flex: 7;
@@ -58,9 +60,10 @@ $width: calc((100vw - 20px - 20px) / 3);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: $color-text;
   }
   &--captured {
-    background-color: $PrimaryColor;
+    background-color: $color-selected-card;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 }

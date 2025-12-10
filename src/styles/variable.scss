@@ -1,7 +1,40 @@
-$PrimaryColor: var(--mainColor);
-$background-color: #F5F5F5;
+// SCSS Variables ==============================
+// Layout and BG
+$color-primary: var(--color-primary);
+$color-background: var(--color-background);
 
+// Component Colors
+$color-card: var(--color-card);
+$color-selected-card: var(--color-selected-card);
+$color-drawer-background: var(--color-drawer-background);
+$color-drawer-text: var(--color-drawer-text);
 
+// Text Colors
+$color-text: var(--color-text);
+$color-text-secondary: var(--color-text-secondary);
+
+// UI Element Colors
+$color-border: var(--color-border);
+$color-icon: var(--color-icon);
+$color-icon-background: var(--color-icon-background);
+
+// CSS Custom Properties ==============================
 :root {
-  --mainColor: #15BEAE;
+  // Layout and BG
+  --color-primary: #1e2130;
+  --color-background: #1a1d2e;
+
+  // Component Colors
+  --color-card: #252836;
+  --color-selected-card: #4A9E9E;
+  --color-drawer-background: #2d3142;
+
+  // Text Colors
+  --color-text: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+
+  // UI Element Colors
+  --color-border: #404040;
+  --color-icon: #FFFFFF;
+  --color-icon-background: #fff;
 }
