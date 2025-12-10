@@ -11,7 +11,5 @@
 .advanced-filters {
   width: 100%;
   height: 100%;
-  background-color: $color-background;
-  color: $color-text;
 }
 </style>

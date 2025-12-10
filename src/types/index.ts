@@ -16,5 +16,18 @@ export type SortByOption = {
   label: string
 }
 
+// Pokemon Data Types
+export type RegionRange = {
+  start: number
+  end: number
+}
+export type StructuredPokemonData = {
+  dexNumber: number
+  name: string,
+  sprites: object,
+  types: string[]
+  region: string
+}
+
 // Bottom Drawer Types
 export type DrawerComponentName = 'settings' | 'advanced-filters' | null

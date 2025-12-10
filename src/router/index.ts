@@ -1,5 +1,5 @@
+import { defineAsyncComponent } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import PokedexView from '../views/PokedexView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Pokedex',
-      component: PokedexView,
+      component: defineAsyncComponent(() => import('@/views/PokedexView.vue')),
     },
     // {
     //   path: '/about',

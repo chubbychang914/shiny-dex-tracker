@@ -4,7 +4,9 @@ import type { Region, RegionOption, SortBy, SortByOption } from '@/types'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 const bottomDrawerStore = useBottomDrawerStore()
 
-// Data ==============================
+// ==============================
+// Data
+// ==============================
 const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
@@ -24,12 +26,19 @@ const sortOptions = ref<SortByOption[]>([
   { value: 'name-desc', label: 'Z-A' }
 ])
 
-// Methods ==============================
+// ==============================
+// Methods
+// ==============================
 const handleClickSettings = () => {
   bottomDrawerStore.openDrawer('settings')
 }
+
 const handleClickAdvancedFilters = () => {
-  bottomDrawerStore.openDrawer('advanced-filters')
+  bottomDrawerStore.openDrawer('advanced-filters', '80%')
+}
+
+const handleChangeRegion = () => {
+  console.log(selectedRegion.value)
 }
 </script>
 
@@ -55,6 +64,7 @@ const handleClickAdvancedFilters = () => {
       <el-select
         v-model="selectedRegion"
         style="width: 100%"
+        @change="handleChangeRegion"
       >
         <el-option
           v-for="item in regionOptions"
@@ -66,6 +76,7 @@ const handleClickAdvancedFilters = () => {
       <el-select
         v-model="selectedSortOption"
         style="width: 100%"
+
       >
         <el-option
           v-for="item in sortOptions"

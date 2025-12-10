@@ -5,11 +5,13 @@ import type { DrawerComponentName } from '@/types'
 export const useBottomDrawerStore = defineStore('bottomDrawer', () => {
   // State
   const isOpen = ref(false)
+  const drawerSize = ref<string | number>('40%')
   const currentComponent = ref<DrawerComponentName>(null)
 
   // Actions
-  const openDrawer = (componentName: DrawerComponentName = null) => {
+  const openDrawer = (componentName: DrawerComponentName = null, size: string | number) => {
     currentComponent.value = componentName
+    drawerSize.value = size
     isOpen.value = true
   }
   const closeDrawer = () => {
@@ -19,6 +21,7 @@ export const useBottomDrawerStore = defineStore('bottomDrawer', () => {
 
   return {
     isOpen,
+    drawerSize,
     currentComponent,
     openDrawer,
     closeDrawer

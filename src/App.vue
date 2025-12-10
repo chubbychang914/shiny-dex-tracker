@@ -21,7 +21,7 @@ const drawerComponents = {
     <el-drawer
       v-model="bottomDrawerStore.isOpen"
       direction="btt"
-      size="40%"
+      :size="bottomDrawerStore.drawerSize"
       :destroy-on-close="true"
       :with-header="false"
       @closed="bottomDrawerStore.closeDrawer()"
@@ -48,8 +48,14 @@ const drawerComponents = {
   background-color: $color-background;
 }
 :deep(.el-drawer__body) {
-  padding: 0;
+  padding: 10px;
   background-color: $color-drawer-background;
   color: $color-text;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+:deep(.el-drawer.btt) {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 </style>

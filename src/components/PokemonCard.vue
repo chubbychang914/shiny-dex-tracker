@@ -1,7 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { StructuredPokemonData } from '@/types/index.ts'
 
+// ==============================
+// Props
+// ==============================
+defineProps<{
+  pokemonData: StructuredPokemonData
+}>()
+
+// ==============================
+// Data
+// ==============================
 const markAsCaptured = ref(false)
+
+// ==============================
+// Methods
+// ==============================
+const capitalizeName = (name: string) => {
+  return name.charAt(0).toUpperCase() + name.slice(1)
+}
 </script>
 
 <template>
@@ -11,8 +29,8 @@ const markAsCaptured = ref(false)
     @click="markAsCaptured = !markAsCaptured"
   >
     <div class="pokemon-card__header">
-      <div>#100</div>
-      <div>Kanto</div>
+      <span>#{{ pokemonData.dexNumber }}</span>
+      <span>{{ pokemonData.region }}</span>
     </div>
     <div class="pokemon-card__body">
       <el-image src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010" style="width: 50%;">
@@ -28,7 +46,7 @@ const markAsCaptured = ref(false)
           </div>
         </template>
       </el-image>
-      <p>{{ "name" }}</p>
+      <span>{{ capitalizeName(pokemonData.name) }}</span>
     </div>
   </div>
 </template>
