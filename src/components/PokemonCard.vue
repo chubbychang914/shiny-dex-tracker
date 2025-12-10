@@ -33,7 +33,10 @@ const capitalizeName = (name: string) => {
       <span>{{ pokemonData.region }}</span>
     </div>
     <div class="pokemon-card__body">
-      <el-image src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010" style="width: 50%;">
+      <el-image
+        src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"
+        style="width: 50%;"
+        lazy>
         <template #placeholder>
           <div class="image-slot">
             Loading

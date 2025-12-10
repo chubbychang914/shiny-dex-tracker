@@ -31,7 +31,6 @@ onMounted(async () => {
 // Methods
 // ==============================
 const initializeData = async () => {
-  await apiGetPokemonDetails() // 取得詳細Pokemon資料
   await organizePokemonData() // 組織資料
 }
 
