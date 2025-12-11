@@ -2,7 +2,9 @@
 import { ref } from 'vue'
 import type { Region, RegionOption, SortBy, SortByOption } from '@/types'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
+import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 const bottomDrawerStore = useBottomDrawerStore()
+const filterQueriesStore = useFilterQueriesStore()
 
 // ==============================
 // Data
@@ -32,13 +34,14 @@ const sortOptions = ref<SortByOption[]>([
 const handleClickSettings = () => {
   bottomDrawerStore.openDrawer('settings')
 }
-
 const handleClickAdvancedFilters = () => {
   bottomDrawerStore.openDrawer('advanced-filters', '80%')
 }
-
+const handleChangeSearchQuery = () => {
+  filterQueriesStore.setSearchQuery(searchQuery.value)
+}
 const handleChangeRegion = () => {
-  console.log(selectedRegion.value)
+  filterQueriesStore.setSelectedRegion(selectedRegion.value)
 }
 </script>
 
@@ -58,6 +61,7 @@ const handleChangeRegion = () => {
         size="large"
         placeholder="Search by name or number"
         clearable
+        @input="handleChangeSearchQuery"
       />
     </div>
     <div class="navbar__bottom">

@@ -9,7 +9,7 @@ export const useBottomDrawerStore = defineStore('bottomDrawer', () => {
   const currentComponent = ref<DrawerComponentName>(null)
 
   // Actions
-  const openDrawer = (componentName: DrawerComponentName = null, size: string | number) => {
+  const openDrawer = (componentName: DrawerComponentName = null, size: string | number = '40%') => {
     currentComponent.value = componentName
     drawerSize.value = size
     isOpen.value = true

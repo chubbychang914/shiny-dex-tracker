@@ -21,12 +21,16 @@ export type RegionRange = {
   start: number
   end: number
 }
-export type StructuredPokemonData = {
+export type PokemonSprites = {
+  front_default: string
+  front_shiny: string
+}
+export type StructuredPokemonData = { // 整理過的資料結構
   dexNumber: number
   name: string,
-  sprites: object,
+  sprites: PokemonSprites,
   types: string[]
-  region: string
+  region: Region
 }
 
 // Bottom Drawer Types

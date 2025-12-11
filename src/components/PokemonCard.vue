@@ -1,18 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import type { StructuredPokemonData } from '@/types/index.ts'
 
 // ==============================
 // Props
 // ==============================
-defineProps<{
+const props = defineProps<{
   pokemonData: StructuredPokemonData
 }>()
 
 // ==============================
 // Data
 // ==============================
-const markAsCaptured = ref(false)
+const shinyDexMode = ref(false)
+const isCaptured = ref(false)
+const isAlpha = ref(false)
+const isShiny = ref(false)
+
+const pokemonCardImage = computed(() => {
+  if (shinyDexMode.value) {
+    return props.pokemonData.sprites.front_shiny
+  }
+  // return props.pokemonData.sprites.front_default
+  return "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"
+})
 
 // ==============================
 // Methods
@@ -25,8 +36,8 @@ const capitalizeName = (name: string) => {
 <template>
   <div
     class="pokemon-card"
-    :class="{ 'pokemon-card--captured': markAsCaptured }"
-    @click="markAsCaptured = !markAsCaptured"
+    :class="{ 'pokemon-card--captured': isCaptured }"
+    @click="isCaptured = !isCaptured"
   >
     <div class="pokemon-card__header">
       <span>#{{ pokemonData.dexNumber }}</span>
@@ -34,21 +45,9 @@ const capitalizeName = (name: string) => {
     </div>
     <div class="pokemon-card__body">
       <el-image
-        src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"
-        style="width: 50%;"
-        lazy>
-        <template #placeholder>
-          <div class="image-slot">
-            Loading
-            <span class="dot">...</span>
-          </div>
-        </template>
-        <template #error>
-          <div class="image-slot">
-            <el-icon><Picture /></el-icon>
-          </div>
-        </template>
-      </el-image>
+        :src="pokemonCardImage"
+        class="pokemon-card__image"
+        lazy />
       <span>{{ capitalizeName(pokemonData.name) }}</span>
     </div>
   </div>
@@ -82,6 +81,11 @@ $width: calc((100vw - 20px - 20px) / 3);
     justify-content: center;
     align-items: center;
     color: $color-text;
+  }
+  &__image {
+    width: 50%;
+    border-radius: 10px;
+    border: 1px solid $color-border;
   }
   &--captured {
     background-color: $color-selected-card;

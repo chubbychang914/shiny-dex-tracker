@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { pokeApi } from '@/utils/axios.ts'
-import type { RegionRange, StructuredPokemonData } from '@/types/index.ts'
+import type { Region, RegionRange, StructuredPokemonData } from '@/types/index.ts'
+import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 import PokemonCard from '@/components/PokemonCard.vue'
+import _cloneDeep from 'lodash/cloneDeep'
+import {
+  checkPokemonDataCache,
+  savePokemonDataToCache,
+  getAllPokemonDataFromCache,
+  clearPokemonDataCache,
+} from '@/utils/indexedDBStores/pokeApiCache.ts'
+
+const filterQueriesStore = useFilterQueriesStore()
 
 // ==============================
 // Data
@@ -18,7 +28,30 @@ const regionMap: Record<string, RegionRange> = {
   galar: { start: 810, end: 905 },
   paldea: { start: 906, end: 1025 },
 }
+
 const pokedexData = ref<StructuredPokemonData[]>([])
+
+const filteredPokedexData = computed(() => {
+  let result = _cloneDeep(pokedexData.value)
+
+  if (filterQueriesStore.selectedRegion) { // 區域選擇
+    console.log('✨selectedRegion', filterQueriesStore.selectedRegion)
+    if (filterQueriesStore.selectedRegion !== 'all') {
+      result = result.filter(pokemon => pokemon.region === filterQueriesStore.selectedRegion)
+    }
+  }
+
+  if (filterQueriesStore.searchQuery) { // 搜尋
+    console.log('✨searchQuery', filterQueriesStore.searchQuery)
+    result = result.filter(pokemon => {
+      const matchesName = pokemon.name.includes(filterQueriesStore.searchQuery)
+      const matchesDexNumber = pokemon.dexNumber.toString().includes(filterQueriesStore.searchQuery)
+      return matchesName || matchesDexNumber
+    })
+  }
+
+  return result
+})
 
 // ==============================
 // Lifecycle Hooks
@@ -31,11 +64,19 @@ onMounted(async () => {
 // Methods
 // ==============================
 const initializeData = async () => {
-  await organizePokemonData() // 組織資料
+  const hasPokemonDataInCache = await checkPokemonDataCache()
+  if (hasPokemonDataInCache) {
+    console.log('✨hasPokemonDataInCache')
+    const cachedPokemonData = await getAllPokemonDataFromCache()
+    pokedexData.value = cachedPokemonData
+  } else {
+    console.log('✨noPokemonDataInCache, fetch from API')
+    await organizePokemonData() // 組織資料
+  }
 }
 
 const apiGetPokemonDetails = async() => {
-  const limit = 151
+  const limit = 10
   const getList = await pokeApi.get(`/pokemon?limit=${limit}`)
   const pokemonList = getList?.data?.results
 
@@ -61,15 +102,18 @@ const organizePokemonData = async () => {
     }
   })
 
-  console.log(structuredData)
   pokedexData.value = structuredData
+
+  console.log('💾 Saving Pokemon data to cache...')
+  await savePokemonDataToCache(structuredData)
+  console.log(`✅ Saved ${structuredData.length} Pokemon to cache`)
 }
 
 const getRegionByDexNumber = (dexNumber: number) => {
   for (const region in regionMap) {
     const range = regionMap[region]
     if (range && (dexNumber >= range.start && dexNumber <= range.end)) {
-      return region
+      return region as Region
     }
   }
   return 'all'
@@ -80,7 +124,7 @@ const getRegionByDexNumber = (dexNumber: number) => {
   <div class="pokedex">
     <div class="pokemon-cards-container">
       <PokemonCard
-        v-for="(pokemon) in pokedexData"
+        v-for="(pokemon) in filteredPokedexData"
         :key="pokemon.dexNumber"
         :pokemon-data="pokemon"
       />
