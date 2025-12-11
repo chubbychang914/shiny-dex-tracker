@@ -13,7 +13,8 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix --cache"
+    "lint": "eslint . --fix --cache",
+    "gen:pokemon-data": "node scripts/generate-pokemon-data.js"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
