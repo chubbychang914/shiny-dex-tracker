@@ -12,60 +12,83 @@ const DELAY_MS = 1000
 // 等待時間再抓下一筆資料
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
-// 抓取個別 Pokemon 的詳細資料
-const fetchPokemonDetails = async (id) => {
-  try {
-    const detailUrl = `https://pokeapi.co/api/v2/pokemon/${id}` // 取得 type, region
-    const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}` // 取得不同遊戲的 dex 資料, origin generation
-
-    const [detailRes, speciesRes] = await Promise.all([
-      fetch(detailUrl).then(res => res.json()),
-      fetch(speciesUrl).then(res => res.json())
-    ])
-
-    // 取得不同遊戲的 dex number
-    const dexMap = {
-      national: id
-    }
-    speciesRes.pokedex_numbers.forEach(item => {
-      dexMap[item.pokedex.name] = item.entry_number
-    })
-
-    // 對應的 generation
-    const generationMap = {
-      'generation-i': 'kanto',
-      'generation-ii': 'johto',
-      'generation-iii': 'hoenn',
-      'generation-iv': 'sinnoh',
-      'generation-v': 'unova',
-      'generation-vi': 'kalos',
-      'generation-vii': 'alola',
-      'generation-viii': 'galar',
-      'generation-ix': 'paldea'
-    }
-
-    return {
-      id: detailRes.id,
-      name: detailRes.name,
-      types: detailRes.types.map(type => type.type.name),
-      generationIntroduced: generationMap[speciesRes.generation.name],
-      dexMap: dexMap
-    }
-  } catch (error) {
-    console.error(`Error fetching Pokemon details for ID ${id}:`, error)
-  }
-}
-
-const writeToFile = (data) => {
+// 寫入檔案
+const writeToFile = (data, fileName) => {
   const publicDir = path.resolve(__dirname, '../public')
 
   if (!fs.existsSync(publicDir)) {
     fs.mkdirSync(publicDir)
   }
 
-  const outputPath = path.join(publicDir, 'raw-pokemon-data.json')
+  const outputPath = path.join(publicDir, fileName)
   fs.writeFileSync(outputPath, JSON.stringify(data, null, 2))
   return outputPath
+}
+
+// 抓取所有 Region 資料
+const fetchAllRegions = async () => {
+  try {
+    const regionsUrl = 'https://pokeapi.co/api/v2/region'
+    const regionsRes = await fetch(regionsUrl).then(res => res.json())
+    return regionsRes.results
+  } catch (error) {
+    console.error('Error fetching all regions:', error)
+  }
+}
+
+// 抓取所有 Type 資料
+const fetchAllTypes = async () => {
+  try {
+    const typesUrl = 'https://pokeapi.co/api/v2/type'
+    const typesRes = await fetch(typesUrl).then(res => res.json())
+    return typesRes.results
+  } catch (error) {
+    console.error('Error fetching all types:', error)
+  }
+}
+
+// 抓取個別 Pokemon 的詳細資料
+const fetchPokemonDetails = async (id) => {
+try {
+  const detailUrl = `https://pokeapi.co/api/v2/pokemon/${id}` // 取得 type, region
+  const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}` // 取得不同遊戲的 dex 資料, origin generation
+
+  const [detailRes, speciesRes] = await Promise.all([
+    fetch(detailUrl).then(res => res.json()),
+    fetch(speciesUrl).then(res => res.json())
+  ])
+
+  // 取得不同遊戲的 dex number
+  const dexMap = {
+    national: id
+  }
+  speciesRes.pokedex_numbers.forEach(item => {
+    dexMap[item.pokedex.name] = item.entry_number
+  })
+
+  // 對應的 generation
+  const generationMap = {
+    'generation-i': 'kanto',
+    'generation-ii': 'johto',
+    'generation-iii': 'hoenn',
+    'generation-iv': 'sinnoh',
+    'generation-v': 'unova',
+    'generation-vi': 'kalos',
+    'generation-vii': 'alola',
+    'generation-viii': 'galar',
+    'generation-ix': 'paldea'
+  }
+
+  return {
+    id: detailRes.id,
+    name: detailRes.name,
+    types: detailRes.types.map(type => type.type.name),
+    generationIntroduced: generationMap[speciesRes.generation.name],
+    dexMap: dexMap
+  }
+} catch (error) {
+  console.error(`Error fetching Pokemon details for ID ${id}:`, error)
+}
 }
 
 const initializeDexData = async () => {
@@ -92,8 +115,16 @@ const initializeDexData = async () => {
     }
   }
   allPokemon.sort((a, b) => a.id - b.id)
-  writeToFile(allPokemon)
+  writeToFile(allPokemon, 'raw-pokemon-data.json')
   console.log('✅ Pokemon data saved to public/raw-pokemon-data.json')
 }
 
+const initializeReferenceData = async () => {
+  const regions =  await fetchAllRegions()
+  const types = await fetchAllTypes()
+
+  writeToFile({ regions, types }, 'reference-data.json')
+}
+
+initializeReferenceData()
 initializeDexData()
