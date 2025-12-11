@@ -30,7 +30,7 @@ const fetchAllRegions = async () => {
   try {
     const regionsUrl = 'https://pokeapi.co/api/v2/region'
     const regionsRes = await fetch(regionsUrl).then(res => res.json())
-    return regionsRes.results
+    return regionsRes.results.map(region => region.name)
   } catch (error) {
     console.error('Error fetching all regions:', error)
   }
@@ -41,7 +41,7 @@ const fetchAllTypes = async () => {
   try {
     const typesUrl = 'https://pokeapi.co/api/v2/type'
     const typesRes = await fetch(typesUrl).then(res => res.json())
-    return typesRes.results
+    return typesRes.results.map(type => type.name)
   } catch (error) {
     console.error('Error fetching all types:', error)
   }

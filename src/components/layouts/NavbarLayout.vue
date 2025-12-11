@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Region, RegionOption, SortBy, SortByOption } from '@/types'
+import { ref, computed } from 'vue'
+import type { Region, SortBy, SortByOption } from '@/types'
+import { capitalizeFirstLetter } from '@/utils/helpers.ts'
+import { usePokemonDataStore } from '@/stores/pokemonData.ts'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+
+const pokemonDataStore = usePokemonDataStore()
 const bottomDrawerStore = useBottomDrawerStore()
 const filterQueriesStore = useFilterQueriesStore()
 
@@ -12,15 +16,23 @@ const filterQueriesStore = useFilterQueriesStore()
 const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
-const regionOptions = ref<RegionOption[]>([
-  { value: 'all', label: 'All Regions' },
-  { value: 'kanto', label: 'Kanto' },
-  { value: 'johto', label: 'Johto' },
-  { value: 'hoenn', label: 'Hoenn' },
-  { value: 'sinnoh', label: 'Sinnoh' },
-  { value: 'unova', label: 'Unova' },
-  { value: 'kalos', label: 'Kalos' },
-])
+
+const regionOptions = computed(() => {
+  const allRegionOption = {
+    value: 'all',
+    label: 'All Regions'
+  }
+  const filteredRegions = pokemonDataStore.referenceData.regions
+    .filter(region => region !== 'hisui') // Remove Hisui Option for now
+    .map(region => {
+      return {
+        value: region,
+        label: capitalizeFirstLetter(region)
+      }
+  })
+
+  return [allRegionOption, ...filteredRegions]
+})
 const sortOptions = ref<SortByOption[]>([
   { value: 'number-asc', label: 'Number Ascending' },
   { value: 'number-desc', label: 'Number Descending' },
@@ -42,6 +54,11 @@ const handleChangeSearchQuery = () => {
 }
 const handleChangeRegion = () => {
   filterQueriesStore.setSelectedRegion(selectedRegion.value)
+  console.log('✨selectedRegion', selectedRegion.value)
+}
+const handleChangeSortOption = () => {
+  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
+  console.log('✨selectedSortOption', selectedSortOption.value)
 }
 </script>
 
@@ -80,7 +97,7 @@ const handleChangeRegion = () => {
       <el-select
         v-model="selectedSortOption"
         style="width: 100%"
-
+        @change="handleChangeSortOption"
       >
         <el-option
           v-for="item in sortOptions"

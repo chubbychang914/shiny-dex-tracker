@@ -1,13 +1,7 @@
+import referenceData from '../../public/reference-data.json'
+
 // Theme types
 export type Theme = 'dark' | 'light' | 'classic-red'
-
-// Search Query Types
-export type PokemonType = 'normal' | 'fire' | 'water' | 'electric' | 'grass' | 'ice' | 'fighting' | 'poison' | 'ground' | 'flying' | 'psychic' | 'bug' | 'rock' | 'ghost' | 'dragon' | 'dark' | 'steel' | 'fairy'
-export type Region = 'all' | 'kanto' | 'johto' | 'hoenn' | 'sinnoh' | 'unova' | 'kalos' | 'alola' | 'galar' | 'hisui' | 'paldea'
-export type RegionOption = {
-  value: Region
-  label: string
-}
 
 // Sort Options
 export type SortBy = 'number-asc' | 'number-desc' | 'name-asc' | 'name-desc'
@@ -17,20 +11,21 @@ export type SortByOption = {
 }
 
 // Pokemon Data Types
-export type RegionRange = {
-  start: number
-  end: number
+export type Region = (typeof referenceData.regions)[number] | 'all'
+
+export type PokemonType = (typeof referenceData.types)[number]
+
+export type ReferenceData = { // 引用資料
+  regions: Region[],
+  types: PokemonType[]
 }
-export type PokemonSprites = {
-  front_default: string
-  front_shiny: string
-}
+
 export type StructuredPokemonData = { // 整理過的資料結構
-  dexNumber: number
+  id: number,
   name: string,
-  sprites: PokemonSprites,
-  types: string[]
-  region: Region
+  types: PokemonType[],
+  generationIntroduced: string,
+  dexMap: Record<string, number>
 }
 
 // Bottom Drawer Types

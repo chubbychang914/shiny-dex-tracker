@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { capitalizeFirstLetter } from '@/utils/helpers.ts'
 import type { StructuredPokemonData } from '@/types/index.ts'
 
 // ==============================
@@ -12,25 +13,12 @@ const props = defineProps<{
 // ==============================
 // Data
 // ==============================
-const shinyDexMode = ref(false)
 const isCaptured = ref(false)
-const isAlpha = ref(false)
-const isShiny = ref(false)
 
 const pokemonCardImage = computed(() => {
-  if (shinyDexMode.value) {
-    return props.pokemonData.sprites.front_shiny
-  }
-  // return props.pokemonData.sprites.front_default
-  return "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png?20170328184010"
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.pokemonData.id}.png`
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.pokemonData.id}.png`
 })
-
-// ==============================
-// Methods
-// ==============================
-const capitalizeName = (name: string) => {
-  return name.charAt(0).toUpperCase() + name.slice(1)
-}
 </script>
 
 <template>
@@ -40,15 +28,15 @@ const capitalizeName = (name: string) => {
     @click="isCaptured = !isCaptured"
   >
     <div class="pokemon-card__header">
-      <span>#{{ pokemonData.dexNumber }}</span>
-      <span>{{ pokemonData.region }}</span>
+      <span>#{{ pokemonData.id }}</span>
+      <span>{{ capitalizeFirstLetter(pokemonData.generationIntroduced) }}</span>
     </div>
     <div class="pokemon-card__body">
       <el-image
         :src="pokemonCardImage"
         class="pokemon-card__image"
         lazy />
-      <span>{{ capitalizeName(pokemonData.name) }}</span>
+      <span>{{ capitalizeFirstLetter(pokemonData.name) }}</span>
     </div>
   </div>
 </template>
@@ -96,7 +84,7 @@ $width: calc((100vw - 20px - 20px) / 3);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: auto;
   img {
     width: 100%;
