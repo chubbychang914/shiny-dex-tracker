@@ -3,22 +3,14 @@ import { defineAsyncComponent, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import NavbarLayout from './components/layouts/NavbarLayout.vue'
 import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
-import { usePokemonDataStore } from './stores/pokemonData.ts'
 
 const bottomDrawerStore = useBottomDrawerStore()
-const pokemonDataStore = usePokemonDataStore()
 
 // 當有新的 drawer 樣式，需要在此處新增
 const drawerComponents = {
   'settings': defineAsyncComponent(() => import('@/components/SettingsPage.vue')),
   'advanced-filters': defineAsyncComponent(() => import('@/components/AdvancedFilters.vue'))
 }
-
-onMounted(async() => {
-  await pokemonDataStore.initData()
-  console.log('🔍 pokemonDataStore.pokemonData', pokemonDataStore.pokemonData)
-  console.log('🔍 pokemonDataStore.referenceData', pokemonDataStore.referenceData)
-})
 </script>
 
 <template>
@@ -49,6 +41,8 @@ onMounted(async() => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
   background-color: $color-background;
 }
 .main-content {

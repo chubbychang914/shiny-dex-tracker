@@ -21,5 +21,9 @@ export default defineConfig({
         additionalData: `@use "@/styles/variable.scss" as *;`
       },
     },
+  },
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
   }
 })

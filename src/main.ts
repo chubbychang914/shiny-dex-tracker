@@ -8,13 +8,19 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
 import { useThemeStore } from './stores/theme.ts'
+import { usePokemonDataStore } from './stores/pokemonData.ts'
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+
 app.use(ElementPlus)
 app.use(createPinia())
+
+const pokemonDataStore = usePokemonDataStore()
+await pokemonDataStore.initData()
+
 app.use(router)
 
 const themeStore = useThemeStore()
