@@ -7,7 +7,7 @@ import type { StructuredPokemonData } from '@/types/index.ts'
 // Props
 // ==============================
 const props = defineProps<{
-  pokemonData: StructuredPokemonData
+  singlePokemonData: StructuredPokemonData
 }>()
 
 // ==============================
@@ -15,10 +15,25 @@ const props = defineProps<{
 // ==============================
 const isCaptured = ref(false)
 
+const pokemonCardName = computed(() => {
+  let displayName = props.singlePokemonData.name
+  // if contains variant, remove the hyphen (example: deoxys-normal -> deoxys)
+  if (props.singlePokemonData.variants.length > 1) {
+    displayName = props.singlePokemonData.name.split('-')[0] ?? props.singlePokemonData.name
+  }
+  // if contains hyphen, remove hyphen and capitalize each word (example: iron-valiant -> Iron Valiant)
+  displayName = displayName
+    .split('-')
+    .map(word => capitalizeFirstLetter(word))
+    .join(' ')
+
+  return displayName
+})
+
 const pokemonCardImage = computed(() => {
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.pokemonData.id}.png`
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.pokemonData.id}.png`
-  // return ''
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.individualPokemonData.id}.png`
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.individualPokemonData.id}.png`
+  return ''
 })
 </script>
 
@@ -29,7 +44,7 @@ const pokemonCardImage = computed(() => {
     @click="isCaptured = !isCaptured"
   >
     <div class="pokemon-card__header">
-      <span>#{{ pokemonData.id }}</span>
+      <span>#{{ singlePokemonData.id }}</span>
     </div>
     <div class="pokemon-card__body">
       <div class="image-container">
@@ -40,7 +55,7 @@ const pokemonCardImage = computed(() => {
       </div>
     </div>
     <div class="pokemon-card__footer">
-      <span>{{ capitalizeFirstLetter(pokemonData.name) }}</span>
+      <span>{{ pokemonCardName }}</span>
     </div>
   </div>
 </template>

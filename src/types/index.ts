@@ -25,6 +25,10 @@ export type StructuredPokemonData = { // 整理過的資料結構
   name: string,
   types: PokemonType[],
   generationIntroduced: string,
+  variants: {
+    name: string,
+    id: number
+  }[],
   dexMap: Record<string, number>
 }
 

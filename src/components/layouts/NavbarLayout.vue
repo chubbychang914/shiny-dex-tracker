@@ -2,11 +2,11 @@
 import { ref, computed } from 'vue'
 import type { Region, SortBy, SortByOption } from '@/types'
 import { capitalizeFirstLetter } from '@/utils/helpers.ts'
-import { usePokemonDataStore } from '@/stores/pokemonData.ts'
+import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 
-const pokemonDataStore = usePokemonDataStore()
+const pokeApiDataStore = usePokeApiDataStore()
 const bottomDrawerStore = useBottomDrawerStore()
 const filterQueriesStore = useFilterQueriesStore()
 
@@ -17,12 +17,19 @@ const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
 
+const sortOptions = ref<SortByOption[]>([
+  { value: 'number-asc', label: 'Number Ascending' },
+  { value: 'number-desc', label: 'Number Descending' },
+  { value: 'name-asc', label: 'A-Z' },
+  { value: 'name-desc', label: 'Z-A' }
+])
+
 const regionOptions = computed(() => {
   const allRegionOption = {
     value: 'all',
     label: 'All Regions'
   }
-  const filteredRegions = pokemonDataStore.referenceData.regions
+  const filteredRegions = pokeApiDataStore.referenceData.regions
     .filter(region => region !== 'hisui') // Remove Hisui Option for now
     .map(region => {
       return {
@@ -33,12 +40,6 @@ const regionOptions = computed(() => {
 
   return [allRegionOption, ...filteredRegions]
 })
-const sortOptions = ref<SortByOption[]>([
-  { value: 'number-asc', label: 'Number Ascending' },
-  { value: 'number-desc', label: 'Number Descending' },
-  { value: 'name-asc', label: 'A-Z' },
-  { value: 'name-desc', label: 'Z-A' }
-])
 
 // ==============================
 // Methods
