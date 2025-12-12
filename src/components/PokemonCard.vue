@@ -31,9 +31,9 @@ const pokemonCardName = computed(() => {
 })
 
 const pokemonCardImage = computed(() => {
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.individualPokemonData.id}.png`
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.individualPokemonData.id}.png`
-  return ''
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
+  // return ''
 })
 </script>
 
@@ -45,6 +45,7 @@ const pokemonCardImage = computed(() => {
   >
     <div class="pokemon-card__header">
       <span>#{{ singlePokemonData.id }}</span>
+      <pre>{{ isCaptured }}</pre>
     </div>
     <div class="pokemon-card__body">
       <div class="image-container">
@@ -80,7 +81,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     align-items: center;
     padding: 0 10px;
     color: $color-text-secondary;
-    background-color: green;
   }
   &__body {
     flex: 5;
@@ -89,7 +89,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     justify-content: center;
     align-items: center;
     color: $color-text;
-    background-color: red;
   }
   &__footer {
     flex: 1;
@@ -97,7 +96,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: blue;
   }
   &--captured {
     background-color: $color-selected-card;
@@ -105,7 +103,6 @@ $width: calc((100vw - 20px - 20px) / 3);
   }
 }
 .image-container {
-  background-color: lightblue;
   width: 100%;
   height: 100%;
   display: flex;
@@ -116,7 +113,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     height: auto;
     aspect-ratio: 1/1;
     object-fit: contain;
-    background-color: lightcoral;
     border-radius: 50%;
   }
 }

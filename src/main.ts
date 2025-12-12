@@ -18,12 +18,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(ElementPlus)
 app.use(createPinia())
 
+// 初始化 pokedex 資訊
 const pokeApiDataStore = usePokeApiDataStore()
 await pokeApiDataStore.initData()
 
-app.use(router)
-
 const themeStore = useThemeStore()
 themeStore.setTheme(themeStore.currentTheme) // 設定主題
+
+app.use(router)
 
 app.mount('#app')

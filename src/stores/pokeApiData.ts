@@ -9,13 +9,13 @@ export const usePokeApiDataStore = defineStore('pokeApiData', () => {
 
   // Actions
   const initData = async () => { // 將資料存到 store 供全域使用
-    const [fullPokedexData, referenceData] = await Promise.all([
+    const [fullData, refData] = await Promise.all([
       fetch('/raw-pokemon-data.json').then(res => res.json()),
       fetch('/reference-data.json').then(res => res.json())
     ])
 
-    pokeApiData.value = fullPokedexData
-    referenceData.value = referenceData
+    pokeApiData.value = fullData
+    referenceData.value = refData
   }
 
   return {
