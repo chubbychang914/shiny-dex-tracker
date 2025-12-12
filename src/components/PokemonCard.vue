@@ -18,6 +18,7 @@ const isCaptured = ref(false)
 const pokemonCardImage = computed(() => {
   // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.pokemonData.id}.png`
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.pokemonData.id}.png`
+  // return ''
 })
 </script>
 
@@ -29,13 +30,16 @@ const pokemonCardImage = computed(() => {
   >
     <div class="pokemon-card__header">
       <span>#{{ pokemonData.id }}</span>
-      <span>{{ capitalizeFirstLetter(pokemonData.generationIntroduced) }}</span>
     </div>
     <div class="pokemon-card__body">
-      <el-image
-        :src="pokemonCardImage"
-        class="pokemon-card__image"
-        lazy />
+      <div class="image-container">
+        <img
+          :src="pokemonCardImage"
+          alt="pokemon-card-image"
+          loading="lazy" />
+      </div>
+    </div>
+    <div class="pokemon-card__footer">
       <span>{{ capitalizeFirstLetter(pokemonData.name) }}</span>
     </div>
   </div>
@@ -48,32 +52,37 @@ $width: calc((100vw - 20px - 20px) / 3);
   flex-direction: column;
   align-items: center;
   width: $width;
-  height: calc($width * 1.2);
+  height: calc($width * 1.4);
   border-radius: 5px;
   background-color: $color-card;
   color: $color-text;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   &__header {
-    flex: 3;
+    flex: 1;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     padding: 0 10px;
     color: $color-text-secondary;
+    background-color: green;
   }
   &__body {
-    flex: 7;
+    flex: 5;
+    width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: $color-text;
+    background-color: red;
   }
-  &__image {
-    width: 50%;
-    border-radius: 10px;
-    border: 1px solid $color-border;
+  &__footer {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: blue;
   }
   &--captured {
     background-color: $color-selected-card;
@@ -81,15 +90,19 @@ $width: calc((100vw - 20px - 20px) / 3);
   }
 }
 .image-container {
+  background-color: lightblue;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: auto;
   img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1/1;
     object-fit: contain;
+    background-color: lightcoral;
+    border-radius: 50%;
   }
 }
 </style>
