@@ -58,14 +58,6 @@ try {
     fetch(speciesUrl).then(res => res.json())
   ])
 
-  // 取得不同遊戲的 dex number
-  const dexMap = {
-    national: id
-  }
-  speciesRes.pokedex_numbers.forEach(item => {
-    dexMap[item.pokedex.name] = item.entry_number
-  })
-
   // 對應的 generation
   const generationMap = {
     'generation-i': 'kanto',
@@ -78,13 +70,30 @@ try {
     'generation-viii': 'galar',
     'generation-ix': 'paldea'
   }
+  const generationIntroduced = generationMap[speciesRes.generation.name] || 'unknown'
+
+  // 取得不同遊戲的 dex number
+  const dexMap = {
+    national: id
+  }
+  speciesRes.pokedex_numbers.forEach(item => {
+    dexMap[item.pokedex.name] = item.entry_number
+  })
+
+  const variants = speciesRes.varieties.map(variant => {
+    return {
+      name: variant.pokemon.name,
+      id: parseInt(variant.pokemon.url.split('/').filter(Boolean).pop())
+    }
+  })
 
   return {
     id: detailRes.id,
     name: detailRes.name,
     types: detailRes.types.map(type => type.type.name),
-    generationIntroduced: generationMap[speciesRes.generation.name],
-    dexMap: dexMap
+    generationIntroduced,
+    variants,
+    dexMap
   }
 } catch (error) {
   console.error(`Error fetching Pokemon details for ID ${id}:`, error)
