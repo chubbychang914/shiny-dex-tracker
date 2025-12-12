@@ -91,13 +91,12 @@ try {
 }
 }
 
-const initializeDexData = async () => {
-  console.log('🔍 Generating Pokemon data from PokeAPI...')
+const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
+  console.log(`🔍 Generating Pokemon data from PokeAPI from ID ${startId} to ${endId}...`)
   let allPokemon = []
 
-  for (let i = 1; i <= TOTAL_POKEMON; i += BATCH_SIZE) {
-    const end = Math.min(i + BATCH_SIZE - 1, TOTAL_POKEMON)
-
+  for (let i = startId; i <= endId; i += BATCH_SIZE) {
+    const end = Math.min(i + BATCH_SIZE - 1, endId)
     console.log(`✨ Fetching IDs ${i} to ${end}...`)
 
     const promises = []
@@ -106,7 +105,6 @@ const initializeDexData = async () => {
     }
 
     const batchResults = await Promise.all(promises)
-
     const validResults = batchResults.filter(p => p !== null)
     allPokemon = [...allPokemon, ...validResults]
 
@@ -114,17 +112,23 @@ const initializeDexData = async () => {
       await sleep(DELAY_MS)
     }
   }
+
   allPokemon.sort((a, b) => a.id - b.id)
+
   writeToFile(allPokemon, 'raw-pokemon-data.json')
-  console.log('✅ Pokemon data saved to public/raw-pokemon-data.json')
+  console.log('✏️ Pokemon data saved to public/raw-pokemon-data.json')
 }
 
 const initializeReferenceData = async () => {
+  console.log('🔍 Generating reference data...')
+  console.log('✨ Fetching regions...')
   const regions =  await fetchAllRegions()
+  console.log('✨ Fetching types...')
   const types = await fetchAllTypes()
 
   writeToFile({ regions, types }, 'reference-data.json')
+  console.log('✏️ Reference data saved to public/reference-data.json')
 }
 
-initializeReferenceData()
-initializeDexData()
+await initializeReferenceData()
+await initializeDexData()

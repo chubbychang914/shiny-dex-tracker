@@ -848,7 +848,8 @@
       "updated-akala": 69,
       "letsgo-kanto": 39,
       "isle-of-armor": 12,
-      "paldea": 60
+      "paldea": 60,
+      "hyperspace": 77
     }
   },
   {
@@ -875,7 +876,8 @@
       "updated-akala": 70,
       "letsgo-kanto": 40,
       "isle-of-armor": 13,
-      "paldea": 61
+      "paldea": 61,
+      "hyperspace": 78
     }
   },
   {
@@ -910,7 +912,8 @@
       "updated-poni": 26,
       "letsgo-kanto": 41,
       "crown-tundra": 144,
-      "hisui": 34
+      "hisui": 34,
+      "hyperspace": 94
     }
   },
   {
@@ -945,7 +948,8 @@
       "updated-poni": 27,
       "letsgo-kanto": 42,
       "crown-tundra": 145,
-      "hisui": 35
+      "hisui": 35,
+      "hyperspace": 95
     }
   },
   {
@@ -1172,7 +1176,8 @@
       "updated-ulaula": 23,
       "letsgo-kanto": 52,
       "galar": 182,
-      "paldea": 141
+      "paldea": 141,
+      "hyperspace": 4
     }
   },
   {
@@ -1288,7 +1293,8 @@
       "updated-poni": 39,
       "letsgo-kanto": 56,
       "paldea": 158,
-      "kitakami": 99
+      "kitakami": 99,
+      "hyperspace": 1
     }
   },
   {
@@ -1311,7 +1317,8 @@
       "updated-poni": 40,
       "letsgo-kanto": 57,
       "paldea": 159,
-      "kitakami": 100
+      "kitakami": 100,
+      "hyperspace": 2
     }
   },
   {
@@ -1989,7 +1996,8 @@
       "updated-johto": 160,
       "kalos-central": 61,
       "letsgo-kanto": 83,
-      "galar": 218
+      "galar": 218,
+      "hyperspace": 7
     }
   },
   {
@@ -2475,7 +2483,8 @@
       "updated-alola": 197,
       "updated-akala": 98,
       "letsgo-kanto": 104,
-      "isle-of-armor": 170
+      "isle-of-armor": 170,
+      "hyperspace": 9
     }
   },
   {
@@ -2886,7 +2895,8 @@
       "letsgo-kanto": 122,
       "galar": 365,
       "crown-tundra": 11,
-      "hisui": 77
+      "hisui": 77,
+      "hyperspace": 109
     }
   },
   {
@@ -3912,7 +3922,8 @@
       "updated-ulaula": 37,
       "updated-poni": 28,
       "crown-tundra": 146,
-      "hisui": 36
+      "hisui": 36,
+      "hyperspace": 96
     }
   },
   {
@@ -4768,7 +4779,8 @@
       "galar": 304,
       "hisui": 84,
       "paldea": 331,
-      "blueberry": 146
+      "blueberry": 146,
+      "hyperspace": 37
     }
   },
   {
@@ -5658,7 +5670,8 @@
       "national": 257,
       "hoenn": 6,
       "updated-hoenn": 6,
-      "blueberry": 187
+      "blueberry": 187,
+      "hyperspace": 44
     }
   },
   {
@@ -5672,7 +5685,8 @@
       "national": 258,
       "hoenn": 7,
       "updated-hoenn": 7,
-      "blueberry": 188
+      "blueberry": 188,
+      "hyperspace": 45
     }
   },
   {
@@ -7361,7 +7375,8 @@
       "updated-akala": 90,
       "galar": 152,
       "crown-tundra": 188,
-      "kitakami": 158
+      "kitakami": 158,
+      "hyperspace": 48
     }
   },
   {
@@ -7535,7 +7550,8 @@
       "kalos-coastal": 112,
       "updated-hoenn": 158,
       "hisui": 196,
-      "kitakami": 143
+      "kitakami": 143,
+      "hyperspace": 51
     }
   },
   {
@@ -7959,7 +7975,8 @@
     "dexMap": {
       "national": 380,
       "hoenn": 196,
-      "updated-hoenn": 205
+      "updated-hoenn": 205,
+      "hyperspace": 126
     }
   },
   {
@@ -8002,7 +8019,8 @@
       "national": 383,
       "hoenn": 199,
       "conquest-gallery": 194,
-      "updated-hoenn": 208
+      "updated-hoenn": 208,
+      "hyperspace": 129
     }
   },
   {
@@ -10031,7 +10049,8 @@
     "generationIntroduced": "sinnoh",
     "dexMap": {
       "national": 491,
-      "hisui": 242
+      "hisui": 242,
+      "hyperspace": 125
     }
   },
   {
@@ -10440,7 +10459,8 @@
       "original-unova": 23,
       "updated-unova": 86,
       "conquest-gallery": 72,
-      "galar": 90
+      "galar": 90,
+      "hyperspace": 55
     }
   },
   {
@@ -12228,7 +12248,8 @@
       "updated-unova": 197,
       "kalos-mountain": 111,
       "crown-tundra": 30,
-      "paldea": 360
+      "paldea": 360,
+      "hyperspace": 29
     }
   },
   {
@@ -14407,7 +14428,8 @@
       "updated-ulaula": 30,
       "updated-poni": 24,
       "paldea": 118,
-      "blueberry": 72
+      "blueberry": 72,
+      "hyperspace": 87
     }
   },
   {
@@ -14967,7 +14989,8 @@
       "updated-akala": 122,
       "updated-poni": 83,
       "galar": 232,
-      "isle-of-armor": 124
+      "isle-of-armor": 124,
+      "hyperspace": 62
     }
   },
   {
@@ -14987,7 +15010,8 @@
       "updated-akala": 123,
       "updated-poni": 84,
       "galar": 233,
-      "isle-of-armor": 125
+      "isle-of-armor": 125,
+      "hyperspace": 63
     }
   },
   {
@@ -15005,7 +15029,8 @@
       "updated-alola": 225,
       "updated-akala": 126,
       "isle-of-armor": 133,
-      "paldea": 322
+      "paldea": 322,
+      "hyperspace": 25
     }
   },
   {
@@ -15023,7 +15048,8 @@
       "updated-alola": 226,
       "updated-akala": 127,
       "isle-of-armor": 134,
-      "paldea": 323
+      "paldea": 323,
+      "hyperspace": 26
     }
   },
   {
@@ -15507,7 +15533,8 @@
     "dexMap": {
       "national": 801,
       "original-alola": 301,
-      "updated-alola": 401
+      "updated-alola": 401,
+      "hyperspace": 131
     }
   },
   {
@@ -15775,7 +15802,8 @@
       "national": 821,
       "galar": 21,
       "crown-tundra": 163,
-      "paldea": 40
+      "paldea": 40,
+      "hyperspace": 73
     }
   },
   {
@@ -15789,7 +15817,8 @@
       "national": 822,
       "galar": 22,
       "crown-tundra": 164,
-      "paldea": 41
+      "paldea": 41,
+      "hyperspace": 74
     }
   },
   {
@@ -15804,7 +15833,8 @@
       "national": 823,
       "galar": 23,
       "crown-tundra": 165,
-      "paldea": 42
+      "paldea": 42,
+      "hyperspace": 75
     }
   },
   {
@@ -16174,7 +16204,8 @@
     "dexMap": {
       "national": 849,
       "galar": 311,
-      "paldea": 199
+      "paldea": 199,
+      "hyperspace": 103
     }
   },
   {
@@ -16380,7 +16411,8 @@
     "generationIntroduced": "galar",
     "dexMap": {
       "national": 863,
-      "galar": 183
+      "galar": 183,
+      "hyperspace": 6
     }
   },
   {
@@ -16939,7 +16971,8 @@
     "dexMap": {
       "national": 904,
       "hisui": 85,
-      "blueberry": 147
+      "blueberry": 147,
+      "hyperspace": 38
     }
   },
   {
@@ -17212,7 +17245,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 926,
-      "paldea": 76
+      "paldea": 76,
+      "hyperspace": 79
     }
   },
   {
@@ -17619,7 +17653,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 957,
-      "paldea": 279
+      "paldea": 279,
+      "hyperspace": 16
     }
   },
   {
@@ -17632,7 +17667,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 958,
-      "paldea": 280
+      "paldea": 280,
+      "hyperspace": 17
     }
   },
   {
@@ -17645,7 +17681,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 959,
-      "paldea": 281
+      "paldea": 281,
+      "hyperspace": 18
     }
   },
   {
@@ -17789,7 +17826,8 @@
     "dexMap": {
       "national": 970,
       "paldea": 309,
-      "kitakami": 157
+      "kitakami": 157,
+      "hyperspace": 21
     }
   },
   {
@@ -17878,7 +17916,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 977,
-      "paldea": 374
+      "paldea": 374,
+      "hyperspace": 30
     }
   },
   {
@@ -17906,7 +17945,8 @@
     "dexMap": {
       "national": 979,
       "paldea": 160,
-      "kitakami": 101
+      "kitakami": 101,
+      "hyperspace": 3
     }
   },
   {
@@ -18184,7 +18224,8 @@
     "generationIntroduced": "paldea",
     "dexMap": {
       "national": 1000,
-      "paldea": 392
+      "paldea": 392,
+      "hyperspace": 36
     }
   },
   {
