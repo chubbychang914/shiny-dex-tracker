@@ -32,5 +32,10 @@ export type StructuredPokemonData = { // 整理過的資料結構
   dexMap: Record<string, number>
 }
 
+export type CaughtPokemonData = {
+  isShiny: boolean,
+  timestamp: number,
+}
+
 // Bottom Drawer Types
 export type DrawerComponentName = 'settings' | 'advanced-filters' | null

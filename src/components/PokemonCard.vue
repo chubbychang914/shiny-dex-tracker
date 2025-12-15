@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { capitalizeFirstLetter } from '@/utils/helpers.ts'
-import type { StructuredPokemonData } from '@/types/index.ts'
+import type { StructuredPokemonData, CaughtPokemonData } from '@/types/index.ts'
+import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caughtPokemonData.ts'
 
 // ==============================
 // Props
@@ -13,7 +14,7 @@ const props = defineProps<{
 // ==============================
 // Data
 // ==============================
-const isCaptured = ref(false)
+const isCaught = ref(false)
 
 const pokemonCardName = computed(() => {
   let displayName = props.singlePokemonData.name
@@ -33,19 +34,37 @@ const pokemonCardName = computed(() => {
 const pokemonCardImage = computed(() => {
   // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
-  return ''
 })
+
+// ==============================
+// Lifecycle Hooks
+// ==============================
+onMounted(() => {
+  const storedData: Record<number, CaughtPokemonData> = loadFromStorage()
+  const singleData = storedData[props.singlePokemonData.id]
+  if (singleData) {
+    isCaught.value = true
+  }
+})
+
+// ==============================
+// Methods
+// ==============================
+const handleToggleCaughtStatus = () => {
+  const caughtState = toggleCaughtStatus(props.singlePokemonData.id)
+  isCaught.value = caughtState
+}
 </script>
 
 <template>
   <div
     class="pokemon-card"
-    :class="{ 'pokemon-card--captured': isCaptured }"
-    @click="isCaptured = !isCaptured"
+    :class="{ 'pokemon-card--caught': isCaught }"
+    @click="handleToggleCaughtStatus"
   >
     <div class="pokemon-card__header">
       <span>#{{ singlePokemonData.id }}</span>
-      <pre>{{ isCaptured }}</pre>
+      <pre>{{ isCaught }}</pre>
     </div>
     <div class="pokemon-card__body">
       <div class="image-container">
@@ -97,9 +116,11 @@ $width: calc((100vw - 20px - 20px) / 3);
     justify-content: flex-start;
     align-items: center;
   }
-  &--captured {
-    background-color: $color-selected-card;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  &--caught {
+    background-color: #3dd6d6; // Bright teal
+    border: 2px solid #2bc4c4; // Slightly darker teal outline
+    box-shadow: 0 0 15px rgba(61, 214, 214, 0.3); // Cyan glow
+    color: #1a1d2e; // Dark text for contrast
   }
 }
 .image-container {
