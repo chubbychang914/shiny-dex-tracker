@@ -10,8 +10,9 @@ const filterQueriesStore = useFilterQueriesStore()
 // ==============================
 // INTERSECTION OBSERVER SETUP
 // ==============================
-const ITEMS_PER_BATCH = 12                          // load 3 cards each batch
-const displayCount = ref<number>(ITEMS_PER_BATCH)   // how many cards are shown
+const INITIAL_BATCH_SIZE = 36                        // first load 36 cards
+const ITEMS_PER_BATCH = 18                          // load 18 cards each batch when sentinel hit
+const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
 const sentinelRef = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
 
@@ -25,14 +26,37 @@ const isLoading = ref(false)
 // ==============================
 /* Filtered data **/
 const filteredPokedexData = computed(() => {
-  let result = [...pokeApiDataStore.pokeApiData]
+  let result = pokeApiDataStore.pokeApiData
 
-  // 區域選擇
+  // 1. Filter by region
   if (filterQueriesStore.selectedRegion !== 'all') {
     result = result.filter(pokemon => pokemon.generationIntroduced === filterQueriesStore.selectedRegion)
   }
 
-  // 排序選擇
+  // 2. Filter by search query
+  if (filterQueriesStore.searchQuery) {
+    const normalizedSearchQuery = filterQueriesStore.searchQuery // Remove all hyphens and spaces (example: iron-valiant -> ironvaliant)
+      .replace(/[-\s]/g, '')
+      .toLowerCase()
+
+    result = result.filter(pokemon => {
+      const normalizedPokemonName = pokemon.name
+        .replace(/[-\s]/g, '')
+        .toLowerCase()
+
+      const matchesName = normalizedPokemonName.includes(normalizedSearchQuery)
+      const matchesDexNumber = pokemon.id.toString().includes(normalizedSearchQuery)
+
+      return matchesName || matchesDexNumber
+    })
+  }
+
+   // 3. Copy only if we haven't filtered (filter returns new array already)
+  if (result === pokeApiDataStore.pokeApiData) {
+    result = [...result]
+  }
+
+  // 4. Sort by selected sort option -> now sorting by filtered data instead of all data
   switch (filterQueriesStore.selectedSortOption) {
     case 'number-asc':
       result.sort((a, b) => a.id - b.id)
@@ -49,20 +73,6 @@ const filteredPokedexData = computed(() => {
     default:
       result.sort((a, b) => a.id - b.id)
       break
-  }
-
-  // 搜尋
-  if (filterQueriesStore.searchQuery) {
-    const normalizedSearchQuery = filterQueriesStore.searchQuery.replace(/[-\s]/g, '').toLowerCase()
-
-    result = result.filter(pokemon => {
-      // Remove all hyphens and spaces (example: iron-valiant -> ironvaliant)
-      const normalizedPokemonName = pokemon.name.replace(/[-\s]/g, '').toLowerCase()
-      const matchesName = normalizedPokemonName.includes(normalizedSearchQuery)
-      const matchesDexNumber = pokemon.id.toString().includes(normalizedSearchQuery)
-
-      return matchesName || matchesDexNumber
-    })
   }
 
   return result
@@ -82,10 +92,14 @@ const hasMore = computed(() => {
 // WATCH
 // ==============================
 /* when filter queries change **/
-watch(filterQueriesStore.$state, () => {
-  window.scrollTo({ top: 0, behavior: 'instant' })
-  displayCount.value = ITEMS_PER_BATCH
-})
+watch(
+  filterQueriesStore.$state,
+  () => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    displayCount.value = INITIAL_BATCH_SIZE
+  },
+  { deep: true }
+)
 
 // ==============================
 // METHODS
@@ -109,7 +123,7 @@ const setUpObserver = () => {
     },
     {
       root: null,              // uses viewport as boundary
-      rootMargin: '300px',     // trigger when sentinel is 100px BEFORE entering viewport
+      rootMargin: '100px',     // trigger when sentinel is 100px BEFORE entering viewport
       threshold: 0             // trigger when 10% of the sentinel is visible
     }
   )
