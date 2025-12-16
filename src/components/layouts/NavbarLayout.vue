@@ -68,6 +68,7 @@ const handleChangeSortOption = () => {
     <div class="navbar__top">
       <h1>Navbar</h1>
       <div class="icon-container">
+        <el-icon class="icon__settings" @click="handleClickAdvancedFilters"><Search /></el-icon>
         <el-icon class="icon__settings" @click="handleClickAdvancedFilters"><Filter /></el-icon>
         <el-icon class="icon__settings" @click="handleClickSettings"><Setting /></el-icon>
       </div>
@@ -116,7 +117,7 @@ const handleChangeSortOption = () => {
   width: 100%;
   background-color: $color-primary;
   position: sticky;
-  z-index: 1000;
+  z-index: 2005; // v-loading is 2000
   top: 0;
   left: 0;
   color: $color-text;

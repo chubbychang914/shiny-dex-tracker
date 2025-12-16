@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted } from 'vue'
+import { defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import NavbarLayout from './components/layouts/NavbarLayout.vue'
 import { useBottomDrawerStore } from './stores/bottomDrawer.ts'

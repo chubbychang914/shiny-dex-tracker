@@ -32,7 +32,7 @@ export type StructuredPokemonData = { // 整理過的資料結構
   dexMap: Record<string, number>
 }
 
-export type CaughtPokemonData = {
+export type CaughtPokemonData = { // 紀錄使用者 captured 的資料結構
   isShiny: boolean,
   timestamp: number,
 }
