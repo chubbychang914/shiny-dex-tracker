@@ -4,7 +4,8 @@
 
 <template>
   <div class="settings-page">
-    <h1 v-for="i in 100" :key="i">Settings</h1>
+    <div class="">national dex</div>
+    <div class="">game dex</div>
   </div>
 </template>
 

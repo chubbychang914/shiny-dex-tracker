@@ -11,7 +11,7 @@ const filterQueriesStore = useFilterQueriesStore()
 // INTERSECTION OBSERVER SETUP
 // ==============================
 const INITIAL_BATCH_SIZE = 36                        // first load 36 cards
-const ITEMS_PER_BATCH = 18                          // load 18 cards each batch when sentinel hit
+const ITEMS_PER_BATCH = 18                           // load 18 cards each batch when sentinel hit
 const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
 const sentinelRef = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
@@ -91,7 +91,7 @@ const hasMore = computed(() => {
 // ==============================
 // WATCH
 // ==============================
-/* when filter queries change **/
+/* when filter queries change, scroll to top and show displayed cards **/
 watch(
   filterQueriesStore.$state,
   () => {

@@ -5,6 +5,7 @@ import { capitalizeFirstLetter } from '@/utils/helpers.ts'
 import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+import debounce from 'lodash/debounce'
 
 const pokeApiDataStore = usePokeApiDataStore()
 const bottomDrawerStore = useBottomDrawerStore()
@@ -50,9 +51,9 @@ const handleClickSettings = () => {
 const handleClickAdvancedFilters = () => {
   bottomDrawerStore.openDrawer('advanced-filters', '80%')
 }
-const handleChangeSearchQuery = () => {
+const handleChangeSearchQuery = debounce(() => {
   filterQueriesStore.setSearchQuery(searchQuery.value)
-}
+}, 250)
 const handleChangeRegion = () => {
   filterQueriesStore.setSelectedRegion(selectedRegion.value)
   console.log('✨selectedRegion', selectedRegion.value)
