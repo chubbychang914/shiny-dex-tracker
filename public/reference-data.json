@@ -32,5 +32,73 @@
     "fairy",
     "stellar",
     "unknown"
+  ],
+  "gameDexMap": [
+    {
+      "id": "lets-go",
+      "group": "lets-go",
+      "displayName": "Let's Go Pikachu/Eevee",
+      "pokedexName": "letsgo-kanto"
+    },
+    {
+      "id": "bdsp",
+      "group": "bdsp",
+      "displayName": "Brilliant Diamond/Shining Pearl",
+      "pokedexName": "extended-sinnoh"
+    },
+    {
+      "id": "swsh",
+      "group": "swsh",
+      "displayName": "Sword/Shield",
+      "pokedexName": "galar"
+    },
+    {
+      "id": "swsh-dlc1",
+      "group": "swsh",
+      "displayName": "Sword/Shield: Isle of Armor",
+      "pokedexName": "isle-of-armor"
+    },
+    {
+      "id": "swsh-dlc2",
+      "group": "swsh",
+      "displayName": "Sword/Shield: Crown Tundra",
+      "pokedexName": "crown-tundra"
+    },
+    {
+      "id": "legends-arceus",
+      "group": "legends-arceus",
+      "displayName": "Legends: Arceus",
+      "pokedexName": "hisui"
+    },
+    {
+      "id": "sv",
+      "group": "sv",
+      "displayName": "Scarlet/Violet",
+      "pokedexName": "paldea"
+    },
+    {
+      "id": "sv-dlc1",
+      "group": "sv",
+      "displayName": "Scarlet/Violet: The Teal Mask",
+      "pokedexName": "kitakami"
+    },
+    {
+      "id": "sv-dlc2",
+      "group": "sv",
+      "displayName": "Scarlet/Violet: The Indigo Disk",
+      "pokedexName": "blueberry"
+    },
+    {
+      "id": "za",
+      "group": "za",
+      "displayName": "Legends ZA",
+      "pokedexName": "lumiose-city"
+    },
+    {
+      "id": "za-dlc1",
+      "group": "za",
+      "displayName": "Legends ZA: Mega Dimensions",
+      "pokedexName": "hyperspace"
+    }
   ]
 }

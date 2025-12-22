@@ -9,10 +9,10 @@ const TOTAL_POKEMON = 1025
 const BATCH_SIZE = 30
 const DELAY_MS = 1000
 
-// 等待時間再抓下一筆資料
+// Wait for the next batch
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
-// 寫入檔案
+// Write to file
 const writeToFile = (data, fileName) => {
   const publicDir = path.resolve(__dirname, '../public')
 
@@ -25,7 +25,7 @@ const writeToFile = (data, fileName) => {
   return outputPath
 }
 
-// 抓取所有 Region 資料
+// Fetch all regions data
 const fetchAllRegions = async () => {
   try {
     const regionsUrl = 'https://pokeapi.co/api/v2/region'
@@ -36,7 +36,7 @@ const fetchAllRegions = async () => {
   }
 }
 
-// 抓取所有 Type 資料
+// Fetch all types data
 const fetchAllTypes = async () => {
   try {
     const typesUrl = 'https://pokeapi.co/api/v2/type'
@@ -47,7 +47,78 @@ const fetchAllTypes = async () => {
   }
 }
 
-// 抓取個別 Pokemon 的詳細資料
+// Sort by game dex
+const GAME_POKEDEX_MAPPING = [
+  {
+    id: 'lets-go',
+    group: 'lets-go',
+    displayName: 'Let\'s Go Pikachu/Eevee',
+    pokedexName: 'letsgo-kanto'
+  },
+  {
+    id: 'bdsp',
+    group: 'bdsp',
+    displayName: 'Brilliant Diamond/Shining Pearl',
+    pokedexName: 'extended-sinnoh'
+  },
+  {
+    id: 'swsh',
+    group: 'swsh',
+    displayName: 'Sword/Shield',
+    pokedexName: 'galar'
+  },
+  {
+    id: 'swsh-dlc1',
+    group: 'swsh',
+    displayName: 'Sword/Shield: Isle of Armor',
+    pokedexName: 'isle-of-armor'
+  },
+  {
+    id: 'swsh-dlc2',
+    group: 'swsh',
+    displayName: 'Sword/Shield: Crown Tundra',
+    pokedexName: 'crown-tundra'
+  },
+  {
+    id: 'legends-arceus',
+    group: 'legends-arceus',
+    displayName: 'Legends: Arceus',
+    pokedexName: 'hisui'
+  },
+  {
+    id: 'sv',
+    group: 'sv',
+    displayName: 'Scarlet/Violet',
+    pokedexName: 'paldea'
+  },
+  {
+    id: 'sv-dlc1',
+    group: 'sv',
+    displayName: 'Scarlet/Violet: The Teal Mask',
+    pokedexName: 'kitakami'
+  },
+  {
+    id: 'sv-dlc2',
+    group: 'sv',
+    displayName: 'Scarlet/Violet: The Indigo Disk',
+    pokedexName: 'blueberry'
+  },
+  {
+    id: 'za',
+    group: 'za',
+    displayName: 'Legends ZA',
+    pokedexName: 'lumiose-city'
+  },
+  {
+    id: 'za-dlc1',
+    group: 'za',
+    displayName: 'Legends ZA: Mega Dimensions',
+    pokedexName: 'hyperspace'
+  }
+]
+
+
+// Fetch individual Pokemon details
 const fetchPokemonDetails = async (id) => {
 try {
   const detailUrl = `https://pokeapi.co/api/v2/pokemon/${id}` // 取得 type, region
@@ -135,7 +206,7 @@ const initializeReferenceData = async () => {
   console.log('✨ Fetching types...')
   const types = await fetchAllTypes()
 
-  writeToFile({ regions, types }, 'reference-data.json')
+  writeToFile({ regions, types, gameDexMap: GAME_POKEDEX_MAPPING }, 'reference-data.json')
   console.log('✏️ Reference data saved to public/reference-data.json')
 }
 
