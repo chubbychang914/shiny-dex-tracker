@@ -3,10 +3,10 @@ import type { DBSchema, IDBPDatabase } from 'idb'
 import type { StructuredPokemonData } from '@/types/index.ts'
 
 /* Database: pokemon-dex-tracker-db
-*   ├── Store 1: "pokeapi-cache" (API responses for caching)
-*   ├── Store 2: "user-data" (user's captured Pokemon)
-*   └── Store 3: "user-settings" (user preferences - future)
-*/
+ *   ├── Store 1: "pokeapi-cache" (API responses for caching)
+ *   ├── Store 2: "user-data" (user's captured Pokemon)
+ *   └── Store 3: "user-settings" (user preferences - future)
+ */
 
 // ==============================
 // Database (Cabinet))

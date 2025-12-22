@@ -14,7 +14,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
-    "gen:pokemon-data": "node scripts/generate-pokemon-data.js"
+    "gen:pokemon-data": "node scripts/generate-pokemon-data.js",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -36,10 +38,13 @@
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.8.1",
     "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-vue": "~10.5.1",
     "jiti": "^2.6.1",
     "jsdom": "^27.2.0",
     "npm-run-all2": "^8.0.4",
+    "prettier": "^3.7.4",
     "sass": "^1.94.2",
     "typescript": "~5.9.0",
     "vite": "^7.2.4",

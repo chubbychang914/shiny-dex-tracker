@@ -50,4 +50,3 @@
 //   await store.clear()
 //   await transaction.done
 // }
-

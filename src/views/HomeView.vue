@@ -13,10 +13,16 @@ const navigateToGameDex = () => {
 
 <template>
   <div class="home-container">
-    <div class="title-container" @click="navigateToNationalDex">
+    <div
+      class="title-container"
+      @click="navigateToNationalDex"
+    >
       <div class="title">National Dex</div>
     </div>
-    <div class="title-container" @click="navigateToGameDex">
+    <div
+      class="title-container"
+      @click="navigateToGameDex"
+    >
       <div class="title">Game Dex</div>
     </div>
   </div>

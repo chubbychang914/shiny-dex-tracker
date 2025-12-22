@@ -20,8 +20,8 @@ const filterQueriesStore = useFilterQueriesStore()
 const searchQuery = ref('')
 const selectedRegion = ref<Region>('all')
 const selectedSortOption = ref<SortBy>('number-asc')
-const isHomePage = computed(() => {
-  return route.path === '/'
+const showFilters = computed(() => {
+  return route.path !== '/' && route.path !== '/game-dex'
 })
 
 const sortOptions = ref<SortByOption[]>([
@@ -37,13 +37,13 @@ const regionOptions = computed(() => {
     label: 'All Regions'
   }
   const filteredRegions = pokeApiDataStore.referenceData.regions
-    .filter(region => region !== 'hisui') // Remove Hisui Option for now
-    .map(region => {
+    .filter((region) => region !== 'hisui') // Remove Hisui Option for now
+    .map((region) => {
       return {
         value: region,
         label: capitalizeFirstLetter(region)
       }
-  })
+    })
 
   return [allRegionOption, ...filteredRegions]
 })
@@ -75,65 +75,87 @@ const navigateToHome = () => {
 
 <template>
   <div class="navbar">
-    <!-- Home Page -->
-    <template v-if="isHomePage">
-      <div class="navbar__top">
-        <h1>Navbar</h1>
-        <div class="icon-container">
-          <el-icon class="icon__settings" @click="handleClickSettings"><Setting /></el-icon>
-        </div>
+    <div class="navbar__top">
+      <div class="title-container">
+        <el-icon
+          v-if="route.path !== '/'"
+          class="icon__back"
+          @click="router.back()"
+          ><ArrowLeft
+        /></el-icon>
+        <h1 @click="navigateToHome">Navbar</h1>
       </div>
-    </template>
-    <!-- Other Pages -->
-    <template v-else>
-      <div class="navbar__top">
-        <div class="title-container">
-          <el-icon class="icon__back" @click="router.back()"><ArrowLeft /></el-icon>
-          <h1 @click="navigateToHome">Navbar</h1>
-        </div>
+      <template v-if="showFilters">
         <div class="icon-container">
-          <el-icon class="icon__settings" @click="handleClickAdvancedFilters"><Search /></el-icon>
-          <el-icon class="icon__settings" @click="handleClickAdvancedFilters"><Filter /></el-icon>
-          <el-icon class="icon__settings" @click="handleClickSettings"><Setting /></el-icon>
+          <el-icon
+            class="icon__settings"
+            @click="handleClickAdvancedFilters"
+            ><Search
+          /></el-icon>
+          <el-icon
+            class="icon__settings"
+            @click="handleClickAdvancedFilters"
+            ><Filter
+          /></el-icon>
+          <el-icon
+            class="icon__settings"
+            @click="handleClickSettings"
+            ><Setting
+          /></el-icon>
         </div>
-      </div>
-      <div class="navbar__middle">
-        <el-input
-          v-model="searchQuery"
-          style="width: 100%"
-          size="large"
-          placeholder="Search by name or number"
-          clearable
-          @input="handleChangeSearchQuery"
+      </template>
+      <template v-else>
+        <div class="icon-container">
+          <el-icon
+            class="icon__settings"
+            @click="handleClickSettings"
+            ><Setting
+          /></el-icon>
+        </div>
+      </template>
+    </div>
+    <div
+      class="navbar__middle"
+      v-if="showFilters"
+    >
+      <el-input
+        v-model="searchQuery"
+        style="width: 100%"
+        size="large"
+        placeholder="Search by name or number"
+        clearable
+        @input="handleChangeSearchQuery"
+      />
+    </div>
+    <div
+      class="navbar__bottom"
+      v-if="showFilters"
+    >
+      <el-select
+        v-model="selectedRegion"
+        style="width: 100%"
+        @change="handleChangeRegion"
+      >
+        <el-option
+          v-for="item in regionOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
         />
-      </div>
-      <div class="navbar__bottom">
-        <el-select
-          v-model="selectedRegion"
-          style="width: 100%"
-          @change="handleChangeRegion"
-        >
-          <el-option
-            v-for="item in regionOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-        <el-select
-          v-model="selectedSortOption"
-          style="width: 100%"
-          @change="handleChangeSortOption"
-        >
-          <el-option
-            v-for="item in sortOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </div>
-    </template>
+      </el-select>
+      <el-select
+        v-model="selectedSortOption"
+        style="width: 100%"
+        @change="handleChangeSortOption"
+      >
+        <el-option
+          v-for="item in sortOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
   </div>
 </template>
 

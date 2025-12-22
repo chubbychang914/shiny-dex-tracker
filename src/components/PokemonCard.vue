@@ -25,7 +25,7 @@ const pokemonCardName = computed(() => {
   // if contains hyphen, remove hyphen and capitalize each word (example: iron-valiant -> Iron Valiant)
   displayName = displayName
     .split('-')
-    .map(word => capitalizeFirstLetter(word))
+    .map((word) => capitalizeFirstLetter(word))
     .join(' ')
 
   return displayName
@@ -72,7 +72,8 @@ const handleToggleCaughtStatus = () => {
         <img
           :src="pokemonCardImage"
           alt="pokemon-card-image"
-          loading="lazy" />
+          loading="lazy"
+        />
       </div>
     </div>
     <div class="pokemon-card__footer">

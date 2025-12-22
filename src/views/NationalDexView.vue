@@ -10,8 +10,8 @@ const filterQueriesStore = useFilterQueriesStore()
 // ==============================
 // INTERSECTION OBSERVER SETUP
 // ==============================
-const INITIAL_BATCH_SIZE = 36                        // first load 36 cards
-const ITEMS_PER_BATCH = 18                           // load 18 cards each batch when sentinel hit
+const INITIAL_BATCH_SIZE = 36 // first load 36 cards
+const ITEMS_PER_BATCH = 18 // load 18 cards each batch when sentinel hit
 const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
 const sentinelRef = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
@@ -30,7 +30,7 @@ const filteredPokedexData = computed(() => {
 
   // 1. Filter by region
   if (filterQueriesStore.selectedRegion !== 'all') {
-    result = result.filter(pokemon => pokemon.generationIntroduced === filterQueriesStore.selectedRegion)
+    result = result.filter((pokemon) => pokemon.generationIntroduced === filterQueriesStore.selectedRegion)
   }
 
   // 2. Filter by search query
@@ -39,10 +39,8 @@ const filteredPokedexData = computed(() => {
       .replace(/[-\s]/g, '')
       .toLowerCase()
 
-    result = result.filter(pokemon => {
-      const normalizedPokemonName = pokemon.name
-        .replace(/[-\s]/g, '')
-        .toLowerCase()
+    result = result.filter((pokemon) => {
+      const normalizedPokemonName = pokemon.name.replace(/[-\s]/g, '').toLowerCase()
 
       const matchesName = normalizedPokemonName.includes(normalizedSearchQuery)
       const matchesDexNumber = pokemon.id.toString().includes(normalizedSearchQuery)
@@ -51,7 +49,7 @@ const filteredPokedexData = computed(() => {
     })
   }
 
-   // 3. Copy only if we haven't filtered (filter returns new array already)
+  // 3. Copy only if we haven't filtered (filter returns new array already)
   if (result === pokeApiDataStore.pokeApiData) {
     result = [...result]
   }
@@ -122,9 +120,9 @@ const setUpObserver = () => {
       }
     },
     {
-      root: null,              // uses viewport as boundary
-      rootMargin: '100px',     // trigger when sentinel is 100px BEFORE entering viewport
-      threshold: 0             // trigger when 10% of the sentinel is visible
+      root: null, // uses viewport as boundary
+      rootMargin: '100px', // trigger when sentinel is 100px BEFORE entering viewport
+      threshold: 0 // trigger when 10% of the sentinel is visible
     }
   )
   observer.observe(sentinelRef.value)
@@ -138,7 +136,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
-  if (observer){
+  if (observer) {
     observer.disconnect()
     observer = null
   }
@@ -149,15 +147,19 @@ onBeforeUnmount(() => {
   <div class="pokedex">
     <div
       v-if="filteredPokedexData.length"
-      class="pokemon-cards-container">
+      class="pokemon-cards-container"
+    >
       <PokemonCard
-        v-for="(pokemon) in displayedPokedexData"
+        v-for="pokemon in displayedPokedexData"
         :key="pokemon.id"
         :single-pokemon-data="pokemon"
         v-loading="isLoading"
       />
     </div>
-    <div v-show="hasMore" ref="sentinelRef" />
+    <div
+      v-show="hasMore"
+      ref="sentinelRef"
+    />
   </div>
 </template>
 

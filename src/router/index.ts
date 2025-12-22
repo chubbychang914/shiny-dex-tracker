@@ -17,11 +17,15 @@ const router = createRouter({
     },
     {
       path: '/game-dex',
-      name: 'GameDex',
-      component: defineAsyncComponent(() => import('@/views/GameDexView.vue')),
+      name: 'GameDexList',
+      component: defineAsyncComponent(() => import('@/views/GameDexView.vue'))
     },
-
-  ],
+    {
+      path: '/game-dex/:pokedexName',
+      name: 'GameDexDetail',
+      component: defineAsyncComponent(() => import('@/views/GameDexDetailView.vue'))
+    }
+  ]
 })
 
 export default router

@@ -8,7 +8,7 @@ const bottomDrawerStore = useBottomDrawerStore()
 
 // 當有新的 drawer 樣式，需要在此處新增
 const drawerComponents = {
-  'settings': defineAsyncComponent(() => import('@/components/drawers/SettingsPage.vue')),
+  settings: defineAsyncComponent(() => import('@/components/drawers/SettingsPage.vue')),
   'advanced-filters': defineAsyncComponent(() => import('@/components/drawers/AdvancedFilters.vue'))
 }
 </script>
@@ -18,7 +18,10 @@ const drawerComponents = {
     <NavbarLayout />
     <main class="main-content">
       <RouterView />
-      <el-backtop :bottom="50" :right="12" />
+      <el-backtop
+        :bottom="50"
+        :right="12"
+      />
     </main>
     <el-drawer
       v-model="bottomDrawerStore.isOpen"
@@ -27,7 +30,7 @@ const drawerComponents = {
       :destroy-on-close="true"
       :with-header="false"
       @closed="bottomDrawerStore.closeDrawer()"
-      >
+    >
       <component
         v-if="bottomDrawerStore.currentComponent"
         :is="drawerComponents[bottomDrawerStore.currentComponent]"

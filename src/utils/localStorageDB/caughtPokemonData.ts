@@ -28,4 +28,3 @@ export const toggleCaughtStatus = (dexNumber: number): boolean => {
     return true
   }
 }
-

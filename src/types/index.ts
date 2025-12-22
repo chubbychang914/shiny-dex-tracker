@@ -15,26 +15,37 @@ export type Region = (typeof referenceData.regions)[number] | 'all'
 
 export type PokemonType = (typeof referenceData.types)[number]
 
-export type ReferenceData = { // 引用資料
-  regions: Region[],
-  types: PokemonType[]
+export type GameDexMap = {
+  id: string
+  group: string
+  displayName: string
+  pokedexName: string
 }
 
-export type StructuredPokemonData = { // 整理過的資料結構
-  id: number,
-  name: string,
-  types: PokemonType[],
-  generationIntroduced: string,
+export type ReferenceData = {
+  // 引用資料
+  regions: Region[]
+  types: PokemonType[]
+  gameDexMap: GameDexMap[]
+}
+
+export type StructuredPokemonData = {
+  // 整理過的資料結構
+  id: number
+  name: string
+  types: PokemonType[]
+  generationIntroduced: string
   variants: {
-    name: string,
+    name: string
     id: number
-  }[],
+  }[]
   dexMap: Record<string, number>
 }
 
-export type CaughtPokemonData = { // 紀錄使用者 captured 的資料結構
-  isShiny: boolean,
-  timestamp: number,
+export type CaughtPokemonData = {
+  // 紀錄使用者 captured 的資料結構
+  isShiny: boolean
+  timestamp: number
 }
 
 // Bottom Drawer Types
