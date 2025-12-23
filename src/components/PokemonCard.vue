@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { capitalizeFirstLetter } from '@/utils/helpers.ts'
+import { formatPokemonDisplayName } from '@/utils/helpers.ts'
 import type { StructuredPokemonData, CaughtPokemonData } from '@/types/index.ts'
 import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caughtPokemonData.ts'
 
@@ -16,25 +16,10 @@ const props = defineProps<{
 // ==============================
 const isCaught = ref(false)
 
-const pokemonCardName = computed(() => {
-  let displayName = props.singlePokemonData.name
-  // if contains variant, remove the hyphen (example: deoxys-normal -> deoxys)
-  if (props.singlePokemonData.variants.length > 1) {
-    displayName = props.singlePokemonData.name.split('-')[0] ?? props.singlePokemonData.name
-  }
-  // if contains hyphen, remove hyphen and capitalize each word (example: iron-valiant -> Iron Valiant)
-  displayName = displayName
-    .split('-')
-    .map((word) => capitalizeFirstLetter(word))
-    .join(' ')
-
-  return displayName
-})
-
 const pokemonCardImage = computed(() => {
   // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
-  return ''
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
+  // return ''
 })
 
 // ==============================
@@ -77,7 +62,7 @@ const handleToggleCaughtStatus = () => {
       </div>
     </div>
     <div class="pokemon-card__footer">
-      <span>{{ pokemonCardName }}</span>
+      <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
     </div>
   </div>
 </template>
@@ -85,11 +70,10 @@ const handleToggleCaughtStatus = () => {
 <style lang="scss" scoped>
 $width: calc((100vw - 20px - 20px) / 3);
 .pokemon-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr minmax(0, 5fr) 1fr;
   width: $width;
-  height: calc($width * 1.4);
+  height: calc($width * 1.2);
   border-radius: 5px;
   background-color: $color-card;
   color: $color-text;
@@ -104,7 +88,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     color: $color-text-secondary;
   }
   &__body {
-    flex: 5;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -112,7 +95,6 @@ $width: calc((100vw - 20px - 20px) / 3);
     color: $color-text;
   }
   &__footer {
-    flex: 1;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -132,11 +114,10 @@ $width: calc((100vw - 20px - 20px) / 3);
   justify-content: center;
   align-items: center;
   img {
-    width: 80%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     aspect-ratio: 1/1;
     object-fit: contain;
-    border-radius: 50%;
   }
 }
 </style>

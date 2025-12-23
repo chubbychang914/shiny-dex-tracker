@@ -12,7 +12,7 @@ import pluginPrettier from 'eslint-plugin-prettier/recommended'
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    files: ['**/*.{ts,mts,tsx,vue}']
   },
 
   globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
@@ -22,8 +22,22 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    files: ['src/**/__tests__/*']
   },
 
-  pluginPrettier
+  pluginPrettier,
+
+  // Disable Vue formatting rules that conflict with Prettier
+  {
+    rules: {
+      'vue/max-attributes-per-line': 'off',
+      'vue/first-attribute-linebreak': 'off',
+      'vue/html-closing-bracket-newline': 'off',
+      'vue/html-closing-bracket-spacing': 'off',
+      'vue/html-indent': 'off',
+      'vue/html-quotes': 'off',
+      'vue/multiline-html-element-content-newline': 'off',
+      'vue/singleline-html-element-content-newline': 'off'
+    }
+  }
 )

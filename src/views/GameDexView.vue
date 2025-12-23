@@ -31,10 +31,24 @@ const navigateToGameDex = (pokedexName: string) => {
 </template>
 
 <style lang="scss" scoped>
+.game-selection-container {
+  width: 100%;
+  height: 100%;
+  // background-color: green;
+  overflow: auto;
+}
 .title-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.title {
+  background-color: red;
+  padding: 10px 20px;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
 }
 </style>
