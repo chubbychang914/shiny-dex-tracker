@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { formatPokemonDisplayName } from '@/utils/helpers.ts'
 import type { StructuredPokemonData, CaughtPokemonData } from '@/types/index.ts'
 import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caughtPokemonData.ts'
@@ -15,6 +15,7 @@ const props = defineProps<{
 // Data
 // ==============================
 const isCaught = ref(false)
+const isInitialLoad = ref(true)
 
 const pokemonCardImage = computed(() => {
   // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
@@ -31,6 +32,11 @@ onMounted(() => {
   if (singleData) {
     isCaught.value = true
   }
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      isInitialLoad.value = false
+    })
+  })
 })
 
 // ==============================
@@ -43,81 +49,118 @@ const handleToggleCaughtStatus = () => {
 </script>
 
 <template>
-  <div
-    class="pokemon-card"
-    :class="{ 'pokemon-card--caught': isCaught }"
-    @click="handleToggleCaughtStatus"
-  >
-    <div class="pokemon-card__header">
-      <span>#{{ singlePokemonData.id }}</span>
-      <pre>{{ isCaught }}</pre>
-    </div>
-    <div class="pokemon-card__body">
-      <div class="image-container">
-        <img
-          :src="pokemonCardImage"
-          alt="pokemon-card-image"
-          loading="lazy"
-        />
+  <div class="pokemon-card-container">
+    <div
+      class="pokemon-card"
+      :class="{
+        'pokemon-card__flipped': isCaught,
+        'pokemon-card__no-animation': isInitialLoad
+      }"
+      @click="handleToggleCaughtStatus"
+    >
+      <!-- Front Side -->
+      <div class="pokemon-card-face front-face">
+        <div class="front-face__header">
+          <span>#{{ singlePokemonData.id }}</span>
+          <pre>{{ isCaught }}</pre>
+        </div>
+        <div class="front-face__body">
+          <div class="image-container">
+            <img
+              :src="pokemonCardImage"
+              alt="pokemon-card-image"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div class="front-face__footer">
+          <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
+        </div>
       </div>
-    </div>
-    <div class="pokemon-card__footer">
-      <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
+      <!-- Back Side -->
+      <div class="pokemon-card-face back-face">
+        <div class="back-face__header">backside</div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 $width: calc((100vw - 20px - 20px) / 3);
+$height: calc($width * 1);
+.pokemon-card-container {
+  // perspective container, make child elements have 3D effect
+  width: $width;
+  height: $height;
+  perspective: 1000px;
+}
+
 .pokemon-card {
+  // card flip effect container
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  &__flipped {
+    transform: rotateY(180deg);
+  }
+  &__no-animation {
+    transition: none;
+  }
+}
+
+.pokemon-card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; // hide back side
+  -webkit-backface-visibility: hidden; // Safari support
+  border-radius: 10px;
+}
+
+.front-face {
   display: grid;
   grid-template-rows: 1fr minmax(0, 5fr) 1fr;
-  width: $width;
-  height: calc($width * 1.2);
-  border-radius: 5px;
   background-color: $color-card;
   color: $color-text;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   &__header {
-    flex: 1;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
     color: $color-text-secondary;
   }
   &__body {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $color-text;
+    @extend %center;
   }
   &__footer {
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  &--caught {
-    background-color: #3dd6d6; // Bright teal
-    border: 2px solid #2bc4c4; // Slightly darker teal outline
-    box-shadow: 0 0 15px rgba(61, 214, 214, 0.3); // Cyan glow
-    color: #1a1d2e; // Dark text for contrast
+    @extend %center;
   }
 }
+
+.back-face {
+  @extend %center;
+  transform: rotateY(180deg);
+  color: $color-text-secondary;
+}
+
 .image-container {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %center;
   img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 1/1;
     object-fit: contain;
   }
+}
+
+%center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
