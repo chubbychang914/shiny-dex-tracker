@@ -54,6 +54,11 @@ const handleToggleCaughtStatus = () => {
   const caughtState = toggleCaughtStatus(props.singlePokemonData.id)
   isCaught.value = caughtState
 }
+
+const handleImageError = (event: Event, id: number) => {
+  const target = event.target as HTMLImageElement
+  target.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${id}.png`
+}
 </script>
 
 <template>
@@ -66,43 +71,40 @@ const handleToggleCaughtStatus = () => {
       }"
       @click="handleToggleCaughtStatus"
     >
-      <!-- Front Side -->
-      <div class="pokemon-card-face front-face">
-        <div class="front-face__header">
+      <!-- Front Card -->
+      <div class="pokemon-card-face front-card">
+        <div class="front-card__header">
           <span>#{{ singlePokemonData.id }}</span>
-          <div class="type-icons-container">
-            <!-- <img
-              v-for="type in singlePokemonData.types"
-              :key="singlePokemonData.id + type"
-              :src="getTypeIconPath(type)"
-              :alt="type"
-              class="type-icon"
-            /> -->
-          </div>
         </div>
-        <div class="front-face__body">
-          <div class="front-image-container">
+        <div class="front-card__body">
+          <div class="image-container">
             <img
               :src="pokemonCardImage"
-              alt="pokemon-card-image"
+              alt="front-card-image"
               loading="lazy"
             />
           </div>
         </div>
-        <div class="front-face__footer">
+        <div class="front-card__footer">
           <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
         </div>
       </div>
-      <!-- Back Side -->
-      <div class="pokemon-card-face back-face">
-        <div class="back-image-container">
-          <img
-            :src="pokemonCardImageBack"
-            alt="pokemon-card-image-back"
-            loading="lazy"
-          />
+      <!-- Back Card -->
+      <div class="pokemon-card-face back-card">
+        <div class="back-card__header">
+          <!-- <span>#{{ singlePokemonData.id }}</span> -->
         </div>
-        <div class="back-face__footer">
+        <div class="back-card__body">
+          <div class="image-container">
+            <img
+              :src="pokemonCardImageBack"
+              alt="back-card-image"
+              loading="lazy"
+              @error="handleImageError($event, singlePokemonData.id)"
+            />
+          </div>
+        </div>
+        <div class="back-card__footer">
           <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
         </div>
       </div>
@@ -113,6 +115,7 @@ const handleToggleCaughtStatus = () => {
 <style lang="scss" scoped>
 $width: calc((100vw - 20px - 20px) / 3);
 $height: calc($width * 1);
+
 .pokemon-card-container {
   // perspective container, make child elements have 3D effect
   width: $width;
@@ -121,7 +124,7 @@ $height: calc($width * 1);
 }
 
 .pokemon-card {
-  // card flip effect container
+  // card flip container
   position: relative;
   width: 100%;
   height: 100%;
@@ -142,11 +145,12 @@ $height: calc($width * 1);
   backface-visibility: hidden; // hide back side
   -webkit-backface-visibility: hidden; // Safari support
   border-radius: 10px;
+  display: block;
 }
 
-.front-face {
+.front-card {
   display: grid;
-  grid-template-rows: 1fr minmax(0, 5fr) 1fr;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 1fr);
   background-color: $color-card;
   color: $color-text;
 
@@ -167,56 +171,59 @@ $height: calc($width * 1);
     width: 100%;
     @extend %center;
   }
-
-  .type-icons-container {
-    width: 40%;
-    @extend %center;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-
-  .front-image-container {
-    width: 100%;
-    height: 100%;
-    @extend %center;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
 }
 
-.back-face {
+.back-card {
   display: grid;
-  grid-template-rows: minmax(0, 5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 1fr);
   transform: rotateY(180deg);
-  color: $color-text-secondary;
-  // border-radius: 50%;
-  // background-image: url('@/assets/images/pokeballIcon.png');
-  // background-size: cover;
-  // background-position: center;
-  // background-repeat: no-repeat;
+  overflow: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -25%;
+    left: 25%;
+    width: 150%;
+    aspect-ratio: 1/1;
+    background-image: url('@/assets/images/pokeballIcon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; // 調整這個值，例如 0.2 (更透明) 或 0.5 (較不透明)
+    z-index: -1;
+  }
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-text;
+  }
+
+  &__body {
+    width: 100%;
+    @extend %center;
+  }
 
   &__footer {
     width: 100%;
     @extend %center;
-    color: $color-text;
-    background-color: $color-card;
   }
+}
 
-  .back-image-container {
+// ==============================
+// Shared Styles
+// ==============================
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  @extend %center;
+  img {
     width: 100%;
     height: 100%;
-    @extend %center;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+    object-fit: contain;
   }
 }
 

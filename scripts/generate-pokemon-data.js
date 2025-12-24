@@ -10,7 +10,7 @@ const BATCH_SIZE = 30
 const DELAY_MS = 1000
 
 // Wait for the next batch
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // Write to file
 const writeToFile = (data, fileName) => {
@@ -29,8 +29,8 @@ const writeToFile = (data, fileName) => {
 const fetchAllRegions = async () => {
   try {
     const regionsUrl = 'https://pokeapi.co/api/v2/region'
-    const regionsRes = await fetch(regionsUrl).then(res => res.json())
-    return regionsRes.results.map(region => region.name)
+    const regionsRes = await fetch(regionsUrl).then((res) => res.json())
+    return regionsRes.results.map((region) => region.name)
   } catch (error) {
     console.error('Error fetching all regions:', error)
   }
@@ -40,8 +40,8 @@ const fetchAllRegions = async () => {
 const fetchAllTypes = async () => {
   try {
     const typesUrl = 'https://pokeapi.co/api/v2/type'
-    const typesRes = await fetch(typesUrl).then(res => res.json())
-    return typesRes.results.map(type => type.name)
+    const typesRes = await fetch(typesUrl).then((res) => res.json())
+    return typesRes.results.map((type) => type.name)
   } catch (error) {
     console.error('Error fetching all types:', error)
   }
@@ -52,7 +52,7 @@ const GAME_POKEDEX_MAPPING = [
   {
     id: 'lets-go',
     group: 'lets-go',
-    displayName: 'Let\'s Go Pikachu/Eevee',
+    displayName: "Let's Go Pikachu/Eevee",
     pokedexName: 'letsgo-kanto'
   },
   {
@@ -117,58 +117,57 @@ const GAME_POKEDEX_MAPPING = [
   }
 ]
 
-
 // Fetch individual Pokemon details
 const fetchPokemonDetails = async (id) => {
-try {
-  const detailUrl = `https://pokeapi.co/api/v2/pokemon/${id}` // 取得 type, region
-  const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}` // 取得不同遊戲的 dex 資料, origin generation
+  try {
+    const detailUrl = `https://pokeapi.co/api/v2/pokemon/${id}` // 取得 type, region
+    const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}` // 取得不同遊戲的 dex 資料, origin generation
 
-  const [detailRes, speciesRes] = await Promise.all([
-    fetch(detailUrl).then(res => res.json()),
-    fetch(speciesUrl).then(res => res.json())
-  ])
+    const [detailRes, speciesRes] = await Promise.all([
+      fetch(detailUrl).then((res) => res.json()),
+      fetch(speciesUrl).then((res) => res.json())
+    ])
 
-  // 對應的 generation
-  const generationMap = {
-    'generation-i': 'kanto',
-    'generation-ii': 'johto',
-    'generation-iii': 'hoenn',
-    'generation-iv': 'sinnoh',
-    'generation-v': 'unova',
-    'generation-vi': 'kalos',
-    'generation-vii': 'alola',
-    'generation-viii': 'galar',
-    'generation-ix': 'paldea'
-  }
-  const generationIntroduced = generationMap[speciesRes.generation.name] || 'unknown'
-
-  // 取得不同遊戲的 dex number
-  const dexMap = {
-    national: id
-  }
-  speciesRes.pokedex_numbers.forEach(item => {
-    dexMap[item.pokedex.name] = item.entry_number
-  })
-
-  const variants = speciesRes.varieties.map(variant => {
-    return {
-      name: variant.pokemon.name,
-      id: parseInt(variant.pokemon.url.split('/').filter(Boolean).pop())
+    // 對應的 generation
+    const generationMap = {
+      'generation-i': 'kanto',
+      'generation-ii': 'johto',
+      'generation-iii': 'hoenn',
+      'generation-iv': 'sinnoh',
+      'generation-v': 'unova',
+      'generation-vi': 'kalos',
+      'generation-vii': 'alola',
+      'generation-viii': 'galar',
+      'generation-ix': 'paldea'
     }
-  })
+    const generationIntroduced = generationMap[speciesRes.generation.name] || 'unknown'
 
-  return {
-    id: detailRes.id,
-    name: detailRes.name,
-    types: detailRes.types.map(type => type.type.name),
-    generationIntroduced,
-    variants,
-    dexMap
+    // 取得不同遊戲的 dex number
+    const dexMap = {
+      national: id
+    }
+    speciesRes.pokedex_numbers.forEach((item) => {
+      dexMap[item.pokedex.name] = item.entry_number
+    })
+
+    const variants = speciesRes.varieties.map((variant) => {
+      return {
+        name: variant.pokemon.name,
+        id: parseInt(variant.pokemon.url.split('/').filter(Boolean).pop())
+      }
+    })
+
+    return {
+      id: detailRes.id,
+      name: detailRes.name,
+      types: detailRes.types.map((type) => type.type.name),
+      generationIntroduced,
+      variants,
+      dexMap
+    }
+  } catch (error) {
+    console.error(`Error fetching Pokemon details for ID ${id}:`, error)
   }
-} catch (error) {
-  console.error(`Error fetching Pokemon details for ID ${id}:`, error)
-}
 }
 
 const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
@@ -185,7 +184,7 @@ const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
     }
 
     const batchResults = await Promise.all(promises)
-    const validResults = batchResults.filter(p => p !== null)
+    const validResults = batchResults.filter((p) => p !== null)
     allPokemon = [...allPokemon, ...validResults]
 
     if (end < TOTAL_POKEMON) {
@@ -202,7 +201,7 @@ const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
 const initializeReferenceData = async () => {
   console.log('🔍 Generating reference data...')
   console.log('✨ Fetching regions...')
-  const regions =  await fetchAllRegions()
+  const regions = await fetchAllRegions()
   console.log('✨ Fetching types...')
   const types = await fetchAllTypes()
 
