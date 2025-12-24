@@ -23,6 +23,14 @@ const pokemonCardImage = computed(() => {
   // return ''
 })
 
+const pokemonCardImageBack = computed(() => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${props.singlePokemonData.id}.png`
+})
+
+const getTypeIconPath = (type: string) => {
+  return new URL(`../assets/images/typeIcons/${type}.png`, import.meta.url).href
+}
+
 // ==============================
 // Lifecycle Hooks
 // ==============================
@@ -62,10 +70,18 @@ const handleToggleCaughtStatus = () => {
       <div class="pokemon-card-face front-face">
         <div class="front-face__header">
           <span>#{{ singlePokemonData.id }}</span>
-          <pre>{{ isCaught }}</pre>
+          <div class="type-icons-container">
+            <!-- <img
+              v-for="type in singlePokemonData.types"
+              :key="singlePokemonData.id + type"
+              :src="getTypeIconPath(type)"
+              :alt="type"
+              class="type-icon"
+            /> -->
+          </div>
         </div>
         <div class="front-face__body">
-          <div class="image-container">
+          <div class="front-image-container">
             <img
               :src="pokemonCardImage"
               alt="pokemon-card-image"
@@ -79,7 +95,16 @@ const handleToggleCaughtStatus = () => {
       </div>
       <!-- Back Side -->
       <div class="pokemon-card-face back-face">
-        <div class="back-face__header">backside</div>
+        <div class="back-image-container">
+          <img
+            :src="pokemonCardImageBack"
+            alt="pokemon-card-image-back"
+            loading="lazy"
+          />
+        </div>
+        <div class="back-face__footer">
+          <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -124,6 +149,7 @@ $height: calc($width * 1);
   grid-template-rows: 1fr minmax(0, 5fr) 1fr;
   background-color: $color-card;
   color: $color-text;
+
   &__header {
     width: 100%;
     display: flex;
@@ -131,30 +157,66 @@ $height: calc($width * 1);
     align-items: center;
     color: $color-text-secondary;
   }
+
   &__body {
     width: 100%;
     @extend %center;
   }
+
   &__footer {
     width: 100%;
     @extend %center;
   }
+
+  .type-icons-container {
+    width: 40%;
+    @extend %center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .front-image-container {
+    width: 100%;
+    height: 100%;
+    @extend %center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 }
 
 .back-face {
-  @extend %center;
+  display: grid;
+  grid-template-rows: minmax(0, 5fr) minmax(0, 1fr);
   transform: rotateY(180deg);
   color: $color-text-secondary;
-}
+  // border-radius: 50%;
+  // background-image: url('@/assets/images/pokeballIcon.png');
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
 
-.image-container {
-  width: 100%;
-  height: 100%;
-  @extend %center;
-  img {
+  &__footer {
+    width: 100%;
+    @extend %center;
+    color: $color-text;
+    background-color: $color-card;
+  }
+
+  .back-image-container {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    @extend %center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
 

@@ -85,83 +85,67 @@ const navigateToHome = () => {
         /></el-icon>
         <h1 @click="navigateToHome">Navbar</h1>
       </div>
-      <template v-if="showFilters">
-        <div class="icon-container">
-          <el-icon
-            class="icon__settings"
-            @click="handleClickAdvancedFilters"
-            ><Search
-          /></el-icon>
-          <el-icon
-            class="icon__settings"
-            @click="handleClickAdvancedFilters"
-            ><Filter
-          /></el-icon>
-          <el-icon
-            class="icon__settings"
-            @click="handleClickSettings"
-            ><Setting
-          /></el-icon>
-        </div>
-      </template>
-      <template v-else>
-        <div class="icon-container">
-          <el-icon
-            class="icon__settings"
-            @click="handleClickSettings"
-            ><Setting
-          /></el-icon>
-        </div>
-      </template>
+      <div class="icon-container">
+        <el-icon
+          class="icon__settings"
+          @click="handleClickSettings"
+          ><Setting
+        /></el-icon>
+      </div>
     </div>
-    <div
-      class="navbar__middle"
-      v-if="showFilters"
-    >
-      <el-input
-        v-model="searchQuery"
-        style="width: 100%"
-        size="large"
-        placeholder="Search by name or number"
-        clearable
-        @input="handleChangeSearchQuery"
-      />
-    </div>
-    <div
-      class="navbar__bottom"
-      v-if="showFilters"
-    >
-      <el-select
-        v-model="selectedRegion"
-        style="width: 100%"
-        @change="handleChangeRegion"
+    <Transition name="navbar-expand">
+      <div
+        class="navbar__middle"
+        v-show="showFilters"
       >
-        <el-option
-          v-for="item in regionOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+        <el-input
+          v-model="searchQuery"
+          style="width: 100%"
+          size="large"
+          placeholder="Search by name or number"
+          clearable
+          @input="handleChangeSearchQuery"
         />
-      </el-select>
-      <el-select
-        v-model="selectedSortOption"
-        style="width: 100%"
-        @change="handleChangeSortOption"
+      </div>
+    </Transition>
+    <Transition name="navbar-expand">
+      <div
+        class="navbar__bottom"
+        v-show="showFilters"
       >
-        <el-option
-          v-for="item in sortOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </div>
+        <el-select
+          v-model="selectedRegion"
+          style="width: 100%"
+          @change="handleChangeRegion"
+        >
+          <el-option
+            v-for="item in regionOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        <el-select
+          v-model="selectedSortOption"
+          style="width: 100%"
+          @change="handleChangeSortOption"
+        >
+          <el-option
+            v-for="item in sortOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
+  max-height: 200px;
   background-color: $color-primary;
   position: sticky;
   z-index: 2005; // v-loading is 2000
@@ -181,16 +165,12 @@ const navigateToHome = () => {
     align-items: center;
   }
   &__bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @extend %center;
     gap: 10px;
   }
 }
 .title-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %center;
   gap: 15px;
 }
 .icon {
@@ -211,5 +191,35 @@ const navigateToHome = () => {
     padding: 5px;
     margin-left: 10px;
   }
+}
+%center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Navbar Expand Transition
+.navbar-expand-enter-active,
+.navbar-expand-leave-active {
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  overflow: hidden;
+}
+.navbar-expand-enter-from {
+  max-height: 0;
+  opacity: 0;
+}
+.navbar-expand-enter-to {
+  max-height: 50px;
+  opacity: 1;
+}
+.navbar-expand-leave-from {
+  max-height: 50px;
+  opacity: 1;
+}
+.navbar-expand-leave-to {
+  max-height: 50px;
+  opacity: 0;
 }
 </style>
