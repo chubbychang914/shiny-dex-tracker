@@ -18,18 +18,35 @@ const isCaught = ref(false)
 const isInitialLoad = ref(true)
 
 const pokemonCardImage = computed(() => {
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
   // return ''
 })
 
-const pokemonCardImageBack = computed(() => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${props.singlePokemonData.id}.png`
+const pokemonDisplayName = computed(() => {
+  return formatPokemonDisplayName(props.singlePokemonData)
 })
 
-const getTypeIconPath = (type: string) => {
-  return new URL(`../assets/images/typeIcons/${type}.png`, import.meta.url).href
-}
+const nameFontSize = computed(() => {
+  const length = pokemonDisplayName.value.length
+
+  if (length > 20) {
+    return '0.7rem'
+  } else if (length > 15) {
+    return '0.8rem'
+  } else if (length > 10) {
+    return '0.9rem'
+  }
+  return '1rem'
+})
+
+// const pokemonCardImageBack = computed(() => {
+//   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${props.singlePokemonData.id}.png`
+// })
+
+// const getTypeIconPath = (type: string) => {
+//   return new URL(`../assets/images/typeIcons/${type}.png`, import.meta.url).href
+// }
 
 // ==============================
 // Lifecycle Hooks
@@ -86,7 +103,7 @@ const handleImageError = (event: Event, id: number) => {
           </div>
         </div>
         <div class="front-card__footer">
-          <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
+          <span :style="{ 'font-size': nameFontSize }">{{ pokemonDisplayName }}</span>
         </div>
       </div>
       <!-- Back Card -->
@@ -97,7 +114,7 @@ const handleImageError = (event: Event, id: number) => {
         <div class="back-card__body">
           <div class="image-container">
             <img
-              :src="pokemonCardImageBack"
+              :src="pokemonCardImage"
               alt="back-card-image"
               loading="lazy"
               @error="handleImageError($event, singlePokemonData.id)"
@@ -105,7 +122,7 @@ const handleImageError = (event: Event, id: number) => {
           </div>
         </div>
         <div class="back-card__footer">
-          <span>{{ formatPokemonDisplayName(singlePokemonData) }}</span>
+          <span :style="{ 'font-size': nameFontSize }">{{ pokemonDisplayName }}</span>
         </div>
       </div>
     </div>
@@ -121,6 +138,7 @@ $height: calc($width * 1);
   width: $width;
   height: $height;
   perspective: 1000px;
+  overflow: hidden;
 }
 
 .pokemon-card {

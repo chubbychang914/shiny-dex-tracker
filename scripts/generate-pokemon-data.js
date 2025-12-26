@@ -164,7 +164,8 @@ const fetchPokemonDetails = async (id) => {
       types: detailRes.types.map((type) => type.type.name),
       generationIntroduced,
       variants,
-      dexMap
+      dexMap,
+      isRegionVariant: false
     }
   } catch (error) {
     console.error(`Error fetching Pokemon details for ID ${id}:`, error)
@@ -172,26 +173,33 @@ const fetchPokemonDetails = async (id) => {
 }
 
 // Fetch variants data (alolan, galarian, hisuian) -> variants don't have pokemon-species api, so use some of base form data
-const fetchVariantsData = async (variantName = '', variantFoundList) => {
+const fetchRegionVariants = async (regionName, variantFoundList) => {
   try {
+    const regionNameMap = {
+      alola: 'alolan',
+      galar: 'galarian',
+      hisui: 'hisuian'
+    }
+
     const promises = variantFoundList.map(async (variant) => {
       const detailUrl = `https://pokeapi.co/api/v2/pokemon/${variant.id}`
       const detailRes = await fetch(detailUrl).then((res) => res.json())
 
       return {
         id: variant.id,
-        name: `${variantName}-${variant.baseFormData.name}`,
+        name: `${regionNameMap[regionName]}-${variant.baseFormData.name}`,
         types: detailRes.types.map((type) => type.type.name),
         generationIntroduced: regionName,
         variants: variant.baseFormData.variants,
-        dexMap: variant.baseFormData.dexMap
+        dexMap: variant.baseFormData.dexMap,
+        isRegionVariant: true
       }
     })
 
     const result = await Promise.all(promises)
     return result
   } catch (error) {
-    console.error(`Error fetching ${regionName} variant for ID ${id}:`, error)
+    console.error(error)
   }
 }
 
@@ -237,11 +245,14 @@ const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
   })
 
   // Step 3: Get Variant Data
-  console.log('✨Fetching Variants Data...')
-  const alolanVariants = await fetchVariantsData('alolan', alolanVariantFound)
-  const galarianVariants = await fetchVariantsData('galarian', galarianVariantFound)
-  const hisuianVariants = await fetchVariantsData('hisuian', hisuianVariantFound)
+  console.log('✨ Fetching Alolan Variants Data...')
+  const alolanVariants = await fetchRegionVariants('alola', alolanVariantFound)
+  console.log('✨ Fetching Galarian Variants Data...')
+  const galarianVariants = await fetchRegionVariants('galar', galarianVariantFound)
+  console.log('✨ Fetching Hisuian Variants Data...')
+  const hisuianVariants = await fetchRegionVariants('hisui', hisuianVariantFound)
 
+  // Step 4: Combine and default sort bt dex number
   allPokemon = [...allPokemon, ...alolanVariants, ...galarianVariants, ...hisuianVariants]
   allPokemon.sort((a, b) => a.id - b.id)
 

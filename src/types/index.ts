@@ -40,6 +40,7 @@ export type StructuredPokemonData = {
     id: number
   }[]
   dexMap: Record<string, number>
+  isRegionVariant: boolean
 }
 
 export type CaughtPokemonData = {
