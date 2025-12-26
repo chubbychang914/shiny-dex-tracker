@@ -7,17 +7,26 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/national-dex',
       name: 'NationalDex',
-      component: () => import('@/views/NationalDexView.vue')
+      component: () => import('@/views/NationalDexView.vue'),
+      meta: {
+        title: 'National Dex'
+      }
     },
     {
       path: '/game-dex',
       name: 'GameDexList',
-      component: () => import('@/views/GameDexView.vue')
+      component: () => import('@/views/GameDexView.vue'),
+      meta: {
+        title: 'Game Dex'
+      }
     },
     {
       path: '/game-dex/:pokedexName',

@@ -119,8 +119,8 @@ const handleImageError = (event: Event, id: number) => {
 </template>
 
 <style lang="scss" scoped>
-$width: calc((100vw - 20px - 20px) / 3);
-$height: calc($width * 1.2);
+$width: calc((100vw - 20px - 20px) / 3); // gap size * 2 + container padding * 2 = 40px
+$height: calc($width * 1);
 
 .pokemon-card-container {
   // perspective container, make child elements have 3D effect
@@ -171,7 +171,7 @@ $height: calc($width * 1.2);
 
   &__body {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     @extend %center;
   }
 
@@ -199,15 +199,15 @@ $height: calc($width * 1.2);
   &::before {
     content: '';
     position: absolute;
-    top: -25%;
-    left: 25%;
-    width: 150%;
-    aspect-ratio: 1/1;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background-image: url('@/assets/images/pokeballIcon.svg');
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.2;
+    opacity: 0.5;
     z-index: -1;
   }
 
@@ -221,7 +221,7 @@ $height: calc($width * 1.2);
 
   &__body {
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     @extend %center;
   }
 
@@ -243,6 +243,7 @@ $height: calc($width * 1.2);
     width: 100%;
     height: 100%;
     object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8)); // Strong dark shadow
   }
 }
 

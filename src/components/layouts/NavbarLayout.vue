@@ -24,6 +24,13 @@ const showFilters = computed(() => {
   return route.path !== '/' && route.path !== '/game-dex'
 })
 
+const navbarTitle = computed(() => {
+  if (route.name === 'GameDexDetail') {
+    return route.params.pokedexName as string
+  }
+  return route.meta.title as string
+})
+
 const sortOptions = ref<SortByOption[]>([
   { value: 'number-asc', label: 'Number Ascending' },
   { value: 'number-desc', label: 'Number Descending' },
@@ -83,7 +90,7 @@ const navigateToHome = () => {
           @click="router.back()"
           ><ArrowLeft
         /></el-icon>
-        <h1 @click="navigateToHome">Navbar</h1>
+        <h1 @click="navigateToHome">{{ navbarTitle }}</h1>
       </div>
       <div class="icon-container">
         <el-icon
@@ -93,52 +100,48 @@ const navigateToHome = () => {
         /></el-icon>
       </div>
     </div>
-    <Transition name="navbar-expand">
-      <div
-        class="navbar__middle"
-        v-show="showFilters"
+    <div
+      class="navbar__middle"
+      v-show="showFilters"
+    >
+      <el-input
+        v-model="searchQuery"
+        style="width: 100%"
+        size="large"
+        placeholder="Search by name or number"
+        clearable
+        @input="handleChangeSearchQuery"
+      />
+    </div>
+    <div
+      class="navbar__bottom"
+      v-show="showFilters"
+    >
+      <el-select
+        v-model="selectedRegion"
+        style="width: 100%"
+        @change="handleChangeRegion"
       >
-        <el-input
-          v-model="searchQuery"
-          style="width: 100%"
-          size="large"
-          placeholder="Search by name or number"
-          clearable
-          @input="handleChangeSearchQuery"
+        <el-option
+          v-for="item in regionOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
         />
-      </div>
-    </Transition>
-    <Transition name="navbar-expand">
-      <div
-        class="navbar__bottom"
-        v-show="showFilters"
+      </el-select>
+      <el-select
+        v-model="selectedSortOption"
+        style="width: 100%"
+        @change="handleChangeSortOption"
       >
-        <el-select
-          v-model="selectedRegion"
-          style="width: 100%"
-          @change="handleChangeRegion"
-        >
-          <el-option
-            v-for="item in regionOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-        <el-select
-          v-model="selectedSortOption"
-          style="width: 100%"
-          @change="handleChangeSortOption"
-        >
-          <el-option
-            v-for="item in sortOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </div>
-    </Transition>
+        <el-option
+          v-for="item in sortOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
   </div>
 </template>
 
@@ -196,30 +199,5 @@ const navigateToHome = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-// Navbar Expand Transition
-.navbar-expand-enter-active,
-.navbar-expand-leave-active {
-  transition:
-    max-height 0.3s ease-in-out,
-    opacity 0.3s ease-in-out;
-  overflow: hidden;
-}
-.navbar-expand-enter-from {
-  max-height: 0;
-  opacity: 0;
-}
-.navbar-expand-enter-to {
-  max-height: 50px;
-  opacity: 1;
-}
-.navbar-expand-leave-from {
-  max-height: 50px;
-  opacity: 1;
-}
-.navbar-expand-leave-to {
-  max-height: 50px;
-  opacity: 0;
 }
 </style>

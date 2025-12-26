@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+import MiniPokemonCard from '@/components/MiniPokemonCard.vue'
 
 const route = useRoute()
 const pokeApiDataStore = usePokeApiDataStore()
@@ -35,10 +36,17 @@ const filteredGameDexPokemonList = computed(() => {
 
 <template>
   <div class="game-dex-detail-container">
-    <div class="title-container">
+    <!-- <div class="title-container">
       {{ route.params.pokedexName }}
+    </div> -->
+    <!-- <pre>{{ filteredGameDexPokemonList.map((item) => item.name) }}</pre> -->
+    <div class="mini-pokemon-cards-container">
+      <MiniPokemonCard
+        v-for="pokemon in filteredGameDexPokemonList"
+        :key="pokemon.id"
+        :single-pokemon-data="pokemon"
+      />
     </div>
-    <pre>{{ filteredGameDexPokemonList.map((item) => item.name) }}</pre>
   </div>
 </template>
 
@@ -46,6 +54,11 @@ const filteredGameDexPokemonList = computed(() => {
 .game-dex-detail-container {
   width: 100%;
   height: 100%;
-  // background-color: blue;
+  padding: 10px;
+}
+.mini-pokemon-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 </style>
