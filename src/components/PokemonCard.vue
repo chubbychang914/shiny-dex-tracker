@@ -19,8 +19,6 @@ const isInitialLoad = ref(true)
 
 const pokemonCardImage = computed(() => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
-  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${props.singlePokemonData.id}.png`
-  // return ''
 })
 
 const pokemonDisplayName = computed(() => {
@@ -29,7 +27,6 @@ const pokemonDisplayName = computed(() => {
 
 const nameFontSize = computed(() => {
   const length = pokemonDisplayName.value.length
-
   if (length > 20) {
     return '0.7rem'
   } else if (length > 15) {
@@ -39,14 +36,6 @@ const nameFontSize = computed(() => {
   }
   return '1rem'
 })
-
-// const pokemonCardImageBack = computed(() => {
-//   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/${props.singlePokemonData.id}.png`
-// })
-
-// const getTypeIconPath = (type: string) => {
-//   return new URL(`../assets/images/typeIcons/${type}.png`, import.meta.url).href
-// }
 
 // ==============================
 // Lifecycle Hooks
@@ -109,7 +98,7 @@ const handleImageError = (event: Event, id: number) => {
       <!-- Back Card -->
       <div class="pokemon-card-face back-card">
         <div class="back-card__header">
-          <!-- <span>#{{ singlePokemonData.id }}</span> -->
+          <span>#{{ singlePokemonData.id }}</span>
         </div>
         <div class="back-card__body">
           <div class="image-container">
@@ -131,7 +120,7 @@ const handleImageError = (event: Event, id: number) => {
 
 <style lang="scss" scoped>
 $width: calc((100vw - 20px - 20px) / 3);
-$height: calc($width * 1);
+$height: calc($width * 1.2);
 
 .pokemon-card-container {
   // perspective container, make child elements have 3D effect
@@ -168,7 +157,7 @@ $height: calc($width * 1);
 
 .front-card {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
   background-color: $color-card;
   color: $color-text;
 
@@ -182,6 +171,7 @@ $height: calc($width * 1);
 
   &__body {
     width: 100%;
+    padding: 10px;
     @extend %center;
   }
 
@@ -193,7 +183,7 @@ $height: calc($width * 1);
 
 .back-card {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
   transform: rotateY(180deg);
   overflow: hidden;
 
@@ -231,6 +221,7 @@ $height: calc($width * 1);
 
   &__body {
     width: 100%;
+    padding: 10px;
     @extend %center;
   }
 

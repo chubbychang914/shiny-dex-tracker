@@ -5,20 +5,17 @@ export const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-export const splitHyphenAndCapitalizeName = (name: string) => {
-  return name.split('-').map(capitalizeFirstLetter).join(' ')
-}
-
 /** format pokemon name */
 export const formatPokemonDisplayName = (singlePokemonData: StructuredPokemonData) => {
   if (!singlePokemonData.name.includes('-')) {
     return capitalizeFirstLetter(singlePokemonData.name)
   }
-  if (singlePokemonData.isRegionVariant) {
-    return splitHyphenAndCapitalizeName(singlePokemonData.name)
-  }
+  // special case
   if (singlePokemonData.name === 'ho-oh') {
     return 'Ho-oh'
+  }
+  if (singlePokemonData.isRegionVariant) {
+    return singlePokemonData.name.split('-').map(capitalizeFirstLetter).join('-')
   }
 
   // if contains hyphen, remove hyphen and capitalize each word (example: iron-valiant -> Iron Valiant)

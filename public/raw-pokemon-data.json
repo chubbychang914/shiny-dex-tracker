@@ -27028,7 +27028,7 @@
   },
   {
     "id": 10091,
-    "name": "alolan-rattata",
+    "name": "a-rattata",
     "types": [
       "dark",
       "normal"
@@ -27066,7 +27066,7 @@
   },
   {
     "id": 10092,
-    "name": "alolan-raticate",
+    "name": "a-raticate",
     "types": [
       "dark",
       "normal"
@@ -27108,7 +27108,7 @@
   },
   {
     "id": 10093,
-    "name": "alolan-raticate",
+    "name": "a-raticate",
     "types": [
       "dark",
       "normal"
@@ -27150,7 +27150,7 @@
   },
   {
     "id": 10099,
-    "name": "alolan-pikachu",
+    "name": "a-pikachu",
     "types": [
       "electric"
     ],
@@ -27252,7 +27252,7 @@
   },
   {
     "id": 10100,
-    "name": "alolan-raichu",
+    "name": "a-raichu",
     "types": [
       "electric",
       "psychic"
@@ -27303,7 +27303,7 @@
   },
   {
     "id": 10101,
-    "name": "alolan-sandshrew",
+    "name": "a-sandshrew",
     "types": [
       "ice",
       "steel"
@@ -27341,7 +27341,7 @@
   },
   {
     "id": 10102,
-    "name": "alolan-sandslash",
+    "name": "a-sandslash",
     "types": [
       "ice",
       "steel"
@@ -27379,7 +27379,7 @@
   },
   {
     "id": 10103,
-    "name": "alolan-vulpix",
+    "name": "a-vulpix",
     "types": [
       "ice"
     ],
@@ -27416,7 +27416,7 @@
   },
   {
     "id": 10104,
-    "name": "alolan-ninetales",
+    "name": "a-ninetales",
     "types": [
       "ice",
       "fairy"
@@ -27454,7 +27454,7 @@
   },
   {
     "id": 10105,
-    "name": "alolan-diglett",
+    "name": "a-diglett",
     "types": [
       "ground",
       "steel"
@@ -27495,7 +27495,7 @@
   },
   {
     "id": 10106,
-    "name": "alolan-dugtrio",
+    "name": "a-dugtrio",
     "types": [
       "ground",
       "steel"
@@ -27536,7 +27536,7 @@
   },
   {
     "id": 10107,
-    "name": "alolan-meowth",
+    "name": "a-meowth",
     "types": [
       "dark"
     ],
@@ -27580,7 +27580,7 @@
   },
   {
     "id": 10108,
-    "name": "alolan-persian",
+    "name": "a-persian",
     "types": [
       "dark"
     ],
@@ -27616,7 +27616,7 @@
   },
   {
     "id": 10109,
-    "name": "alolan-geodude",
+    "name": "a-geodude",
     "types": [
       "rock",
       "electric"
@@ -27655,7 +27655,7 @@
   },
   {
     "id": 10110,
-    "name": "alolan-graveler",
+    "name": "a-graveler",
     "types": [
       "rock",
       "electric"
@@ -27694,7 +27694,7 @@
   },
   {
     "id": 10111,
-    "name": "alolan-golem",
+    "name": "a-golem",
     "types": [
       "rock",
       "electric"
@@ -27733,7 +27733,7 @@
   },
   {
     "id": 10112,
-    "name": "alolan-grimer",
+    "name": "a-grimer",
     "types": [
       "poison",
       "dark"
@@ -27771,7 +27771,7 @@
   },
   {
     "id": 10113,
-    "name": "alolan-muk",
+    "name": "a-muk",
     "types": [
       "poison",
       "dark"
@@ -27809,7 +27809,7 @@
   },
   {
     "id": 10114,
-    "name": "alolan-exeggutor",
+    "name": "a-exeggutor",
     "types": [
       "grass",
       "dragon"
@@ -27843,7 +27843,7 @@
   },
   {
     "id": 10115,
-    "name": "alolan-marowak",
+    "name": "a-marowak",
     "types": [
       "fire",
       "ghost"
@@ -27881,7 +27881,7 @@
   },
   {
     "id": 10161,
-    "name": "galarian-meowth",
+    "name": "g-meowth",
     "types": [
       "steel"
     ],
@@ -27925,7 +27925,7 @@
   },
   {
     "id": 10162,
-    "name": "galarian-ponyta",
+    "name": "g-ponyta",
     "types": [
       "psychic"
     ],
@@ -27956,7 +27956,7 @@
   },
   {
     "id": 10163,
-    "name": "galarian-rapidash",
+    "name": "g-rapidash",
     "types": [
       "psychic",
       "fairy"
@@ -27988,7 +27988,7 @@
   },
   {
     "id": 10164,
-    "name": "galarian-slowpoke",
+    "name": "g-slowpoke",
     "types": [
       "psychic"
     ],
@@ -28025,7 +28025,7 @@
   },
   {
     "id": 10165,
-    "name": "galarian-slowbro",
+    "name": "g-slowbro",
     "types": [
       "poison",
       "psychic"
@@ -28067,7 +28067,7 @@
   },
   {
     "id": 10166,
-    "name": "galarian-farfetchd",
+    "name": "g-farfetchd",
     "types": [
       "fighting"
     ],
@@ -28096,7 +28096,7 @@
   },
   {
     "id": 10167,
-    "name": "galarian-weezing",
+    "name": "g-weezing",
     "types": [
       "poison",
       "fairy"
@@ -28128,7 +28128,7 @@
   },
   {
     "id": 10168,
-    "name": "galarian-mr-mime",
+    "name": "g-mr-mime",
     "types": [
       "ice",
       "psychic"
@@ -28164,7 +28164,7 @@
   },
   {
     "id": 10169,
-    "name": "galarian-articuno",
+    "name": "g-articuno",
     "types": [
       "psychic",
       "flying"
@@ -28194,7 +28194,7 @@
   },
   {
     "id": 10170,
-    "name": "galarian-zapdos",
+    "name": "g-zapdos",
     "types": [
       "fighting",
       "flying"
@@ -28223,7 +28223,7 @@
   },
   {
     "id": 10171,
-    "name": "galarian-moltres",
+    "name": "g-moltres",
     "types": [
       "dark",
       "flying"
@@ -28252,7 +28252,7 @@
   },
   {
     "id": 10172,
-    "name": "galarian-slowking",
+    "name": "g-slowking",
     "types": [
       "poison",
       "psychic"
@@ -28288,7 +28288,7 @@
   },
   {
     "id": 10173,
-    "name": "galarian-corsola",
+    "name": "g-corsola",
     "types": [
       "ghost"
     ],
@@ -28323,7 +28323,7 @@
   },
   {
     "id": 10174,
-    "name": "galarian-zigzagoon",
+    "name": "g-zigzagoon",
     "types": [
       "dark",
       "normal"
@@ -28351,7 +28351,7 @@
   },
   {
     "id": 10175,
-    "name": "galarian-linoone",
+    "name": "g-linoone",
     "types": [
       "dark",
       "normal"
@@ -28379,7 +28379,7 @@
   },
   {
     "id": 10176,
-    "name": "galarian-darumaka",
+    "name": "g-darumaka",
     "types": [
       "ice"
     ],
@@ -28406,7 +28406,7 @@
   },
   {
     "id": 10177,
-    "name": "galarian-darmanitan-standard",
+    "name": "g-darmanitan-standard",
     "types": [
       "ice"
     ],
@@ -28441,7 +28441,7 @@
   },
   {
     "id": 10178,
-    "name": "galarian-darmanitan-standard",
+    "name": "g-darmanitan-standard",
     "types": [
       "ice",
       "fire"
@@ -28477,7 +28477,7 @@
   },
   {
     "id": 10179,
-    "name": "galarian-yamask",
+    "name": "g-yamask",
     "types": [
       "ground",
       "ghost"
@@ -28504,7 +28504,7 @@
   },
   {
     "id": 10180,
-    "name": "galarian-stunfisk",
+    "name": "g-stunfisk",
     "types": [
       "ground",
       "steel"
@@ -28532,7 +28532,7 @@
   },
   {
     "id": 10229,
-    "name": "hisuian-growlithe",
+    "name": "h-growlithe",
     "types": [
       "fire",
       "rock"
@@ -28568,7 +28568,7 @@
   },
   {
     "id": 10230,
-    "name": "hisuian-arcanine",
+    "name": "h-arcanine",
     "types": [
       "fire",
       "rock"
@@ -28604,7 +28604,7 @@
   },
   {
     "id": 10231,
-    "name": "hisuian-voltorb",
+    "name": "h-voltorb",
     "types": [
       "electric",
       "grass"
@@ -28636,7 +28636,7 @@
   },
   {
     "id": 10232,
-    "name": "hisuian-electrode",
+    "name": "h-electrode",
     "types": [
       "electric",
       "grass"
@@ -28668,7 +28668,7 @@
   },
   {
     "id": 10233,
-    "name": "hisuian-typhlosion",
+    "name": "h-typhlosion",
     "types": [
       "fire",
       "ghost"
@@ -28695,7 +28695,7 @@
   },
   {
     "id": 10234,
-    "name": "hisuian-qwilfish",
+    "name": "h-qwilfish",
     "types": [
       "dark",
       "poison"
@@ -28726,7 +28726,7 @@
   },
   {
     "id": 10235,
-    "name": "hisuian-sneasel",
+    "name": "h-sneasel",
     "types": [
       "fighting",
       "poison"
@@ -28765,7 +28765,7 @@
   },
   {
     "id": 10236,
-    "name": "hisuian-samurott",
+    "name": "h-samurott",
     "types": [
       "water",
       "dark"
@@ -28793,7 +28793,7 @@
   },
   {
     "id": 10237,
-    "name": "hisuian-lilligant",
+    "name": "h-lilligant",
     "types": [
       "grass",
       "fighting"
@@ -28831,7 +28831,7 @@
   },
   {
     "id": 10238,
-    "name": "hisuian-zorua",
+    "name": "h-zorua",
     "types": [
       "normal",
       "ghost"
@@ -28864,7 +28864,7 @@
   },
   {
     "id": 10239,
-    "name": "hisuian-zoroark",
+    "name": "h-zoroark",
     "types": [
       "normal",
       "ghost"
@@ -28897,7 +28897,7 @@
   },
   {
     "id": 10240,
-    "name": "hisuian-braviary",
+    "name": "h-braviary",
     "types": [
       "psychic",
       "flying"
@@ -28934,7 +28934,7 @@
   },
   {
     "id": 10241,
-    "name": "hisuian-sliggoo",
+    "name": "h-sliggoo",
     "types": [
       "steel",
       "dragon"
@@ -28972,7 +28972,7 @@
   },
   {
     "id": 10242,
-    "name": "hisuian-goodra",
+    "name": "h-goodra",
     "types": [
       "steel",
       "dragon"
@@ -29010,7 +29010,7 @@
   },
   {
     "id": 10243,
-    "name": "hisuian-avalugg",
+    "name": "h-avalugg",
     "types": [
       "ice",
       "rock"
@@ -29039,7 +29039,7 @@
   },
   {
     "id": 10244,
-    "name": "hisuian-decidueye",
+    "name": "h-decidueye",
     "types": [
       "grass",
       "fighting"

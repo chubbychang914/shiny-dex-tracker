@@ -1,6 +1,7 @@
 import fs from 'fs' // 'fs' (file system) to write files to harddrive
 import path from 'path' // 'path' to know where folders are
 import { fileURLToPath } from 'url' // 'fileURLToPath' to know where the script is running
+import { capitalizeFirstLetter } from '../src/utils/helpers.ts'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -176,9 +177,9 @@ const fetchPokemonDetails = async (id) => {
 const fetchRegionVariants = async (regionName, variantFoundList) => {
   try {
     const regionNameMap = {
-      alola: 'alolan',
-      galar: 'galarian',
-      hisui: 'hisuian'
+      alola: 'a',
+      galar: 'g',
+      hisui: 'h'
     }
 
     const promises = variantFoundList.map(async (variant) => {
@@ -233,6 +234,10 @@ const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
   allPokemon.forEach((pokemon) => {
     pokemon.variants.forEach((variant) => {
       if (variant.name.includes('alola')) {
+        // TODO:
+        // remove edge cases such as alola-totem raticate
+        // galarian darmanitan has standard and zen
+        // pikachu has standard and alola but cap only
         alolanVariantFound.push({ id: variant.id, baseFormData: pokemon })
       }
       if (variant.name.includes('galar')) {
