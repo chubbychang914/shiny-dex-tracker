@@ -178,6 +178,16 @@ $height: calc($width * 1);
   grid-template-rows: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 1fr);
   transform: rotateY(180deg);
   overflow: hidden;
+
+  // liquid glass effect
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.37),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
   &::before {
     content: '';
     position: absolute;
@@ -185,11 +195,11 @@ $height: calc($width * 1);
     left: 25%;
     width: 150%;
     aspect-ratio: 1/1;
-    background-image: url('@/assets/images/pokeballIcon.png');
+    background-image: url('@/assets/images/pokeballIcon.svg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.5; // 調整這個值，例如 0.2 (更透明) 或 0.5 (較不透明)
+    opacity: 0.2;
     z-index: -1;
   }
 

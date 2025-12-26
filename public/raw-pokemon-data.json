@@ -10169,7 +10169,7 @@
         "id": 358
       },
       {
-        "name": "mega-chimecho",
+        "name": "chimecho-mega",
         "id": 10306
       }
     ],
@@ -10203,7 +10203,7 @@
         "id": 10057
       },
       {
-        "name": "mega-absol-z",
+        "name": "absol-mega-z",
         "id": 10307
       }
     ],
@@ -11183,7 +11183,7 @@
         "id": 398
       },
       {
-        "name": "mega-staraptor",
+        "name": "staraptor-mega",
         "id": 10308
       }
     ],
@@ -12381,7 +12381,7 @@
         "id": 10058
       },
       {
-        "name": "mega-garchomp-z",
+        "name": "garchomp-mega-z",
         "id": 10309
       }
     ],
@@ -13609,7 +13609,7 @@
         "id": 491
       },
       {
-        "name": "mega-darkrai",
+        "name": "darkrai-mega",
         "id": 10312
       }
     ],
@@ -19756,7 +19756,7 @@
         "id": 740
       },
       {
-        "name": "mega-crabominable",
+        "name": "crabominable-mega",
         "id": 10315
       }
     ],
@@ -20533,7 +20533,7 @@
         "id": 768
       },
       {
-        "name": "mega-golisopod",
+        "name": "golisopod-mega",
         "id": 10316
       }
     ],
@@ -21356,11 +21356,11 @@
         "id": 10147
       },
       {
-        "name": "mega-magearna",
+        "name": "magearna-mega",
         "id": 10317
       },
       {
-        "name": "mega-magearna-original",
+        "name": "magearna-original-mega",
         "id": 10318
       }
     ],
@@ -23458,7 +23458,7 @@
       "normal",
       "psychic"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "wyrdeer",
@@ -23477,7 +23477,7 @@
       "bug",
       "rock"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "kleavor",
@@ -23498,7 +23498,7 @@
       "ground",
       "normal"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "ursaluna",
@@ -23522,7 +23522,7 @@
       "water",
       "ghost"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "basculegion-male",
@@ -23546,7 +23546,7 @@
       "fighting",
       "poison"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "sneasler",
@@ -23565,7 +23565,7 @@
       "dark",
       "poison"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "overqwil",
@@ -23586,7 +23586,7 @@
       "fairy",
       "flying"
     ],
-    "generationIntroduced": "galar",
+    "generationIntroduced": "hisui",
     "variants": [
       {
         "name": "enamorus-incarnate",
@@ -24502,7 +24502,7 @@
         "id": 952
       },
       {
-        "name": "mega-scovillain",
+        "name": "scovillain-mega",
         "id": 10320
       }
     ],
@@ -25423,7 +25423,7 @@
         "id": 998
       },
       {
-        "name": "mega-baxcalibur",
+        "name": "baxcalibur-mega",
         "id": 10325
       }
     ],
@@ -25999,6 +25999,1990 @@
     "dexMap": {
       "national": 1025,
       "blueberry": 243
+    }
+  },
+  {
+    "id": 10091,
+    "name": "alolan-rattata",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "rattata",
+        "id": 19
+      },
+      {
+        "name": "rattata-alola",
+        "id": 10091
+      }
+    ],
+    "dexMap": {
+      "national": 19,
+      "kanto": 19,
+      "original-johto": 17,
+      "updated-johto": 17,
+      "updated-unova": 59,
+      "original-alola": 15,
+      "original-melemele": 15,
+      "original-akala": 6,
+      "original-ulaula": 6,
+      "original-poni": 6,
+      "updated-alola": 15,
+      "updated-melemele": 15,
+      "updated-akala": 6,
+      "updated-ulaula": 6,
+      "updated-poni": 6,
+      "letsgo-kanto": 19
+    }
+  },
+  {
+    "id": 10092,
+    "name": "alolan-raticate",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "raticate",
+        "id": 20
+      },
+      {
+        "name": "raticate-alola",
+        "id": 10092
+      },
+      {
+        "name": "raticate-totem-alola",
+        "id": 10093
+      }
+    ],
+    "dexMap": {
+      "national": 20,
+      "kanto": 20,
+      "original-johto": 18,
+      "updated-johto": 18,
+      "updated-unova": 60,
+      "original-alola": 16,
+      "original-melemele": 16,
+      "original-akala": 7,
+      "original-ulaula": 7,
+      "original-poni": 7,
+      "updated-alola": 16,
+      "updated-melemele": 16,
+      "updated-akala": 7,
+      "updated-ulaula": 7,
+      "updated-poni": 7,
+      "letsgo-kanto": 20
+    }
+  },
+  {
+    "id": 10093,
+    "name": "alolan-raticate",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "raticate",
+        "id": 20
+      },
+      {
+        "name": "raticate-alola",
+        "id": 10092
+      },
+      {
+        "name": "raticate-totem-alola",
+        "id": 10093
+      }
+    ],
+    "dexMap": {
+      "national": 20,
+      "kanto": 20,
+      "original-johto": 18,
+      "updated-johto": 18,
+      "updated-unova": 60,
+      "original-alola": 16,
+      "original-melemele": 16,
+      "original-akala": 7,
+      "original-ulaula": 7,
+      "original-poni": 7,
+      "updated-alola": 16,
+      "updated-melemele": 16,
+      "updated-akala": 7,
+      "updated-ulaula": 7,
+      "updated-poni": 7,
+      "letsgo-kanto": 20
+    }
+  },
+  {
+    "id": 10099,
+    "name": "alolan-pikachu",
+    "types": [
+      "electric"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "pikachu",
+        "id": 25
+      },
+      {
+        "name": "pikachu-rock-star",
+        "id": 10080
+      },
+      {
+        "name": "pikachu-belle",
+        "id": 10081
+      },
+      {
+        "name": "pikachu-pop-star",
+        "id": 10082
+      },
+      {
+        "name": "pikachu-phd",
+        "id": 10083
+      },
+      {
+        "name": "pikachu-libre",
+        "id": 10084
+      },
+      {
+        "name": "pikachu-cosplay",
+        "id": 10085
+      },
+      {
+        "name": "pikachu-original-cap",
+        "id": 10094
+      },
+      {
+        "name": "pikachu-hoenn-cap",
+        "id": 10095
+      },
+      {
+        "name": "pikachu-sinnoh-cap",
+        "id": 10096
+      },
+      {
+        "name": "pikachu-unova-cap",
+        "id": 10097
+      },
+      {
+        "name": "pikachu-kalos-cap",
+        "id": 10098
+      },
+      {
+        "name": "pikachu-alola-cap",
+        "id": 10099
+      },
+      {
+        "name": "pikachu-partner-cap",
+        "id": 10148
+      },
+      {
+        "name": "pikachu-starter",
+        "id": 10158
+      },
+      {
+        "name": "pikachu-world-cap",
+        "id": 10160
+      },
+      {
+        "name": "pikachu-gmax",
+        "id": 10199
+      }
+    ],
+    "dexMap": {
+      "national": 25,
+      "kanto": 25,
+      "original-johto": 22,
+      "hoenn": 156,
+      "original-sinnoh": 104,
+      "extended-sinnoh": 104,
+      "updated-johto": 22,
+      "conquest-gallery": 16,
+      "kalos-central": 36,
+      "updated-hoenn": 163,
+      "original-alola": 25,
+      "original-melemele": 25,
+      "updated-alola": 32,
+      "updated-melemele": 32,
+      "letsgo-kanto": 25,
+      "galar": 194,
+      "isle-of-armor": 85,
+      "hisui": 56,
+      "paldea": 74,
+      "kitakami": 21,
+      "lumiose-city": 53
+    }
+  },
+  {
+    "id": 10100,
+    "name": "alolan-raichu",
+    "types": [
+      "electric",
+      "psychic"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "raichu",
+        "id": 26
+      },
+      {
+        "name": "raichu-alola",
+        "id": 10100
+      },
+      {
+        "name": "raichu-mega-x",
+        "id": 10304
+      },
+      {
+        "name": "raichu-mega-y",
+        "id": 10305
+      }
+    ],
+    "dexMap": {
+      "national": 26,
+      "kanto": 26,
+      "original-johto": 23,
+      "hoenn": 157,
+      "original-sinnoh": 105,
+      "extended-sinnoh": 105,
+      "updated-johto": 23,
+      "conquest-gallery": 17,
+      "kalos-central": 37,
+      "updated-hoenn": 164,
+      "original-alola": 26,
+      "original-melemele": 26,
+      "updated-alola": 33,
+      "updated-melemele": 33,
+      "letsgo-kanto": 26,
+      "galar": 195,
+      "isle-of-armor": 86,
+      "hisui": 57,
+      "paldea": 75,
+      "kitakami": 22,
+      "lumiose-city": 54
+    }
+  },
+  {
+    "id": 10101,
+    "name": "alolan-sandshrew",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "sandshrew",
+        "id": 27
+      },
+      {
+        "name": "sandshrew-alola",
+        "id": 10101
+      }
+    ],
+    "dexMap": {
+      "national": 27,
+      "kanto": 27,
+      "original-johto": 48,
+      "hoenn": 112,
+      "updated-johto": 48,
+      "updated-unova": 113,
+      "kalos-mountain": 97,
+      "updated-hoenn": 117,
+      "original-alola": 251,
+      "original-ulaula": 123,
+      "updated-alola": 328,
+      "updated-ulaula": 149,
+      "letsgo-kanto": 27,
+      "isle-of-armor": 168,
+      "kitakami": 116,
+      "blueberry": 155
+    }
+  },
+  {
+    "id": 10102,
+    "name": "alolan-sandslash",
+    "types": [
+      "ice",
+      "steel"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "sandslash",
+        "id": 28
+      },
+      {
+        "name": "sandslash-alola",
+        "id": 10102
+      }
+    ],
+    "dexMap": {
+      "national": 28,
+      "kanto": 28,
+      "original-johto": 49,
+      "hoenn": 113,
+      "updated-johto": 49,
+      "updated-unova": 114,
+      "kalos-mountain": 98,
+      "updated-hoenn": 118,
+      "original-alola": 252,
+      "original-ulaula": 124,
+      "updated-alola": 329,
+      "updated-ulaula": 150,
+      "letsgo-kanto": 28,
+      "isle-of-armor": 169,
+      "kitakami": 117,
+      "blueberry": 156
+    }
+  },
+  {
+    "id": 10103,
+    "name": "alolan-vulpix",
+    "types": [
+      "ice"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "vulpix",
+        "id": 37
+      },
+      {
+        "name": "vulpix-alola",
+        "id": 10103
+      }
+    ],
+    "dexMap": {
+      "national": 37,
+      "kanto": 37,
+      "original-johto": 125,
+      "hoenn": 153,
+      "updated-johto": 127,
+      "updated-unova": 248,
+      "updated-hoenn": 160,
+      "original-alola": 253,
+      "original-ulaula": 125,
+      "updated-alola": 330,
+      "updated-ulaula": 151,
+      "letsgo-kanto": 37,
+      "galar": 68,
+      "hisui": 168,
+      "kitakami": 37,
+      "blueberry": 157
+    }
+  },
+  {
+    "id": 10104,
+    "name": "alolan-ninetales",
+    "types": [
+      "ice",
+      "fairy"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "ninetales",
+        "id": 38
+      },
+      {
+        "name": "ninetales-alola",
+        "id": 10104
+      }
+    ],
+    "dexMap": {
+      "national": 38,
+      "kanto": 38,
+      "original-johto": 126,
+      "hoenn": 154,
+      "updated-johto": 128,
+      "updated-unova": 249,
+      "updated-hoenn": 161,
+      "original-alola": 254,
+      "original-ulaula": 126,
+      "updated-alola": 331,
+      "updated-ulaula": 152,
+      "letsgo-kanto": 38,
+      "galar": 69,
+      "hisui": 169,
+      "kitakami": 38,
+      "blueberry": 158
+    }
+  },
+  {
+    "id": 10105,
+    "name": "alolan-diglett",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "diglett",
+        "id": 50
+      },
+      {
+        "name": "diglett-alola",
+        "id": 10105
+      }
+    ],
+    "dexMap": {
+      "national": 50,
+      "kanto": 50,
+      "original-johto": 132,
+      "updated-johto": 134,
+      "kalos-mountain": 1,
+      "original-alola": 71,
+      "original-melemele": 71,
+      "original-akala": 29,
+      "original-ulaula": 38,
+      "original-poni": 22,
+      "updated-alola": 85,
+      "updated-melemele": 85,
+      "updated-akala": 29,
+      "updated-ulaula": 38,
+      "updated-poni": 31,
+      "letsgo-kanto": 50,
+      "galar": 164,
+      "paldea": 148,
+      "blueberry": 66
+    }
+  },
+  {
+    "id": 10106,
+    "name": "alolan-dugtrio",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "dugtrio",
+        "id": 51
+      },
+      {
+        "name": "dugtrio-alola",
+        "id": 10106
+      }
+    ],
+    "dexMap": {
+      "national": 51,
+      "kanto": 51,
+      "original-johto": 133,
+      "updated-johto": 135,
+      "kalos-mountain": 2,
+      "original-alola": 72,
+      "original-melemele": 72,
+      "original-akala": 30,
+      "original-ulaula": 39,
+      "original-poni": 23,
+      "updated-alola": 86,
+      "updated-melemele": 86,
+      "updated-akala": 30,
+      "updated-ulaula": 39,
+      "updated-poni": 32,
+      "letsgo-kanto": 51,
+      "galar": 165,
+      "paldea": 149,
+      "blueberry": 67
+    }
+  },
+  {
+    "id": 10107,
+    "name": "alolan-meowth",
+    "types": [
+      "dark"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "meowth",
+        "id": 52
+      },
+      {
+        "name": "meowth-alola",
+        "id": 10107
+      },
+      {
+        "name": "meowth-galar",
+        "id": 10161
+      },
+      {
+        "name": "meowth-gmax",
+        "id": 10200
+      }
+    ],
+    "dexMap": {
+      "national": 52,
+      "kanto": 52,
+      "original-johto": 136,
+      "updated-johto": 138,
+      "conquest-gallery": 58,
+      "original-alola": 45,
+      "original-melemele": 45,
+      "original-ulaula": 23,
+      "updated-alola": 52,
+      "updated-melemele": 52,
+      "updated-ulaula": 23,
+      "letsgo-kanto": 52,
+      "galar": 182,
+      "paldea": 141,
+      "hyperspace": 4
+    }
+  },
+  {
+    "id": 10108,
+    "name": "alolan-persian",
+    "types": [
+      "dark"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "persian",
+        "id": 53
+      },
+      {
+        "name": "persian-alola",
+        "id": 10108
+      }
+    ],
+    "dexMap": {
+      "national": 53,
+      "kanto": 53,
+      "original-johto": 137,
+      "updated-johto": 139,
+      "conquest-gallery": 59,
+      "original-alola": 46,
+      "original-melemele": 46,
+      "original-ulaula": 24,
+      "updated-alola": 53,
+      "updated-melemele": 53,
+      "updated-ulaula": 24,
+      "letsgo-kanto": 53,
+      "galar": 184,
+      "paldea": 142,
+      "hyperspace": 5
+    }
+  },
+  {
+    "id": 10109,
+    "name": "alolan-geodude",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "geodude",
+        "id": 74
+      },
+      {
+        "name": "geodude-alola",
+        "id": 10109
+      }
+    ],
+    "dexMap": {
+      "national": 74,
+      "kanto": 74,
+      "original-johto": 34,
+      "hoenn": 57,
+      "original-sinnoh": 31,
+      "extended-sinnoh": 31,
+      "updated-johto": 34,
+      "kalos-mountain": 9,
+      "updated-hoenn": 58,
+      "original-alola": 229,
+      "original-ulaula": 101,
+      "updated-alola": 298,
+      "updated-ulaula": 119,
+      "letsgo-kanto": 74,
+      "hisui": 46,
+      "kitakami": 80,
+      "blueberry": 96
+    }
+  },
+  {
+    "id": 10110,
+    "name": "alolan-graveler",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "graveler",
+        "id": 75
+      },
+      {
+        "name": "graveler-alola",
+        "id": 10110
+      }
+    ],
+    "dexMap": {
+      "national": 75,
+      "kanto": 75,
+      "original-johto": 35,
+      "hoenn": 58,
+      "original-sinnoh": 32,
+      "extended-sinnoh": 32,
+      "updated-johto": 35,
+      "kalos-mountain": 10,
+      "updated-hoenn": 59,
+      "original-alola": 230,
+      "original-ulaula": 102,
+      "updated-alola": 299,
+      "updated-ulaula": 120,
+      "letsgo-kanto": 75,
+      "hisui": 47,
+      "kitakami": 81,
+      "blueberry": 97
+    }
+  },
+  {
+    "id": 10111,
+    "name": "alolan-golem",
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "golem",
+        "id": 76
+      },
+      {
+        "name": "golem-alola",
+        "id": 10111
+      }
+    ],
+    "dexMap": {
+      "national": 76,
+      "kanto": 76,
+      "original-johto": 36,
+      "hoenn": 59,
+      "original-sinnoh": 33,
+      "extended-sinnoh": 33,
+      "updated-johto": 36,
+      "kalos-mountain": 11,
+      "updated-hoenn": 60,
+      "original-alola": 231,
+      "original-ulaula": 103,
+      "updated-alola": 300,
+      "updated-ulaula": 121,
+      "letsgo-kanto": 76,
+      "hisui": 48,
+      "kitakami": 82,
+      "blueberry": 98
+    }
+  },
+  {
+    "id": 10112,
+    "name": "alolan-grimer",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "grimer",
+        "id": 88
+      },
+      {
+        "name": "grimer-alola",
+        "id": 10112
+      }
+    ],
+    "dexMap": {
+      "national": 88,
+      "kanto": 88,
+      "original-johto": 116,
+      "hoenn": 106,
+      "updated-johto": 117,
+      "updated-unova": 64,
+      "updated-hoenn": 111,
+      "original-alola": 50,
+      "original-melemele": 50,
+      "original-ulaula": 28,
+      "updated-alola": 57,
+      "updated-melemele": 57,
+      "updated-ulaula": 28,
+      "letsgo-kanto": 88,
+      "paldea": 194,
+      "blueberry": 68
+    }
+  },
+  {
+    "id": 10113,
+    "name": "alolan-muk",
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "muk",
+        "id": 89
+      },
+      {
+        "name": "muk-alola",
+        "id": 10113
+      }
+    ],
+    "dexMap": {
+      "national": 89,
+      "kanto": 89,
+      "original-johto": 117,
+      "hoenn": 107,
+      "updated-johto": 118,
+      "updated-unova": 65,
+      "updated-hoenn": 112,
+      "original-alola": 51,
+      "original-melemele": 51,
+      "original-ulaula": 29,
+      "updated-alola": 58,
+      "updated-melemele": 58,
+      "updated-ulaula": 29,
+      "letsgo-kanto": 89,
+      "paldea": 195,
+      "blueberry": 69
+    }
+  },
+  {
+    "id": 10114,
+    "name": "alolan-exeggutor",
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "exeggutor",
+        "id": 103
+      },
+      {
+        "name": "exeggutor-alola",
+        "id": 10114
+      }
+    ],
+    "dexMap": {
+      "national": 103,
+      "kanto": 103,
+      "original-johto": 105,
+      "updated-johto": 106,
+      "kalos-coastal": 137,
+      "original-alola": 270,
+      "original-poni": 85,
+      "updated-alola": 356,
+      "updated-poni": 103,
+      "letsgo-kanto": 103,
+      "isle-of-armor": 206,
+      "blueberry": 4
+    }
+  },
+  {
+    "id": 10115,
+    "name": "alolan-marowak",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "generationIntroduced": "alolan",
+    "variants": [
+      {
+        "name": "marowak",
+        "id": 105
+      },
+      {
+        "name": "marowak-alola",
+        "id": 10115
+      },
+      {
+        "name": "marowak-totem",
+        "id": 10149
+      }
+    ],
+    "dexMap": {
+      "national": 105,
+      "kanto": 105,
+      "original-johto": 204,
+      "updated-johto": 209,
+      "kalos-coastal": 61,
+      "original-alola": 164,
+      "original-akala": 91,
+      "updated-alola": 198,
+      "updated-akala": 99,
+      "letsgo-kanto": 105,
+      "isle-of-armor": 171,
+      "hyperspace": 10
+    }
+  },
+  {
+    "id": 10161,
+    "name": "galarian-meowth",
+    "types": [
+      "steel"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "meowth",
+        "id": 52
+      },
+      {
+        "name": "meowth-alola",
+        "id": 10107
+      },
+      {
+        "name": "meowth-galar",
+        "id": 10161
+      },
+      {
+        "name": "meowth-gmax",
+        "id": 10200
+      }
+    ],
+    "dexMap": {
+      "national": 52,
+      "kanto": 52,
+      "original-johto": 136,
+      "updated-johto": 138,
+      "conquest-gallery": 58,
+      "original-alola": 45,
+      "original-melemele": 45,
+      "original-ulaula": 23,
+      "updated-alola": 52,
+      "updated-melemele": 52,
+      "updated-ulaula": 23,
+      "letsgo-kanto": 52,
+      "galar": 182,
+      "paldea": 141,
+      "hyperspace": 4
+    }
+  },
+  {
+    "id": 10162,
+    "name": "galarian-ponyta",
+    "types": [
+      "psychic"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "ponyta",
+        "id": 77
+      },
+      {
+        "name": "ponyta-galar",
+        "id": 10162
+      }
+    ],
+    "dexMap": {
+      "national": 77,
+      "kanto": 77,
+      "original-johto": 201,
+      "original-sinnoh": 90,
+      "extended-sinnoh": 90,
+      "updated-johto": 206,
+      "letsgo-kanto": 77,
+      "galar": 333,
+      "crown-tundra": 105,
+      "hisui": 23
+    }
+  },
+  {
+    "id": 10163,
+    "name": "galarian-rapidash",
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "rapidash",
+        "id": 78
+      },
+      {
+        "name": "rapidash-galar",
+        "id": 10163
+      }
+    ],
+    "dexMap": {
+      "national": 78,
+      "kanto": 78,
+      "original-johto": 202,
+      "original-sinnoh": 91,
+      "extended-sinnoh": 91,
+      "updated-johto": 207,
+      "letsgo-kanto": 78,
+      "galar": 334,
+      "crown-tundra": 106,
+      "hisui": 24
+    }
+  },
+  {
+    "id": 10164,
+    "name": "galarian-slowpoke",
+    "types": [
+      "psychic"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "slowpoke",
+        "id": 79
+      },
+      {
+        "name": "slowpoke-galar",
+        "id": 10164
+      }
+    ],
+    "dexMap": {
+      "national": 79,
+      "kanto": 79,
+      "original-johto": 80,
+      "updated-johto": 80,
+      "kalos-coastal": 133,
+      "original-alola": 37,
+      "original-melemele": 37,
+      "original-ulaula": 18,
+      "updated-alola": 44,
+      "updated-melemele": 44,
+      "updated-ulaula": 18,
+      "letsgo-kanto": 79,
+      "isle-of-armor": 1,
+      "paldea": 324,
+      "blueberry": 75,
+      "lumiose-city": 137
+    }
+  },
+  {
+    "id": 10165,
+    "name": "galarian-slowbro",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "slowbro",
+        "id": 80
+      },
+      {
+        "name": "slowbro-mega",
+        "id": 10071
+      },
+      {
+        "name": "slowbro-galar",
+        "id": 10165
+      }
+    ],
+    "dexMap": {
+      "national": 80,
+      "kanto": 80,
+      "original-johto": 81,
+      "updated-johto": 81,
+      "kalos-coastal": 134,
+      "original-alola": 38,
+      "original-melemele": 38,
+      "original-ulaula": 19,
+      "updated-alola": 45,
+      "updated-melemele": 45,
+      "updated-ulaula": 19,
+      "letsgo-kanto": 80,
+      "isle-of-armor": 2,
+      "paldea": 325,
+      "blueberry": 76,
+      "lumiose-city": 138
+    }
+  },
+  {
+    "id": 10166,
+    "name": "galarian-farfetchd",
+    "types": [
+      "fighting"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "farfetchd",
+        "id": 83
+      },
+      {
+        "name": "farfetchd-galar",
+        "id": 10166
+      }
+    ],
+    "dexMap": {
+      "national": 83,
+      "kanto": 83,
+      "original-johto": 158,
+      "updated-johto": 160,
+      "kalos-central": 61,
+      "letsgo-kanto": 83,
+      "galar": 218,
+      "hyperspace": 7
+    }
+  },
+  {
+    "id": 10167,
+    "name": "galarian-weezing",
+    "types": [
+      "poison",
+      "fairy"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "weezing",
+        "id": 110
+      },
+      {
+        "name": "weezing-galar",
+        "id": 10167
+      }
+    ],
+    "dexMap": {
+      "national": 110,
+      "kanto": 110,
+      "original-johto": 115,
+      "hoenn": 109,
+      "updated-johto": 116,
+      "updated-unova": 47,
+      "updated-hoenn": 114,
+      "letsgo-kanto": 110,
+      "galar": 251,
+      "kitakami": 136
+    }
+  },
+  {
+    "id": 10168,
+    "name": "galarian-mr-mime",
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "mr-mime",
+        "id": 122
+      },
+      {
+        "name": "mr-mime-galar",
+        "id": 10168
+      }
+    ],
+    "dexMap": {
+      "national": 122,
+      "kanto": 122,
+      "original-johto": 156,
+      "original-sinnoh": 95,
+      "extended-sinnoh": 95,
+      "updated-johto": 158,
+      "kalos-coastal": 114,
+      "updated-alola": 60,
+      "updated-melemele": 60,
+      "letsgo-kanto": 122,
+      "galar": 365,
+      "crown-tundra": 11,
+      "hisui": 77,
+      "hyperspace": 109
+    }
+  },
+  {
+    "id": 10169,
+    "name": "galarian-articuno",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "articuno",
+        "id": 144
+      },
+      {
+        "name": "articuno-galar",
+        "id": 10169
+      }
+    ],
+    "dexMap": {
+      "national": 144,
+      "kanto": 144,
+      "original-johto": 235,
+      "updated-johto": 240,
+      "conquest-gallery": 192,
+      "kalos-coastal": 151,
+      "letsgo-kanto": 144,
+      "crown-tundra": 202
+    }
+  },
+  {
+    "id": 10170,
+    "name": "galarian-zapdos",
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "zapdos",
+        "id": 145
+      },
+      {
+        "name": "zapdos-galar",
+        "id": 10170
+      }
+    ],
+    "dexMap": {
+      "national": 145,
+      "kanto": 145,
+      "original-johto": 236,
+      "updated-johto": 241,
+      "kalos-coastal": 152,
+      "letsgo-kanto": 145,
+      "crown-tundra": 203
+    }
+  },
+  {
+    "id": 10171,
+    "name": "galarian-moltres",
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "moltres",
+        "id": 146
+      },
+      {
+        "name": "moltres-galar",
+        "id": 10171
+      }
+    ],
+    "dexMap": {
+      "national": 146,
+      "kanto": 146,
+      "original-johto": 237,
+      "updated-johto": 242,
+      "kalos-coastal": 153,
+      "letsgo-kanto": 146,
+      "crown-tundra": 204
+    }
+  },
+  {
+    "id": 10172,
+    "name": "galarian-slowking",
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "slowking",
+        "id": 199
+      },
+      {
+        "name": "slowking-galar",
+        "id": 10172
+      }
+    ],
+    "dexMap": {
+      "national": 199,
+      "original-johto": 82,
+      "updated-johto": 82,
+      "kalos-coastal": 135,
+      "original-alola": 39,
+      "original-melemele": 39,
+      "original-ulaula": 20,
+      "updated-alola": 46,
+      "updated-melemele": 46,
+      "updated-ulaula": 20,
+      "isle-of-armor": 3,
+      "paldea": 326,
+      "blueberry": 77,
+      "lumiose-city": 139
+    }
+  },
+  {
+    "id": 10173,
+    "name": "galarian-corsola",
+    "types": [
+      "ghost"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "corsola",
+        "id": 222
+      },
+      {
+        "name": "corsola-galar",
+        "id": 10173
+      }
+    ],
+    "dexMap": {
+      "national": 222,
+      "original-johto": 171,
+      "hoenn": 180,
+      "updated-johto": 173,
+      "updated-unova": 237,
+      "kalos-coastal": 146,
+      "updated-hoenn": 189,
+      "original-alola": 112,
+      "original-melemele": 112,
+      "original-akala": 44,
+      "updated-alola": 135,
+      "updated-melemele": 135,
+      "updated-akala": 44,
+      "galar": 236
+    }
+  },
+  {
+    "id": 10174,
+    "name": "galarian-zigzagoon",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "zigzagoon",
+        "id": 263
+      },
+      {
+        "name": "zigzagoon-galar",
+        "id": 10174
+      }
+    ],
+    "dexMap": {
+      "national": 263,
+      "hoenn": 12,
+      "kalos-central": 12,
+      "updated-hoenn": 12,
+      "galar": 31,
+      "crown-tundra": 71
+    }
+  },
+  {
+    "id": 10175,
+    "name": "galarian-linoone",
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "linoone",
+        "id": 264
+      },
+      {
+        "name": "linoone-galar",
+        "id": 10175
+      }
+    ],
+    "dexMap": {
+      "national": 264,
+      "hoenn": 13,
+      "kalos-central": 13,
+      "updated-hoenn": 13,
+      "galar": 32,
+      "crown-tundra": 72
+    }
+  },
+  {
+    "id": 10176,
+    "name": "galarian-darumaka",
+    "types": [
+      "ice"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "darumaka",
+        "id": 554
+      },
+      {
+        "name": "darumaka-galar",
+        "id": 10176
+      }
+    ],
+    "dexMap": {
+      "national": 554,
+      "original-unova": 60,
+      "updated-unova": 102,
+      "conquest-gallery": 142,
+      "galar": 367,
+      "crown-tundra": 103
+    }
+  },
+  {
+    "id": 10177,
+    "name": "galarian-darmanitan-standard",
+    "types": [
+      "ice"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "darmanitan-standard",
+        "id": 555
+      },
+      {
+        "name": "darmanitan-zen",
+        "id": 10017
+      },
+      {
+        "name": "darmanitan-galar-standard",
+        "id": 10177
+      },
+      {
+        "name": "darmanitan-galar-zen",
+        "id": 10178
+      }
+    ],
+    "dexMap": {
+      "national": 555,
+      "original-unova": 61,
+      "updated-unova": 103,
+      "conquest-gallery": 143,
+      "galar": 368,
+      "crown-tundra": 104
+    }
+  },
+  {
+    "id": 10178,
+    "name": "galarian-darmanitan-standard",
+    "types": [
+      "ice",
+      "fire"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "darmanitan-standard",
+        "id": 555
+      },
+      {
+        "name": "darmanitan-zen",
+        "id": 10017
+      },
+      {
+        "name": "darmanitan-galar-standard",
+        "id": 10177
+      },
+      {
+        "name": "darmanitan-galar-zen",
+        "id": 10178
+      }
+    ],
+    "dexMap": {
+      "national": 555,
+      "original-unova": 61,
+      "updated-unova": 103,
+      "conquest-gallery": 143,
+      "galar": 368,
+      "crown-tundra": 104
+    }
+  },
+  {
+    "id": 10179,
+    "name": "galarian-yamask",
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "yamask",
+        "id": 562
+      },
+      {
+        "name": "yamask-galar",
+        "id": 10179
+      }
+    ],
+    "dexMap": {
+      "national": 562,
+      "original-unova": 68,
+      "updated-unova": 124,
+      "galar": 327,
+      "hyperspace": 59
+    }
+  },
+  {
+    "id": 10180,
+    "name": "galarian-stunfisk",
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "generationIntroduced": "galarian",
+    "variants": [
+      {
+        "name": "stunfisk",
+        "id": 618
+      },
+      {
+        "name": "stunfisk-galar",
+        "id": 10180
+      }
+    ],
+    "dexMap": {
+      "national": 618,
+      "original-unova": 124,
+      "updated-unova": 231,
+      "kalos-mountain": 39,
+      "galar": 226,
+      "lumiose-city": 157
+    }
+  },
+  {
+    "id": 10229,
+    "name": "hisuian-growlithe",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "growlithe",
+        "id": 58
+      },
+      {
+        "name": "growlithe-hisui",
+        "id": 10229
+      }
+    ],
+    "dexMap": {
+      "national": 58,
+      "kanto": 58,
+      "original-johto": 127,
+      "updated-johto": 129,
+      "updated-unova": 51,
+      "original-alola": 52,
+      "original-melemele": 52,
+      "updated-alola": 64,
+      "updated-melemele": 64,
+      "letsgo-kanto": 58,
+      "galar": 70,
+      "hisui": 150,
+      "paldea": 213,
+      "kitakami": 78
+    }
+  },
+  {
+    "id": 10230,
+    "name": "hisuian-arcanine",
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "arcanine",
+        "id": 59
+      },
+      {
+        "name": "arcanine-hisui",
+        "id": 10230
+      }
+    ],
+    "dexMap": {
+      "national": 59,
+      "kanto": 59,
+      "original-johto": 128,
+      "updated-johto": 130,
+      "updated-unova": 52,
+      "original-alola": 53,
+      "original-melemele": 53,
+      "updated-alola": 65,
+      "updated-melemele": 65,
+      "letsgo-kanto": 59,
+      "galar": 71,
+      "hisui": 151,
+      "paldea": 214,
+      "kitakami": 79
+    }
+  },
+  {
+    "id": 10231,
+    "name": "hisuian-voltorb",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "voltorb",
+        "id": 100
+      },
+      {
+        "name": "voltorb-hisui",
+        "id": 10231
+      }
+    ],
+    "dexMap": {
+      "national": 100,
+      "kanto": 100,
+      "original-johto": 120,
+      "hoenn": 84,
+      "updated-johto": 121,
+      "kalos-mountain": 72,
+      "updated-hoenn": 87,
+      "letsgo-kanto": 100,
+      "hisui": 192,
+      "paldea": 207
+    }
+  },
+  {
+    "id": 10232,
+    "name": "hisuian-electrode",
+    "types": [
+      "electric",
+      "grass"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "electrode",
+        "id": 101
+      },
+      {
+        "name": "electrode-hisui",
+        "id": 10232
+      }
+    ],
+    "dexMap": {
+      "national": 101,
+      "kanto": 101,
+      "original-johto": 121,
+      "hoenn": 85,
+      "updated-johto": 122,
+      "kalos-mountain": 73,
+      "updated-hoenn": 88,
+      "letsgo-kanto": 101,
+      "hisui": 193,
+      "paldea": 208
+    }
+  },
+  {
+    "id": 10233,
+    "name": "hisuian-typhlosion",
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "typhlosion",
+        "id": 157
+      },
+      {
+        "name": "typhlosion-hisui",
+        "id": 10233
+      }
+    ],
+    "dexMap": {
+      "national": 157,
+      "original-johto": 6,
+      "updated-johto": 6,
+      "hisui": 6,
+      "blueberry": 178
+    }
+  },
+  {
+    "id": 10234,
+    "name": "hisuian-qwilfish",
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "qwilfish",
+        "id": 211
+      },
+      {
+        "name": "qwilfish-hisui",
+        "id": 10234
+      }
+    ],
+    "dexMap": {
+      "national": 211,
+      "original-johto": 161,
+      "updated-johto": 163,
+      "kalos-coastal": 38,
+      "galar": 304,
+      "hisui": 84,
+      "paldea": 331,
+      "blueberry": 146,
+      "hyperspace": 37
+    }
+  },
+  {
+    "id": 10235,
+    "name": "hisuian-sneasel",
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "sneasel",
+        "id": 215
+      },
+      {
+        "name": "sneasel-hisui",
+        "id": 10235
+      }
+    ],
+    "dexMap": {
+      "national": 215,
+      "original-johto": 213,
+      "original-sinnoh": 144,
+      "extended-sinnoh": 144,
+      "updated-johto": 218,
+      "updated-unova": 252,
+      "conquest-gallery": 181,
+      "kalos-mountain": 91,
+      "original-alola": 249,
+      "original-ulaula": 121,
+      "updated-alola": 326,
+      "updated-ulaula": 147,
+      "galar": 292,
+      "crown-tundra": 28,
+      "hisui": 202,
+      "paldea": 230,
+      "kitakami": 170
+    }
+  },
+  {
+    "id": 10236,
+    "name": "hisuian-samurott",
+    "types": [
+      "water",
+      "dark"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "samurott",
+        "id": 503
+      },
+      {
+        "name": "samurott-hisui",
+        "id": 10236
+      }
+    ],
+    "dexMap": {
+      "national": 503,
+      "original-unova": 9,
+      "updated-unova": 9,
+      "conquest-gallery": 108,
+      "hisui": 9,
+      "blueberry": 208
+    }
+  },
+  {
+    "id": 10237,
+    "name": "hisuian-lilligant",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "lilligant",
+        "id": 549
+      },
+      {
+        "name": "lilligant-hisui",
+        "id": 10237
+      }
+    ],
+    "dexMap": {
+      "national": 549,
+      "original-unova": 55,
+      "updated-unova": 85,
+      "conquest-gallery": 44,
+      "original-alola": 86,
+      "original-melemele": 86,
+      "original-ulaula": 46,
+      "original-poni": 36,
+      "updated-alola": 104,
+      "updated-melemele": 104,
+      "updated-ulaula": 49,
+      "updated-poni": 48,
+      "isle-of-armor": 202,
+      "hisui": 94,
+      "paldea": 105,
+      "kitakami": 67
+    }
+  },
+  {
+    "id": 10238,
+    "name": "hisuian-zorua",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "zorua",
+        "id": 570
+      },
+      {
+        "name": "zorua-hisui",
+        "id": 10238
+      }
+    ],
+    "dexMap": {
+      "national": 570,
+      "original-unova": 76,
+      "updated-unova": 151,
+      "conquest-gallery": 154,
+      "kalos-mountain": 124,
+      "updated-alola": 28,
+      "updated-melemele": 28,
+      "updated-poni": 12,
+      "isle-of-armor": 87,
+      "hisui": 219,
+      "paldea": 228
+    }
+  },
+  {
+    "id": 10239,
+    "name": "hisuian-zoroark",
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "zoroark",
+        "id": 571
+      },
+      {
+        "name": "zoroark-hisui",
+        "id": 10239
+      }
+    ],
+    "dexMap": {
+      "national": 571,
+      "original-unova": 77,
+      "updated-unova": 152,
+      "conquest-gallery": 155,
+      "kalos-mountain": 125,
+      "updated-alola": 29,
+      "updated-melemele": 29,
+      "updated-poni": 13,
+      "isle-of-armor": 88,
+      "hisui": 220,
+      "paldea": 229
+    }
+  },
+  {
+    "id": 10240,
+    "name": "hisuian-braviary",
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "braviary",
+        "id": 628
+      },
+      {
+        "name": "braviary-hisui",
+        "id": 10240
+      }
+    ],
+    "dexMap": {
+      "national": 628,
+      "original-unova": 134,
+      "updated-unova": 110,
+      "conquest-gallery": 170,
+      "original-alola": 76,
+      "original-melemele": 76,
+      "original-poni": 27,
+      "updated-alola": 90,
+      "updated-melemele": 90,
+      "updated-poni": 36,
+      "galar": 282,
+      "isle-of-armor": 180,
+      "hisui": 222,
+      "paldea": 366,
+      "blueberry": 33
+    }
+  },
+  {
+    "id": 10241,
+    "name": "hisuian-sliggoo",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "sliggoo",
+        "id": 705
+      },
+      {
+        "name": "sliggoo-hisui",
+        "id": 10241
+      }
+    ],
+    "dexMap": {
+      "national": 705,
+      "kalos-mountain": 20,
+      "original-alola": 179,
+      "original-akala": 106,
+      "original-ulaula": 75,
+      "original-poni": 67,
+      "updated-alola": 218,
+      "updated-akala": 119,
+      "updated-ulaula": 82,
+      "updated-poni": 80,
+      "galar": 390,
+      "isle-of-armor": 61,
+      "hisui": 116,
+      "paldea": 173,
+      "kitakami": 179,
+      "lumiose-city": 166
+    }
+  },
+  {
+    "id": 10242,
+    "name": "hisuian-goodra",
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "goodra",
+        "id": 706
+      },
+      {
+        "name": "goodra-hisui",
+        "id": 10242
+      }
+    ],
+    "dexMap": {
+      "national": 706,
+      "kalos-mountain": 21,
+      "original-alola": 180,
+      "original-akala": 107,
+      "original-ulaula": 76,
+      "original-poni": 68,
+      "updated-alola": 219,
+      "updated-akala": 120,
+      "updated-ulaula": 83,
+      "updated-poni": 81,
+      "galar": 391,
+      "isle-of-armor": 62,
+      "hisui": 117,
+      "paldea": 174,
+      "kitakami": 180,
+      "lumiose-city": 167
+    }
+  },
+  {
+    "id": 10243,
+    "name": "hisuian-avalugg",
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "avalugg",
+        "id": 713
+      },
+      {
+        "name": "avalugg-hisui",
+        "id": 10243
+      }
+    ],
+    "dexMap": {
+      "national": 713,
+      "kalos-mountain": 80,
+      "galar": 359,
+      "crown-tundra": 143,
+      "hisui": 216,
+      "paldea": 364,
+      "lumiose-city": 175
+    }
+  },
+  {
+    "id": 10244,
+    "name": "hisuian-decidueye",
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "generationIntroduced": "hisuian",
+    "variants": [
+      {
+        "name": "decidueye",
+        "id": 724
+      },
+      {
+        "name": "decidueye-hisui",
+        "id": 10244
+      }
+    ],
+    "dexMap": {
+      "national": 724,
+      "original-alola": 3,
+      "original-melemele": 3,
+      "updated-alola": 3,
+      "updated-melemele": 3,
+      "hisui": 3,
+      "blueberry": 220
     }
   }
 ]

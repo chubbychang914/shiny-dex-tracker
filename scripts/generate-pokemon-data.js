@@ -128,6 +128,14 @@ const fetchPokemonDetails = async (id) => {
       fetch(speciesUrl).then((res) => res.json())
     ])
 
+    // 取得不同遊戲的 dex number
+    const dexMap = {
+      national: id
+    }
+    speciesRes.pokedex_numbers.forEach((item) => {
+      dexMap[item.pokedex.name] = item.entry_number
+    })
+
     // 對應的 generation
     const generationMap = {
       'generation-i': 'kanto',
@@ -140,15 +148,8 @@ const fetchPokemonDetails = async (id) => {
       'generation-viii': 'galar',
       'generation-ix': 'paldea'
     }
-    const generationIntroduced = generationMap[speciesRes.generation.name] || 'unknown'
-
-    // 取得不同遊戲的 dex number
-    const dexMap = {
-      national: id
-    }
-    speciesRes.pokedex_numbers.forEach((item) => {
-      dexMap[item.pokedex.name] = item.entry_number
-    })
+    let generationIntroduced = generationMap[speciesRes.generation.name] || 'unknown'
+    if (generationIntroduced === 'galar' && dexMap.hisui) generationIntroduced = 'hisui' // ex: sneasler and basculegion
 
     const variants = speciesRes.varieties.map((variant) => {
       return {
@@ -170,10 +171,38 @@ const fetchPokemonDetails = async (id) => {
   }
 }
 
+// Fetch variants data (alolan, galarian, hisuian) -> variants don't have pokemon-species api, so use some of base form data
+const fetchVariantsData = async (variantName = '', variantFoundList) => {
+  try {
+    const promises = variantFoundList.map(async (variant) => {
+      const detailUrl = `https://pokeapi.co/api/v2/pokemon/${variant.id}`
+      const detailRes = await fetch(detailUrl).then((res) => res.json())
+
+      return {
+        id: variant.id,
+        name: `${variantName}-${variant.baseFormData.name}`,
+        types: detailRes.types.map((type) => type.type.name),
+        generationIntroduced: regionName,
+        variants: variant.baseFormData.variants,
+        dexMap: variant.baseFormData.dexMap
+      }
+    })
+
+    const result = await Promise.all(promises)
+    return result
+  } catch (error) {
+    console.error(`Error fetching ${regionName} variant for ID ${id}:`, error)
+  }
+}
+
 const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
   console.log(`🔍 Generating Pokemon data from PokeAPI from ID ${startId} to ${endId}...`)
   let allPokemon = []
+  let alolanVariantFound = []
+  let galarianVariantFound = []
+  let hisuianVariantFound = []
 
+  // Step 1: Fetch all base pokemon
   for (let i = startId; i <= endId; i += BATCH_SIZE) {
     const end = Math.min(i + BATCH_SIZE - 1, endId)
     console.log(`✨ Fetching IDs ${i} to ${end}...`)
@@ -192,6 +221,28 @@ const initializeDexData = async (startId = 1, endId = TOTAL_POKEMON) => {
     }
   }
 
+  // Step 2: Find variants
+  allPokemon.forEach((pokemon) => {
+    pokemon.variants.forEach((variant) => {
+      if (variant.name.includes('alola')) {
+        alolanVariantFound.push({ id: variant.id, baseFormData: pokemon })
+      }
+      if (variant.name.includes('galar')) {
+        galarianVariantFound.push({ id: variant.id, baseFormData: pokemon })
+      }
+      if (variant.name.includes('hisui')) {
+        hisuianVariantFound.push({ id: variant.id, baseFormData: pokemon })
+      }
+    })
+  })
+
+  // Step 3: Get Variant Data
+  console.log('✨Fetching Variants Data...')
+  const alolanVariants = await fetchVariantsData('alolan', alolanVariantFound)
+  const galarianVariants = await fetchVariantsData('galarian', galarianVariantFound)
+  const hisuianVariants = await fetchVariantsData('hisuian', hisuianVariantFound)
+
+  allPokemon = [...allPokemon, ...alolanVariants, ...galarianVariants, ...hisuianVariants]
   allPokemon.sort((a, b) => a.id - b.id)
 
   writeToFile(allPokemon, 'raw-pokemon-data.json')

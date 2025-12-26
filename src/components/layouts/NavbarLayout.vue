@@ -37,7 +37,7 @@ const regionOptions = computed(() => {
     label: 'All Regions'
   }
   const filteredRegions = pokeApiDataStore.referenceData.regions
-    .filter((region) => region !== 'hisui') // Remove Hisui Option for now
+    // .filter((region) => region !== 'hisui') // Remove Hisui Option for now
     .map((region) => {
       return {
         value: region,
