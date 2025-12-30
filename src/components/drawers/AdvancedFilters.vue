@@ -65,7 +65,6 @@
           </div>
         </div>
       </div>
-      <pre>{{ postData }}</pre>
     </div>
     <div class="main-footer-container">
       <div
@@ -79,17 +78,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { usePokeApiDataStore } from '@/stores/pokeApiData'
+import { computed, ref, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer'
+import { usePokeApiDataStore } from '@/stores/pokeApiData'
+import { useFilterQueriesStore } from '@/stores/filterQueries'
 import { capitalizeFirstLetter } from '@/utils/helpers'
 import type { SortByOption } from '@/types'
 
 // ==============================
 // STORES
 // ==============================
-const pokeApiDataStore = usePokeApiDataStore()
+const route = useRoute()
 const bottomDrawerStore = useBottomDrawerStore()
+const pokeApiDataStore = usePokeApiDataStore()
+const filterQueriesStore = useFilterQueriesStore()
 
 // ==============================
 // FILTER FUNCTIONS
@@ -98,22 +101,29 @@ const handleClearFilter = () => {
   selectedSortOption.value = 'number-asc'
   selectedTypes.value = []
   selectedRegions.value = []
+  selectedTypes.value = []
 }
 
 const handleCloseFilter = () => {
   bottomDrawerStore.closeDrawer()
 }
 
-const postData = computed(() => {
-  return {
-    sortBy: selectedSortOption.value,
-    types: selectedTypes.value,
-    regions: selectedRegions.value
-  }
-})
-
 const handleApplyFilter = () => {
-  bottomDrawerStore.closeDrawer()
+  const filterKey = `${route.path.split('/')[1]}-filter`
+  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
+  filterQueriesStore.setSelectedRegion(selectedRegions.value)
+  filterQueriesStore.setSelectedTypes(selectedTypes.value)
+  localStorage.setItem(
+    filterKey,
+    JSON.stringify({
+      sortBy: selectedSortOption.value,
+      regions: selectedRegions.value,
+      types: selectedTypes.value
+    })
+  )
+  nextTick(() => {
+    bottomDrawerStore.closeDrawer()
+  })
 }
 // ==============================
 // SORT BY OPTIONS

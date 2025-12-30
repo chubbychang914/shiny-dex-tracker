@@ -1,22 +1,26 @@
 import referenceData from '../../public/reference-data.json'
 
 // ==============================
-// Theme types
+// THEME TYPES
 // ==============================
-export type Theme = 'dark' | 'light' | 'classic-red'
+export type Theme = string
 
 // ==============================
-// Sorting Options in navbar
+// FILTER TYPES
 // ==============================
-export type SortBy = 'number-asc' | 'number-desc' | 'name-asc' | 'name-desc'
+export type SortFilter = string
 
 export type SortByOption = {
-  value: SortBy
+  value: SortFilter
   label: string
 }
 
+export type RegionFilter = string[]
+
+export type TypeFilter = string[]
+
 // ==============================
-// Pokemon Data Types from pokeApi
+// POKEMON DATA TYPES FROM POKEAPI
 // ==============================
 export type Region = (typeof referenceData.regions)[number] | 'all'
 
@@ -54,6 +58,6 @@ export type CaughtPokemonData = {
 }
 
 // ==============================
-// Bottom Drawer Types
+// BOTTOM DRAWER TYPES
 // ==============================
 export type DrawerComponentName = 'settings' | 'advanced-filters' | null

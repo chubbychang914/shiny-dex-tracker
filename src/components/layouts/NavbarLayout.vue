@@ -41,7 +41,7 @@
         @input="handleChangeSearchQuery"
       />
     </div>
-    <div
+    <!-- <div
       class="navbar__bottom"
       v-show="showFilters"
     >
@@ -69,7 +69,7 @@
           :value="item.value"
         />
       </el-select>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -141,14 +141,14 @@ const handleClickAdvancedFilters = () => {
 const handleChangeSearchQuery = debounce(() => {
   filterQueriesStore.setSearchQuery(searchQuery.value)
 }, 250)
-const handleChangeRegion = () => {
-  filterQueriesStore.setSelectedRegion(selectedRegion.value)
-  console.log('✨selectedRegion', selectedRegion.value)
-}
-const handleChangeSortOption = () => {
-  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
-  console.log('✨selectedSortOption', selectedSortOption.value)
-}
+// const handleChangeRegion = () => {
+//   filterQueriesStore.setSelectedRegion(selectedRegion.value)
+//   console.log('✨selectedRegion', selectedRegion.value)
+// }
+// const handleChangeSortOption = () => {
+//   filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
+//   console.log('✨selectedSortOption', selectedSortOption.value)
+// }
 const handleChangeLayoutType = () => {
   layoutStore.setLayoutType('mini')
 }
