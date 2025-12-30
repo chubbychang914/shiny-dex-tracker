@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -11,6 +12,9 @@ export default defineConfig({
     /* ⚙️ PWA Settings **/
     VitePWA({
       registerType: 'autoUpdate', // 升級版本會自動更新
+      devOptions: {
+        enabled: true,
+      },
       // ====================================================================================================
       // 📱 Manifest: Tells devices how to display your installed app
       // ====================================================================================================

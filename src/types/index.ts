@@ -1,16 +1,23 @@
 import referenceData from '../../public/reference-data.json'
 
+// ==============================
 // Theme types
+// ==============================
 export type Theme = 'dark' | 'light' | 'classic-red'
 
-// Sort Options
+// ==============================
+// Sorting Options in navbar
+// ==============================
 export type SortBy = 'number-asc' | 'number-desc' | 'name-asc' | 'name-desc'
+
 export type SortByOption = {
   value: SortBy
   label: string
 }
 
-// Pokemon Data Types
+// ==============================
+// Pokemon Data Types from pokeApi
+// ==============================
 export type Region = (typeof referenceData.regions)[number] | 'all'
 
 export type PokemonType = (typeof referenceData.types)[number]
@@ -23,14 +30,12 @@ export type GameDexMap = {
 }
 
 export type ReferenceData = {
-  // 引用資料
   regions: Region[]
   types: PokemonType[]
   gameDexMap: GameDexMap[]
 }
 
 export type StructuredPokemonData = {
-  // 整理過的資料結構
   id: number
   name: string
   types: PokemonType[]
@@ -44,10 +49,11 @@ export type StructuredPokemonData = {
 }
 
 export type CaughtPokemonData = {
-  // 紀錄使用者 captured 的資料結構
   isShiny: boolean
   timestamp: number
 }
 
+// ==============================
 // Bottom Drawer Types
+// ==============================
 export type DrawerComponentName = 'settings' | 'advanced-filters' | null

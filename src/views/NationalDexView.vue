@@ -2,10 +2,13 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+import { useLayoutStore } from '@/stores/layout.ts'
 import PokemonCard from '@/components/PokemonCard.vue'
+import MiniPokemonCard from '@/components/MiniPokemonCard.vue'
 
 const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()
+const layoutStore = useLayoutStore()
 
 // ==============================
 // INTERSECTION OBSERVER SETUP
@@ -81,6 +84,17 @@ const displayedPokedexData = computed(() => {
   return filteredPokedexData.value.slice(0, displayCount.value)
 })
 
+const cardComponent = computed(() => {
+  switch (layoutStore.layoutType) {
+    case 'default':
+      return PokemonCard
+    case 'mini':
+      return MiniPokemonCard
+    default:
+      return PokemonCard
+  }
+})
+
 /* Determines if filtered data has more items to load (displayCount will increment by ITEMS_PER_BATCH) **/
 const hasMore = computed(() => {
   return displayCount.value < filteredPokedexData.value.length
@@ -149,7 +163,8 @@ onBeforeUnmount(() => {
       v-if="filteredPokedexData.length"
       class="pokemon-cards-container"
     >
-      <PokemonCard
+      <component
+        :is="cardComponent"
         v-for="pokemon in displayedPokedexData"
         :key="pokemon.id"
         :single-pokemon-data="pokemon"

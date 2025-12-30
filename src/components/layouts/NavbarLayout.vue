@@ -1,85 +1,3 @@
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import type { Region, SortBy, SortByOption } from '@/types'
-import { capitalizeFirstLetter } from '@/utils/helpers.ts'
-import { usePokeApiDataStore } from '@/stores/pokeApiData'
-import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
-import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
-import debounce from 'lodash/debounce'
-
-const route = useRoute()
-const router = useRouter()
-const pokeApiDataStore = usePokeApiDataStore()
-const bottomDrawerStore = useBottomDrawerStore()
-const filterQueriesStore = useFilterQueriesStore()
-
-// ==============================
-// Data
-// ==============================
-const searchQuery = ref('')
-const selectedRegion = ref<Region>('all')
-const selectedSortOption = ref<SortBy>('number-asc')
-const showFilters = computed(() => {
-  return route.path !== '/' && route.path !== '/game-dex'
-})
-
-const navbarTitle = computed(() => {
-  if (route.name === 'GameDexDetail') {
-    return route.params.pokedexName as string
-  }
-  return route.meta.title as string
-})
-
-const sortOptions = ref<SortByOption[]>([
-  { value: 'number-asc', label: 'Number Ascending' },
-  { value: 'number-desc', label: 'Number Descending' },
-  { value: 'name-asc', label: 'A-Z' },
-  { value: 'name-desc', label: 'Z-A' }
-])
-
-const regionOptions = computed(() => {
-  const allRegionOption = {
-    value: 'all',
-    label: 'All Regions'
-  }
-  const filteredRegions = pokeApiDataStore.referenceData.regions
-    // .filter((region) => region !== 'hisui') // Remove Hisui Option for now
-    .map((region) => {
-      return {
-        value: region,
-        label: capitalizeFirstLetter(region)
-      }
-    })
-
-  return [allRegionOption, ...filteredRegions]
-})
-
-// ==============================
-// Methods
-// ==============================
-const handleClickSettings = () => {
-  bottomDrawerStore.openDrawer('settings')
-}
-const handleClickAdvancedFilters = () => {
-  bottomDrawerStore.openDrawer('advanced-filters', '80%')
-}
-const handleChangeSearchQuery = debounce(() => {
-  filterQueriesStore.setSearchQuery(searchQuery.value)
-}, 250)
-const handleChangeRegion = () => {
-  filterQueriesStore.setSelectedRegion(selectedRegion.value)
-  console.log('✨selectedRegion', selectedRegion.value)
-}
-const handleChangeSortOption = () => {
-  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
-  console.log('✨selectedSortOption', selectedSortOption.value)
-}
-const navigateToHome = () => {
-  router.replace('/')
-}
-</script>
-
 <template>
   <div class="navbar">
     <div class="navbar__top">
@@ -93,6 +11,16 @@ const navigateToHome = () => {
         <h1 @click="navigateToHome">{{ navbarTitle }}</h1>
       </div>
       <div class="icon-container">
+        <el-icon
+          class="icon__layout"
+          @click="handleChangeLayoutType"
+          ><Grid
+        /></el-icon>
+        <el-icon
+          class="icon__filters"
+          @click="handleClickAdvancedFilters"
+          ><Filter
+        /></el-icon>
         <el-icon
           class="icon__settings"
           @click="handleClickSettings"
@@ -145,6 +73,91 @@ const navigateToHome = () => {
   </div>
 </template>
 
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import type { Region, SortBy, SortByOption } from '@/types'
+import { capitalizeFirstLetter } from '@/utils/helpers.ts'
+import { usePokeApiDataStore } from '@/stores/pokeApiData'
+import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
+import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+import { useLayoutStore } from '@/stores/layout.ts'
+import debounce from 'lodash/debounce'
+
+const route = useRoute()
+const router = useRouter()
+const pokeApiDataStore = usePokeApiDataStore()
+const bottomDrawerStore = useBottomDrawerStore()
+const filterQueriesStore = useFilterQueriesStore()
+const layoutStore = useLayoutStore()
+// ==============================
+// Data
+// ==============================
+const searchQuery = ref('')
+const selectedRegion = ref<Region>('all')
+const selectedSortOption = ref<SortBy>('number-asc')
+const showFilters = computed(() => {
+  return route.path !== '/' && route.path !== '/game-dex'
+})
+
+const navbarTitle = computed(() => {
+  if (route.name === 'GameDexDetail') {
+    return route.params.pokedexName as string
+  }
+  return route.meta.title as string
+})
+
+const sortOptions = ref<SortByOption[]>([
+  { value: 'number-asc', label: 'Number Ascending' },
+  { value: 'number-desc', label: 'Number Descending' },
+  { value: 'name-asc', label: 'A-Z' },
+  { value: 'name-desc', label: 'Z-A' }
+])
+
+const regionOptions = computed(() => {
+  const allRegionOption = {
+    value: 'all',
+    label: 'All Regions'
+  }
+  const filteredRegions = pokeApiDataStore.referenceData.regions.map((region) => {
+    return {
+      value: region,
+      label: capitalizeFirstLetter(region)
+    }
+  })
+
+  return [allRegionOption, ...filteredRegions]
+})
+
+// ==============================
+// Methods
+// ==============================
+const handleClickSettings = () => {
+  bottomDrawerStore.openDrawer('settings')
+}
+const handleClickAdvancedFilters = () => {
+  bottomDrawerStore.openDrawer('advanced-filters', '75%')
+}
+const handleChangeSearchQuery = debounce(() => {
+  filterQueriesStore.setSearchQuery(searchQuery.value)
+}, 250)
+const handleChangeRegion = () => {
+  filterQueriesStore.setSelectedRegion(selectedRegion.value)
+  console.log('✨selectedRegion', selectedRegion.value)
+}
+const handleChangeSortOption = () => {
+  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
+  console.log('✨selectedSortOption', selectedSortOption.value)
+}
+const handleChangeLayoutType = () => {
+  layoutStore.setLayoutType('mini')
+}
+
+const navigateToHome = () => {
+  router.replace('/')
+}
+</script>
+
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
@@ -176,14 +189,13 @@ const navigateToHome = () => {
   @extend %center;
   gap: 15px;
 }
+.icon-container {
+  display: flex;
+  align-items: center;
+}
 .icon {
-  &__filter {
-    font-size: 30px;
-    color: black;
-    cursor: pointer;
-    background-color: $color-icon-background;
-    border-radius: 50%;
-    padding: 5px;
+  &__layout {
+    font-size: 25px;
   }
   &__settings {
     font-size: 30px;
@@ -195,6 +207,7 @@ const navigateToHome = () => {
     margin-left: 10px;
   }
 }
+
 %center {
   display: flex;
   justify-content: center;

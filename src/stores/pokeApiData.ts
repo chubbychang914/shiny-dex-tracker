@@ -5,7 +5,11 @@ import type { ReferenceData, StructuredPokemonData } from '@/types/index.ts'
 export const usePokeApiDataStore = defineStore('pokeApiData', () => {
   // State
   const pokeApiData = ref<StructuredPokemonData[]>([])
-  const referenceData = ref<ReferenceData>({ regions: [], types: [] })
+  const referenceData = ref<ReferenceData>({
+    regions: [],
+    types: [],
+    gameDexMap: []
+  })
 
   // Actions
   const initData = async () => {

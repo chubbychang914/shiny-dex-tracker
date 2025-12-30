@@ -1,18 +1,3 @@
-<script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
-import { RouterView } from 'vue-router'
-import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
-import NavbarLayout from './components/layouts/NavbarLayout.vue'
-
-const bottomDrawerStore = useBottomDrawerStore()
-
-// 當有新的 drawer 樣式，需要在此處新增
-const drawerComponents = {
-  settings: defineAsyncComponent(() => import('@/components/drawers/SettingsPage.vue')),
-  'advanced-filters': defineAsyncComponent(() => import('@/components/drawers/AdvancedFilters.vue'))
-}
-</script>
-
 <template>
   <div class="app-layout">
     <NavbarLayout />
@@ -39,6 +24,21 @@ const drawerComponents = {
   </div>
 </template>
 
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
+import { RouterView } from 'vue-router'
+import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
+import NavbarLayout from './components/layouts/NavbarLayout.vue'
+
+const bottomDrawerStore = useBottomDrawerStore()
+
+// 當有新的 drawer 樣式，需要在此處新增
+const drawerComponents = {
+  settings: defineAsyncComponent(() => import('@/components/drawers/SettingsPage.vue')),
+  'advanced-filters': defineAsyncComponent(() => import('@/components/drawers/AdvancedFilters.vue'))
+}
+</script>
+
 <style lang="scss" scoped>
 .app-layout {
   display: flex;
@@ -55,7 +55,8 @@ const drawerComponents = {
   background-color: $color-background;
 }
 :deep(.el-drawer__body) {
-  padding: 10px;
+  z-index: 9999 !important;
+  padding: 0px;
   background-color: $color-drawer-background;
   color: $color-text;
   border-top-left-radius: 10px;
