@@ -13,17 +13,22 @@ const navigateToGameDex = () => {
 
 <template>
   <div class="home-container">
-    <div
-      class="title-container"
-      @click="navigateToNationalDex"
-    >
-      <div class="title">National Dex</div>
+    <div class="favorite-container">
+      <div class="circle"></div>
     </div>
-    <div
-      class="title-container"
-      @click="navigateToGameDex"
-    >
-      <div class="title">Game Dex</div>
+    <div class="progress-tracker">
+      <div
+        class="title-container"
+        @click="navigateToNationalDex"
+      >
+        <div class="title">National Dex</div>
+      </div>
+      <div
+        class="title-container"
+        @click="navigateToGameDex"
+      >
+        <div class="title">Game Dex</div>
+      </div>
     </div>
   </div>
 </template>
@@ -31,11 +36,20 @@ const navigateToGameDex = () => {
 <style lang="scss" scoped>
 .home-container {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+}
+.favorite-container {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $color-background;
+}
+.circle {
+  width: 50%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  outline: 1px solid red;
 }
 </style>

@@ -18,7 +18,8 @@ const isCaught = ref(false)
 const isInitialLoad = ref(true)
 
 const pokemonCardImage = computed(() => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
+  // return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
+  return ''
 })
 
 const pokemonDisplayName = computed(() => {

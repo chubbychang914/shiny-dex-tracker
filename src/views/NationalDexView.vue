@@ -115,14 +115,15 @@ const filteredPokedexData = computed(() => {
 // })
 
 const cardComponent = computed(() => {
-  switch (layoutStore.layoutType) {
-    case 'default':
-      return PokemonCard
-    case 'mini':
-      return MiniPokemonCard
-    default:
-      return PokemonCard
-  }
+  // switch (layoutStore.layoutType) {
+  //   case 'default':
+  //     return PokemonCard
+  //   case 'mini':
+  //     return MiniPokemonCard
+  //   default:
+  //     return PokemonCard
+  // }
+  return PokemonCard
 })
 
 // /* Determines if filtered data has more items to load (displayCount will increment by ITEMS_PER_BATCH) **/

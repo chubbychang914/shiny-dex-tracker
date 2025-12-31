@@ -8,13 +8,13 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    // vueDevTools(),
     /* ⚙️ PWA Settings **/
     VitePWA({
       registerType: 'autoUpdate', // 升級版本會自動更新
-      devOptions: {
-        enabled: true,
-      },
+      // devOptions: {
+      //   enabled: true,
+      // },
       // ====================================================================================================
       // 📱 Manifest: Tells devices how to display your installed app
       // ====================================================================================================

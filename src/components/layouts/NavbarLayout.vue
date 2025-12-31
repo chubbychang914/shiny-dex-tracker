@@ -161,12 +161,9 @@ const navigateToHome = () => {
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
-  max-height: 200px;
-  background-color: $color-primary;
-  position: sticky;
-  z-index: 2005; // v-loading is 2000
-  top: 0;
-  left: 0;
+  max-height: 100px;
+  // background-color: $color-primary;
+  background-color: red;
   color: $color-text;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;

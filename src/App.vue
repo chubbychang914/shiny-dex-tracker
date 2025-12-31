@@ -3,11 +3,9 @@
     <NavbarLayout />
     <main class="main-content">
       <RouterView />
-      <el-backtop
-        :bottom="50"
-        :right="12"
-      />
     </main>
+    <FooterLayout />
+    <!-- GLOBAL DRAWER -->
     <el-drawer
       v-model="bottomDrawerStore.isOpen"
       direction="btt"
@@ -29,6 +27,7 @@ import { defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
 import NavbarLayout from './components/layouts/NavbarLayout.vue'
+import FooterLayout from './components/layouts/FooterLayout.vue'
 
 const bottomDrawerStore = useBottomDrawerStore()
 
@@ -41,35 +40,32 @@ const drawerComponents = {
 
 <style lang="scss" scoped>
 .app-layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  height: 100dvh;
   background-color: $color-background;
+  overflow: hidden;
 }
+
 .main-content {
-  flex: 1;
-  padding-top: 5px;
-  padding-bottom: 60px;
+  width: 100%;
   background-color: $color-background;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-// In App.vue - target the overlay and drawer wrapper
+
 :deep(.el-overlay) {
   z-index: 9999 !important;
 }
+
 :deep(.el-drawer) {
   z-index: 10000 !important;
 }
+
 :deep(.el-drawer__body) {
   padding: 0px;
   background-color: $color-drawer-background;
   color: $color-text;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-:deep(.el-drawer.btt) {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 </style>
