@@ -54,8 +54,14 @@ const drawerComponents = {
   padding-bottom: 60px;
   background-color: $color-background;
 }
-:deep(.el-drawer__body) {
+// In App.vue - target the overlay and drawer wrapper
+:deep(.el-overlay) {
   z-index: 9999 !important;
+}
+:deep(.el-drawer) {
+  z-index: 10000 !important;
+}
+:deep(.el-drawer__body) {
   padding: 0px;
   background-color: $color-drawer-background;
   color: $color-text;

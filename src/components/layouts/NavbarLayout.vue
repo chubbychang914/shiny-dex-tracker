@@ -11,11 +11,11 @@
         <h1 @click="navigateToHome">{{ navbarTitle }}</h1>
       </div>
       <div class="icon-container">
-        <el-icon
+        <!-- <el-icon
           class="icon__layout"
           @click="handleChangeLayoutType"
           ><Grid
-        /></el-icon>
+        /></el-icon> -->
         <el-icon
           class="icon__filters"
           @click="handleClickAdvancedFilters"
@@ -136,7 +136,7 @@ const handleClickSettings = () => {
   bottomDrawerStore.openDrawer('settings')
 }
 const handleClickAdvancedFilters = () => {
-  bottomDrawerStore.openDrawer('advanced-filters', '75%')
+  bottomDrawerStore.openDrawer('advanced-filters', '95%')
 }
 const handleChangeSearchQuery = debounce(() => {
   filterQueriesStore.setSearchQuery(searchQuery.value)

@@ -67,17 +67,28 @@
       </div>
     </div>
     <div class="main-footer-container">
-      <div
-        class="footer-container__apply"
-        @click="handleApplyFilter"
-      >
-        Apply Filter
+      <div class="apply-button-container">
+        <BaseButton
+          btnSize="large"
+          btnColor="secondary"
+          btnText="Apply Filter"
+          @onClick="handleApplyFilter"
+        >
+          <template #icon>
+            <el-icon
+              class="apply-icon"
+              :size="30"
+              ><Check
+            /></el-icon>
+          </template>
+        </BaseButton>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import BaseButton from '@/components/base/BaseButton.vue'
 import { computed, ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer'
@@ -233,7 +244,7 @@ $titleFontSize: 1.2rem;
 
 .main-content-container {
   width: 100%;
-  padding: 10px 10px 30px;
+  padding: 10px 10px 15px;
   flex: 1;
   min-height: 0;
   overflow-y: scroll;
@@ -241,12 +252,18 @@ $titleFontSize: 1.2rem;
 
 .main-footer-container {
   width: 100%;
-  height: $footerHeight;
-  bottom: 0;
-  left: 0;
-  flex-shrink: 0;
   overflow: hidden;
+  @extend %center;
   border-top: 1px solid yellow;
+  padding-bottom: calc(12px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+}
+
+.apply-button-container {
+  width: 90%;
+  .apply-icon {
+    margin-right: 10px;
+  }
 }
 
 .sort-by-container {
