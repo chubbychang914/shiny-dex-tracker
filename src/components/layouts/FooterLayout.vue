@@ -5,6 +5,7 @@
         v-for="item in menuItems"
         :key="item.name"
         class="footer-item"
+        :class="{ 'footer-item__selected': selectedTab === item.name }"
       >
         <div
           class="item-card"
@@ -24,11 +25,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 
 const router = useRouter()
 const bottomDrawerStore = useBottomDrawerStore()
+
+const selectedTab = ref('Home')
 
 const menuItems = [
   {
@@ -53,15 +57,19 @@ const handleClick = (itemName: string) => {
   switch (itemName) {
     case 'Home':
       router.push('/')
+      selectedTab.value = 'Home'
       break
     case 'National':
       router.push('/national-dex')
+      selectedTab.value = 'National'
       break
     case 'Games':
       router.push('/game-dex')
+      selectedTab.value = 'Games'
       break
     case 'Settings':
       bottomDrawerStore.openDrawer('settings', '90%')
+      selectedTab.value = 'Settings'
       break
     default:
       break
@@ -77,16 +85,15 @@ $iconSize: 28px;
   width: 100%;
   min-height: $footerHeight;
   height: calc($footerHeight + env(safe-area-inset-bottom));
-  padding: 10px 0;
-  padding-bottom: calc(10px + env(safe-area-inset-bottom));
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   overflow: hidden;
-  background-color: teal;
+  background-color: #fff;
 }
 .footer-content {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  color: black;
 }
 .footer-item {
   width: 100%;
@@ -94,6 +101,16 @@ $iconSize: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 8px;
+  padding-bottom: calc(8px + env(safe-area-inset-bottom));
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+
+  &__selected {
+    background-color: red;
+    color: white;
+  }
 }
 .item-card {
   width: 100%;

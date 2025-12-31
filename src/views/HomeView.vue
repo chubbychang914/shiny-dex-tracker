@@ -22,12 +22,22 @@ const navigateToGameDex = () => {
         @click="navigateToNationalDex"
       >
         <div class="title">National Dex</div>
+        <el-progress
+          :text-inside="true"
+          :stroke-width="15"
+          :percentage="70"
+        />
       </div>
       <div
         class="title-container"
         @click="navigateToGameDex"
       >
         <div class="title">Game Dex</div>
+        <el-progress
+          :text-inside="true"
+          :stroke-width="15"
+          :percentage="15"
+        />
       </div>
     </div>
   </div>

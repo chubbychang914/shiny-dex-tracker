@@ -1,7 +1,7 @@
 <template>
   <div class="pokedex">
     <div
-      v-if="filteredPokedexData.length"
+      v-if="filteredPokedexData.length && false"
       class="pokemon-cards-container"
     >
       <component
@@ -16,6 +16,7 @@
       v-show="hasMore"
       ref="sentinelRef"
     /> -->
+    <div class="test-container">test</div>
   </div>
 </template>
 
