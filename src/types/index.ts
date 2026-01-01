@@ -3,7 +3,7 @@ import referenceData from '../../public/reference-data.json'
 // ==============================
 // THEME TYPES
 // ==============================
-export type Theme = string
+export type Theme = 'pokeball' | 'greatball' | 'masterball'
 
 // ==============================
 // FILTER TYPES

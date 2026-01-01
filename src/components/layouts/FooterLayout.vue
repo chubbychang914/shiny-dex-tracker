@@ -86,7 +86,7 @@ $iconSize: 28px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: $FooterBg;
 }
 .footer-content {
   display: grid;
@@ -102,12 +102,12 @@ $iconSize: 28px;
   padding-top: 8px;
   padding-bottom: calc(8px + env(safe-area-inset-bottom));
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background-color 0.5s ease,
+    color 0.5s ease;
 
   &__selected {
-    background-color: red;
-    color: white;
+    background-color: $NavbarBg;
+    color: $TextPrimary;
   }
 }
 .item-card {

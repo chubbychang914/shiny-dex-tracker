@@ -104,7 +104,7 @@ const navigateToHome = () => {
   width: 100%;
   max-height: 100px;
   // background-color: $color-primary;
-  background-color: red;
+  background-color: $NavbarBg;
   color: $TextPrimary;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -122,6 +122,7 @@ const navigateToHome = () => {
     @extend %center;
     gap: 10px;
   }
+  transition: background-color 0.5s ease;
 }
 .title-container {
   @extend %center;

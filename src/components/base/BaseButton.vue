@@ -33,13 +33,13 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $color-background;
+  background-color: $BgPrimary;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
-    background-color: $color-primary;
+    background-color: $BgPrimary;
   }
   &:active {
     transform: scale(0.95);

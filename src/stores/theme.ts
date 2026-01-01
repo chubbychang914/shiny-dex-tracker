@@ -3,18 +3,25 @@ import { ref, watch } from 'vue'
 import type { Theme } from '@/types'
 
 export const useThemeStore = defineStore('theme', () => {
-  // State
-  const currentTheme = ref<Theme>((localStorage.getItem('theme') as Theme) || 'dark')
-  // Actions
+  // ******************************
+  // STATE
+  // ******************************
+  const currentTheme = ref<Theme>((localStorage.getItem('theme') as Theme) || 'pokeball')
+
+  // ******************************
+  // ACTIONS
+  // ******************************
   const setTheme = (theme: Theme) => {
     currentTheme.value = theme
-    localStorage.setItem('theme', theme)
-    document.documentElement.setAttribute('data-theme', theme)
   }
-  // Watch
+
+  // ******************************
+  // WATCH
+  // ******************************
   watch(
     currentTheme,
     (newTheme) => {
+      localStorage.setItem('theme', newTheme)
       document.documentElement.setAttribute('data-theme', newTheme)
     },
     { immediate: true }

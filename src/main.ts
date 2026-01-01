@@ -7,8 +7,8 @@ import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
-import { useThemeStore } from './stores/theme.ts'
 import { usePokeApiDataStore } from './stores/pokeApiData.ts'
+import { useThemeStore } from './stores/theme.ts'
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -18,12 +18,12 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(ElementPlus)
 app.use(createPinia())
 
-// 初始化 pokedex 資訊
+// Initialize to apply theme on load
+useThemeStore()
+
+// Initialize Basic Pokemon Data
 const pokeApiDataStore = usePokeApiDataStore()
 await pokeApiDataStore.initData()
-
-const themeStore = useThemeStore()
-themeStore.setTheme(themeStore.currentTheme) // 設定主題
 
 app.use(router)
 
