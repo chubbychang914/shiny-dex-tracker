@@ -13,6 +13,14 @@ const router = createRouter({
       }
     },
     {
+      path: '/settings',
+      name: 'Settings',
+      component: () => import('@/views/SettingsView.vue'),
+      meta: {
+        title: 'Settings'
+      }
+    },
+    {
       path: '/national-dex',
       name: 'NationalDex',
       component: () => import('@/views/NationalDexView.vue'),

@@ -41,35 +41,6 @@
         @input="handleChangeSearchQuery"
       />
     </div>
-    <!-- <div
-      class="navbar__bottom"
-      v-show="showFilters"
-    >
-      <el-select
-        v-model="selectedRegion"
-        style="width: 100%"
-        @change="handleChangeRegion"
-      >
-        <el-option
-          v-for="item in regionOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-      <el-select
-        v-model="selectedSortOption"
-        style="width: 100%"
-        @change="handleChangeSortOption"
-      >
-        <el-option
-          v-for="item in sortOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
-    </div> -->
   </div>
 </template>
 
@@ -94,8 +65,7 @@ const layoutStore = useLayoutStore()
 // Data
 // ==============================
 const searchQuery = ref('')
-const selectedRegion = ref<Region>('all')
-const selectedSortOption = ref<SortBy>('number-asc')
+
 const showFilters = computed(() => {
   return route.path !== '/' && route.path !== '/game-dex'
 })
@@ -105,28 +75,6 @@ const navbarTitle = computed(() => {
     return route.params.pokedexName as string
   }
   return route.meta.title as string
-})
-
-const sortOptions = ref<SortByOption[]>([
-  { value: 'number-asc', label: 'Number Ascending' },
-  { value: 'number-desc', label: 'Number Descending' },
-  { value: 'name-asc', label: 'A-Z' },
-  { value: 'name-desc', label: 'Z-A' }
-])
-
-const regionOptions = computed(() => {
-  const allRegionOption = {
-    value: 'all',
-    label: 'All Regions'
-  }
-  const filteredRegions = pokeApiDataStore.referenceData.regions.map((region) => {
-    return {
-      value: region,
-      label: capitalizeFirstLetter(region)
-    }
-  })
-
-  return [allRegionOption, ...filteredRegions]
 })
 
 // ==============================
@@ -141,14 +89,7 @@ const handleClickAdvancedFilters = () => {
 const handleChangeSearchQuery = debounce(() => {
   filterQueriesStore.setSearchQuery(searchQuery.value)
 }, 250)
-// const handleChangeRegion = () => {
-//   filterQueriesStore.setSelectedRegion(selectedRegion.value)
-//   console.log('✨selectedRegion', selectedRegion.value)
-// }
-// const handleChangeSortOption = () => {
-//   filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
-//   console.log('✨selectedSortOption', selectedSortOption.value)
-// }
+
 const handleChangeLayoutType = () => {
   layoutStore.setLayoutType('mini')
 }
@@ -164,7 +105,7 @@ const navigateToHome = () => {
   max-height: 100px;
   // background-color: $color-primary;
   background-color: red;
-  color: $color-text;
+  color: $TextPrimary;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -198,7 +139,7 @@ const navigateToHome = () => {
     font-size: 30px;
     color: black;
     cursor: pointer;
-    background-color: $color-icon-background;
+    background-color: $BgPrimary;
     border-radius: 10px;
     padding: 5px;
     margin-left: 10px;

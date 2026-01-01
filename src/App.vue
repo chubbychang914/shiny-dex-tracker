@@ -44,13 +44,13 @@ const drawerComponents = {
   grid-template-rows: auto 1fr auto;
   height: 100vh;
   height: 100dvh;
-  background-color: $color-background;
+  background-color: $BgPrimary;
   overflow: hidden;
 }
 
 .main-content {
   width: 100%;
-  background-color: $color-background;
+  background-color: $BgPrimary;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -65,7 +65,7 @@ const drawerComponents = {
 
 :deep(.el-drawer__body) {
   padding: 0px;
-  background-color: $color-drawer-background;
-  color: $color-text;
+  background-color: $BgPrimary;
+  color: $TextPrimary;
 }
 </style>

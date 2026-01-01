@@ -21,8 +21,8 @@ html {
 body {
   min-height: 100%;
   line-height: 1.5;
-  background-color: $color-background;
-  color: $color-text;
+  background-color: $BgPrimary;
+  color: $TextPrimary;
   scrollbar-width: none; // Firefox
   -ms-overflow-style: none; // IE 和 Edge
   &::-webkit-scrollbar {

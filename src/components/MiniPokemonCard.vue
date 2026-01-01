@@ -48,7 +48,7 @@ $height: calc($width * 1);
   height: $height;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid $color-border;
+  border: 1px solid yellow;
 }
 .image-container {
   width: 100%;

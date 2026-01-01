@@ -1,40 +1,50 @@
-// SCSS Variables ==============================
-// Layout and BG
-$color-primary: var(--color-primary);
-$color-background: var(--color-background);
-
-// Component Colors
-$color-card: var(--color-card);
-$color-selected-card: var(--color-selected-card);
-$color-drawer-background: var(--color-drawer-background);
-$color-drawer-text: var(--color-drawer-text);
-
-// Text Colors
-$color-text: var(--color-text);
-$color-text-secondary: var(--color-text-secondary);
-
-// UI Element Colors
-$color-border: var(--color-border);
-$color-icon: var(--color-icon);
-$color-icon-background: var(--color-icon-background);
-
-// CSS Custom Properties ==============================
+// ******************************
+// DEFINE COLORs
+// ******************************
 :root {
-  // Layout and BG
-  --color-primary: #1e2130;
-  --color-background: #1a1d2e;
+  // DEFINE COLOR VARIABLES
+  --system-white: #F0F0F0;
+  --system-dark-blue: #1E2130;
+  --system-pokeball-red: #FF0000;
+  --system-greatball-blue: #0063C5;
+  --system-masterball-purple: #7E308E;
 
-  // Component Colors
-  --color-card: #252836;
-  --color-selected-card: #4a9e9e;
-  --color-drawer-background: #2d3142;
-
-  // Text Colors
-  --color-text: #ffffff;
-  --color-text-secondary: #b0b0b0;
-
-  // UI Element Colors
-  --color-border: #404040;
-  --color-icon: #ffffff;
-  --color-icon-background: #fff;
+  // Default Theme (Pokeball)
+  --navbar-bg: var(--system-pokeball-red);
+  --footer-bg: var(--system-white);
+  --bg-primary: var(--system-dark-blue);
+  --text-primary: var(--system-white);
 }
+
+// ******************************
+// THEMES
+// ******************************
+[data-theme="greatball"] {
+  --navbar-bg: var(--system-greatball-blue);
+  --footer-bg: var(--system-white);
+  --bg-primary: var(--system-dark-blue);
+  --text-primary: var(--system-white);
+}
+
+[data-theme="masterball"] {
+  --navbar-bg: var(--system-masterball-purple);
+  --footer-bg: var(--system-white);
+  --bg-primary: var(--system-dark-blue);
+  --text-primary: var(--system-white);
+}
+
+
+// ******************************
+// SCSS Variables
+// ******************************
+$BgPrimary: var(--bg-primary);
+$NavbarBg: var(--navbar-bg);
+$FooterBg: var(--footer-bg);
+$TextPrimary: var(--text-primary);
+
+$SystemWhite: var(--system-white);
+$SystemDarkBlue: var(--system-dark-blue);
+$SystemPokeballRed: var(--system-pokeball-red);
+$SystemGreatballBlue: var(--system-greatball-blue);
+$SystemMasterballPurple: var(--system-masterball-purple);
+

@@ -159,15 +159,15 @@ $height: calc($width * 1);
 .front-card {
   display: grid;
   grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
-  background-color: $color-card;
-  color: $color-text;
+  background-color: $BgPrimary;
+  color: $TextPrimary;
 
   &__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $color-text-secondary;
+    color: red;
   }
 
   &__body {
@@ -217,7 +217,7 @@ $height: calc($width * 1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: $color-text;
+    color: $TextPrimary;
   }
 
   &__body {

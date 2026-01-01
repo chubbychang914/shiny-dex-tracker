@@ -27,29 +27,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useBottomDrawerStore } from '@/stores/bottomDrawer.ts'
 
 const router = useRouter()
-const bottomDrawerStore = useBottomDrawerStore()
 
 const selectedTab = ref('Home')
 
 const menuItems = [
   {
     name: 'Home',
-    icon: '/src/assets/images/pikachu.jpeg'
+    icon: '/src/assets/images/squareIcons/pikachu-icon.jpg'
   },
   {
     name: 'National',
-    icon: '/src/assets/images/pikachu.jpeg'
+    icon: '/src/assets/images/squareIcons/bulbasaur-icon.jpg'
   },
   {
     name: 'Games',
-    icon: '/src/assets/images/pikachu.jpeg'
+    icon: '/src/assets/images/squareIcons/charmander-icon.jpg'
   },
   {
     name: 'Settings',
-    icon: '/src/assets/images/pikachu.jpeg'
+    icon: '/src/assets/images/squareIcons/squirtle-icon.jpg'
   }
 ]
 
@@ -68,7 +66,7 @@ const handleClick = (itemName: string) => {
       selectedTab.value = 'Games'
       break
     case 'Settings':
-      bottomDrawerStore.openDrawer('settings', '90%')
+      router.push('/settings')
       selectedTab.value = 'Settings'
       break
     default:
@@ -132,6 +130,7 @@ $iconSize: 28px;
       width: 100%;
       height: 100%;
       object-fit: contain;
+      border-radius: 10px;
     }
   }
 }
