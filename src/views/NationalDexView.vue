@@ -1,16 +1,20 @@
 <template>
-  <div class="pokedex">
+  <div class="national-dex-view">
     <div
       v-if="filteredPokedexData.length"
       class="pokemon-cards-container"
     >
-      <component
-        :is="cardComponent"
+      <div
+        class="pokemon-cards-container__inner"
         v-for="pokemon in filteredPokedexData"
         :key="pokemon.id"
-        :single-pokemon-data="pokemon"
-        v-loading="isLoading"
-      />
+      >
+        <component
+          :is="cardComponent"
+          :single-pokemon-data="pokemon"
+          v-loading="isLoading"
+        />
+      </div>
     </div>
     <div
       v-show="hasMore"
@@ -189,14 +193,25 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-.pokedex {
+.national-dex-view {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
+
 .pokemon-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 20px 15px 40px;
+  overflow-y: auto;
+  justify-items: stretch;
+
+  &__inner {
+    width: 100%;
+    aspect-ratio: 1/1;
+  }
 }
 </style>

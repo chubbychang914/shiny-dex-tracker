@@ -7,10 +7,8 @@
   padding: 0;
 }
 
-html {
-  height: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Hide scrollbars on all elements */
+* {
   scrollbar-width: none; // Firefox
   -ms-overflow-style: none; // IE 和 Edge
   &::-webkit-scrollbar {
@@ -18,16 +16,17 @@ html {
   }
 }
 
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   min-height: 100%;
   line-height: 1.5;
   background-color: $BgPrimary;
   color: $TextPrimary;
-  scrollbar-width: none; // Firefox
-  -ms-overflow-style: none; // IE 和 Edge
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Opera
-  }
 }
 
 img,

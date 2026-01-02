@@ -4,6 +4,7 @@
 :root {
   // DEFINE COLOR VARIABLES
   --system-white: #F0F0F0;
+  --system-black: #2A2A2A;
   --system-dark-blue: #1E2130;
   --system-pokeball-red: #FF0000;
   --system-greatball-blue: #0063C5;
@@ -43,6 +44,7 @@ $FooterBg: var(--footer-bg);
 $TextPrimary: var(--text-primary);
 
 $SystemWhite: var(--system-white);
+$SystemBlack: var(--system-black);
 $SystemDarkBlue: var(--system-dark-blue);
 $SystemPokeballRed: var(--system-pokeball-red);
 $SystemGreatballBlue: var(--system-greatball-blue);

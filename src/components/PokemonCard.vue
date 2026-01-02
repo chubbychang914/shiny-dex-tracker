@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { formatPokemonDisplayName } from '@/utils/helpers.ts'
 import type { StructuredPokemonData, CaughtPokemonData } from '@/types/index.ts'
 import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caughtPokemonData.ts'
@@ -43,7 +43,6 @@ const props = defineProps<{
 // Data
 // ******************************
 const isCaught = ref(false)
-const isInitialLoad = ref(true)
 
 const pokemonCardImage = computed(() => {
   return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
@@ -74,11 +73,6 @@ onMounted(() => {
   if (singleData) {
     isCaught.value = true
   }
-  nextTick(() => {
-    requestAnimationFrame(() => {
-      isInitialLoad.value = false
-    })
-  })
 })
 
 // ******************************
@@ -91,12 +85,10 @@ const handleToggleCaughtStatus = () => {
 </script>
 
 <style lang="scss" scoped>
-$width: calc((100vw - 20px - 20px) / 3); // gap size * 2 + container padding * 2 = 40px
-$height: calc($width * 1);
 $borderRadius: 10px;
 .pokemon-card-container {
-  width: $width;
-  height: $height;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: $borderRadius;
 }
@@ -131,6 +123,7 @@ $borderRadius: 10px;
   }
 
   &__footer {
+    transition: color 0.3s ease;
     @extend %center;
   }
 
@@ -140,37 +133,24 @@ $borderRadius: 10px;
     z-index: 1;
     width: 100%;
     height: 50%;
-    opacity: 0.8;
     transition: transform 0.25s ease-out;
+    opacity: 0.9;
     &.top {
       top: 0;
       background-color: $SystemPokeballRed;
-      transform: translateY(-101%);
+      transform: translateY(-100%);
       transform-origin: bottom center;
       border-bottom: 6px solid black;
     }
     &.bottom {
       bottom: 0;
       background-color: $SystemWhite;
-      transform: translateY(101%);
+      transform: translateY(100%);
       transform-origin: top center;
       border-top: 6px solid black;
     }
   }
 }
-
-.is-caught {
-  .slide-in {
-    &.top,
-    &.bottom {
-      transform: translateY(0);
-    }
-  }
-}
-
-// ******************************
-// Shared Styles
-// ******************************
 
 .image-container {
   width: 100%;
@@ -180,6 +160,25 @@ $borderRadius: 10px;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: filter 0.3s ease;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+  }
+}
+
+.is-caught {
+  .pokemon-card__footer {
+    color: $SystemBlack;
+  }
+
+  .slide-in {
+    &.top,
+    &.bottom {
+      transform: translateY(0);
+    }
+  }
+
+  .image-container img {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
   }
 }
 
