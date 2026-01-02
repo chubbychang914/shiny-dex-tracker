@@ -1,7 +1,7 @@
 <template>
   <div class="pokedex">
     <div
-      v-if="filteredPokedexData.length && false"
+      v-if="filteredPokedexData.length"
       class="pokemon-cards-container"
     >
       <component
@@ -12,11 +12,10 @@
         v-loading="isLoading"
       />
     </div>
-    <!-- <div
+    <div
       v-show="hasMore"
       ref="sentinelRef"
-    /> -->
-    <div class="test-container">test</div>
+    />
   </div>
 </template>
 
@@ -35,11 +34,11 @@ const layoutStore = useLayoutStore()
 // // ==============================
 // // INTERSECTION OBSERVER SETUP
 // // ==============================
-// const INITIAL_BATCH_SIZE = 36 // first load 36 cards
-// const ITEMS_PER_BATCH = 18 // load 18 cards each batch when sentinel hit
-// const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
-// const sentinelRef = ref<HTMLElement | null>(null)
-// let observer: IntersectionObserver | null = null
+const INITIAL_BATCH_SIZE = 36 // first load 36 cards
+const ITEMS_PER_BATCH = 18 // load 18 cards each batch when sentinel hit
+const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
+const sentinelRef = ref<HTMLElement | null>(null)
+let observer: IntersectionObserver | null = null
 
 // ==============================
 // DATA
@@ -111,9 +110,9 @@ const filteredPokedexData = computed(() => {
 })
 
 /* Display data based on batch size **/
-// const displayedPokedexData = computed(() => {
-//   return filteredPokedexData.value.slice(0, displayCount.value)
-// })
+const displayedPokedexData = computed(() => {
+  return filteredPokedexData.value.slice(0, displayCount.value)
+})
 
 const cardComponent = computed(() => {
   // switch (layoutStore.layoutType) {
@@ -128,9 +127,9 @@ const cardComponent = computed(() => {
 })
 
 // /* Determines if filtered data has more items to load (displayCount will increment by ITEMS_PER_BATCH) **/
-// const hasMore = computed(() => {
-//   return displayCount.value < filteredPokedexData.value.length
-// })
+const hasMore = computed(() => {
+  return displayCount.value < filteredPokedexData.value.length
+})
 
 // ==============================
 // WATCH
@@ -149,44 +148,44 @@ const cardComponent = computed(() => {
 // METHODS
 // ==============================
 /* load more batch of cards when sentinel is visible **/
-// const loadMore = () => {
-//   if (isLoading.value || !hasMore.value) return
-//   isLoading.value = true
-//   displayCount.value += ITEMS_PER_BATCH
-//   isLoading.value = false
-// }
+const loadMore = () => {
+  if (isLoading.value || !hasMore.value) return
+  isLoading.value = true
+  displayCount.value += ITEMS_PER_BATCH
+  isLoading.value = false
+}
 
-// const setUpObserver = () => {
-//   if (!sentinelRef.value) return
-//   observer = new IntersectionObserver(
-//     (entries) => {
-//       const entry = entries[0]
-//       if (entry?.isIntersecting && hasMore.value) {
-//         loadMore()
-//       }
-//     },
-//     {
-//       root: null, // uses viewport as boundary
-//       rootMargin: '100px', // trigger when sentinel is 100px BEFORE entering viewport
-//       threshold: 0 // trigger when 10% of the sentinel is visible
-//     }
-//   )
-//   observer.observe(sentinelRef.value)
-// }
+const setUpObserver = () => {
+  if (!sentinelRef.value) return
+  observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0]
+      if (entry?.isIntersecting && hasMore.value) {
+        loadMore()
+      }
+    },
+    {
+      root: null, // uses viewport as boundary
+      rootMargin: '100px', // trigger when sentinel is 100px BEFORE entering viewport
+      threshold: 0 // trigger when 10% of the sentinel is visible
+    }
+  )
+  observer.observe(sentinelRef.value)
+}
 
 // ==============================
 // LIFECYCLE HOOKS
 // ==============================
-// onMounted(() => {
-//   setUpObserver()
-// })
+onMounted(() => {
+  setUpObserver()
+})
 
-// onBeforeUnmount(() => {
-//   if (observer) {
-//     observer.disconnect()
-//     observer = null
-//   }
-// })
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+})
 </script>
 
 <style lang="scss" scoped>

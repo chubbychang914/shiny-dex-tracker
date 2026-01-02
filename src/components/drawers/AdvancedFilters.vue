@@ -70,7 +70,7 @@
       <div class="apply-button-container">
         <BaseButton
           btnSize="large"
-          btnColor="secondary"
+          btnColor="blue"
           btnText="Apply Filter"
           @onClick="handleApplyFilter"
         >

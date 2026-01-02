@@ -33,7 +33,7 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $BgPrimary;
+  background-color: $NavbarBg;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
