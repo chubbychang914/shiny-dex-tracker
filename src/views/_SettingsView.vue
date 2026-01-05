@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { useThemeStore } from '@/stores/theme.ts'
+import { useThemeStore } from '@/stores/userPreferences/theme'
 import type { Theme } from '@/types'
 
 const themeStore = useThemeStore()

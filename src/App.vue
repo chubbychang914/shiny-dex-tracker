@@ -33,7 +33,6 @@ const bottomDrawerStore = useBottomDrawerStore()
 
 // 當有新的 drawer 樣式，需要在此處新增
 const drawerComponents = {
-  settings: defineAsyncComponent(() => import('@/components/organisms/drawers/SettingsPage.vue')),
   'advanced-filters': defineAsyncComponent(() => import('@/components/organisms/drawers/AdvancedFilters.vue'))
 }
 </script>

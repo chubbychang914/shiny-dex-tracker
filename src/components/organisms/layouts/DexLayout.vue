@@ -30,8 +30,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import PokemonCard from '@/components/molecules/cards/PokemonCard.vue'
+import { useLayoutStore } from '@/stores/userPreferences/layout'
 import type { StructuredPokemonData } from '@/types/index.ts'
+import PokemonCard from '@/components/molecules/cards/PokemonCard.vue'
+
+const layoutStore = useLayoutStore()
 
 // ******************************
 // INTERSECTION OBSERVER SETUP
@@ -54,7 +57,7 @@ const props = defineProps<{
 // DATA
 // ******************************
 const isLoading = ref(false)
-const layoutType = ref<'default' | 'mini'>('mini')
+const layoutType = computed(() => layoutStore.gridLayoutType)
 
 // ******************************
 // COMPUTED
@@ -127,14 +130,6 @@ const loadMore = () => {
   displayCount.value += ITEMS_PER_BATCH
   isLoading.value = false
 }
-
-// ******************************
-// CHANGE LAYOUT
-// ******************************
-
-// const handleChangeLayoutType = () => {
-//   layoutType.value = layoutType.value === 'default' ? 'mini' : 'default'
-// }
 
 // ******************************
 // LIFECYCLE HOOKS

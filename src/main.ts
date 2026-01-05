@@ -8,7 +8,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
 import { usePokeApiDataStore } from './stores/pokeApiData.ts'
-import { useThemeStore } from './stores/theme.ts'
+import { useThemeStore } from './stores/userPreferences/theme.ts'
 
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

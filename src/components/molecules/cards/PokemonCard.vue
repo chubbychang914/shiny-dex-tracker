@@ -47,7 +47,7 @@ import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caug
 // ******************************
 const props = defineProps<{
   singlePokemonData: StructuredPokemonData
-  layoutType: 'default' | 'mini'
+  layoutType: string // 'default' or 'mini'
 }>()
 
 // ******************************
