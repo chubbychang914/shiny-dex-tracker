@@ -25,54 +25,83 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, watch, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
-const router = useRouter()
-
-const selectedTab = ref('Home')
-
-const menuItems = [
+const MENU_ITEMS: { name: string; icon: string; path: string }[] = [
   {
     name: 'Home',
-    icon: '/src/assets/images/squareIcons/pikachu-icon.jpg'
+    icon: '/src/assets/images/squareIcons/pikachu-icon.jpg',
+    path: '/'
   },
   {
     name: 'National',
-    icon: '/src/assets/images/squareIcons/bulbasaur-icon.jpg'
+    icon: '/src/assets/images/squareIcons/bulbasaur-icon.jpg',
+    path: '/national-dex'
   },
   {
     name: 'Games',
-    icon: '/src/assets/images/squareIcons/charmander-icon.jpg'
+    icon: '/src/assets/images/squareIcons/charmander-icon.jpg',
+    path: '/game-dex'
   },
   {
     name: 'Settings',
-    icon: '/src/assets/images/squareIcons/squirtle-icon.jpg'
+    icon: '/src/assets/images/squareIcons/squirtle-icon.jpg',
+    path: '/settings'
   }
 ]
+
+const route = useRoute()
+const router = useRouter()
+const selectedTab = ref<string>('') // 'Home', 'National', 'Games', 'Settings'
+const menuItems = MENU_ITEMS
+
+// ******************************
+// METHODS
+// ******************************
+const getTabFromPath = (currentPath: string) => {
+  if (currentPath === '/') return 'Home'
+  if (currentPath.startsWith('/national-dex')) return 'National'
+  if (currentPath.startsWith('/game-dex')) return 'Games'
+  if (currentPath.startsWith('/settings')) return 'Settings'
+  return 'Home'
+}
 
 const handleClick = (itemName: string) => {
   switch (itemName) {
     case 'Home':
       router.push('/')
-      selectedTab.value = 'Home'
       break
     case 'National':
       router.push('/national-dex')
-      selectedTab.value = 'National'
       break
     case 'Games':
       router.push('/game-dex')
-      selectedTab.value = 'Games'
       break
     case 'Settings':
       router.push('/settings')
-      selectedTab.value = 'Settings'
       break
     default:
       break
   }
 }
+
+// ******************************
+// WATCHERS
+// ******************************
+watch(
+  () => route.path,
+  (newPath) => {
+    selectedTab.value = getTabFromPath(newPath)
+  }
+)
+
+// ******************************
+// LIFECYCLE HOOKS
+// ******************************
+onMounted(() => {
+  selectedTab.value = getTabFromPath(route.path)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -87,7 +116,9 @@ $iconSize: 28px;
   border-top-right-radius: 10px;
   overflow: hidden;
   background-color: $FooterBg;
+  box-shadow: 0 -4px 10px rgba(255, 255, 255, 0.45);
 }
+
 .footer-content {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
