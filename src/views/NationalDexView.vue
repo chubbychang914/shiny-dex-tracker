@@ -34,8 +34,7 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 import { useLayoutStore } from '@/stores/layout.ts'
-import PokemonCard from '@/components/PokemonCard.vue'
-import MiniPokemonCard from '@/components/MiniPokemonCard.vue'
+import PokemonCard from '@/components/molecules/cards/PokemonCard.vue'
 
 const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()

@@ -88,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import BaseButton from '@/components/base/BaseButton.vue'
+import BaseButton from '@/components/atoms/BaseButton.vue'
 import { computed, ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer'

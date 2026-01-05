@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
-import MiniPokemonCard from '@/components/MiniPokemonCard.vue'
+import MiniPokemonCard from '@/components/molecules/cards/MiniPokemonCard.vue'
 
 const route = useRoute()
 const pokeApiDataStore = usePokeApiDataStore()

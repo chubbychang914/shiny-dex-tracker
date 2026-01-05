@@ -26,15 +26,15 @@
 import { defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import { useBottomDrawerStore } from './stores/bottomDrawer.ts'
-import NavbarLayout from './components/layouts/NavbarLayout.vue'
-import FooterLayout from './components/layouts/FooterLayout.vue'
+import NavbarLayout from '@/components/organisms/layouts/NavbarLayout.vue'
+import FooterLayout from '@/components/organisms/layouts/FooterLayout.vue'
 
 const bottomDrawerStore = useBottomDrawerStore()
 
 // 當有新的 drawer 樣式，需要在此處新增
 const drawerComponents = {
-  settings: defineAsyncComponent(() => import('@/components/drawers/SettingsPage.vue')),
-  'advanced-filters': defineAsyncComponent(() => import('@/components/drawers/AdvancedFilters.vue'))
+  settings: defineAsyncComponent(() => import('@/components/organisms/drawers/SettingsPage.vue')),
+  'advanced-filters': defineAsyncComponent(() => import('@/components/organisms/drawers/AdvancedFilters.vue'))
 }
 </script>
 
