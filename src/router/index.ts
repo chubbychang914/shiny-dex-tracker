@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
+import HomeView from '@/views/_HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,7 +15,7 @@ const router = createRouter({
     {
       path: '/settings',
       name: 'Settings',
-      component: () => import('@/views/SettingsView.vue'),
+      component: () => import('@/views/_SettingsView.vue'),
       meta: {
         title: 'Settings'
       }
@@ -23,7 +23,7 @@ const router = createRouter({
     {
       path: '/national-dex',
       name: 'NationalDex',
-      component: () => import('@/views/NationalDexView.vue'),
+      component: () => import('@/views/_NationalDexView.vue'),
       meta: {
         title: 'National Dex'
       }
@@ -31,7 +31,7 @@ const router = createRouter({
     {
       path: '/game-dex',
       name: 'GameDexList',
-      component: () => import('@/views/GameDexView.vue'),
+      component: () => import('@/views/_GameDexView.vue'),
       meta: {
         title: 'Game Dex'
       }
