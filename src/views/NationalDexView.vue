@@ -1,25 +1,31 @@
 <template>
   <div class="national-dex-view">
+    <button @click="handleChangeLayoutType">changeLayoutType</button>
     <div
-      v-if="filteredPokedexData.length"
+      v-show="filteredPokedexData.length"
       class="pokemon-cards-container"
+      :class="{
+        'three-row-layout': layoutType === 'default',
+        'six-row-layout': layoutType === 'mini'
+      }"
+      ref="containerRef"
     >
       <div
         class="pokemon-cards-container__inner"
-        v-for="pokemon in filteredPokedexData"
+        v-for="pokemon in displayedPokedexData"
         :key="pokemon.id"
       >
-        <component
-          :is="cardComponent"
+        <PokemonCard
           :single-pokemon-data="pokemon"
-          v-loading="isLoading"
+          :layout-type="layoutType"
         />
       </div>
+      <div
+        v-show="hasMore"
+        class="sentinel"
+        ref="sentinelRef"
+      />
     </div>
-    <div
-      v-show="hasMore"
-      ref="sentinelRef"
-    />
   </div>
 </template>
 
@@ -33,25 +39,26 @@ import MiniPokemonCard from '@/components/MiniPokemonCard.vue'
 
 const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()
-const layoutStore = useLayoutStore()
 
-// // ==============================
-// // INTERSECTION OBSERVER SETUP
-// // ==============================
+// ******************************
+// INTERSECTION OBSERVER SETUP
+// ******************************
 const INITIAL_BATCH_SIZE = 36 // first load 36 cards
-const ITEMS_PER_BATCH = 18 // load 18 cards each batch when sentinel hit
+const ITEMS_PER_BATCH = 24 // load 24 cards each batch when sentinel hit
 const displayCount = ref<number>(INITIAL_BATCH_SIZE) // how many cards are shown
 const sentinelRef = ref<HTMLElement | null>(null)
+const containerRef = ref<HTMLElement | null>(null)
 let observer: IntersectionObserver | null = null
 
-// ==============================
+// ******************************
 // DATA
-// ==============================
+// ******************************
 const isLoading = ref(false)
+const layoutType = ref<'default' | 'mini'>('mini')
 
-// ==============================
+// ******************************
 // COMPUTED
-// ==============================
+// ******************************
 /* Filtered data **/
 const filteredPokedexData = computed(() => {
   let result = pokeApiDataStore.pokeApiData
@@ -118,26 +125,14 @@ const displayedPokedexData = computed(() => {
   return filteredPokedexData.value.slice(0, displayCount.value)
 })
 
-const cardComponent = computed(() => {
-  // switch (layoutStore.layoutType) {
-  //   case 'default':
-  //     return PokemonCard
-  //   case 'mini':
-  //     return MiniPokemonCard
-  //   default:
-  //     return PokemonCard
-  // }
-  return PokemonCard
-})
-
-// /* Determines if filtered data has more items to load (displayCount will increment by ITEMS_PER_BATCH) **/
+// Determines if filtered data has more items to load (displayCount will increment by ITEMS_PER_BATCH)
 const hasMore = computed(() => {
   return displayCount.value < filteredPokedexData.value.length
 })
 
-// ==============================
+// ******************************
 // WATCH
-// ==============================
+// ******************************
 /* when filter queries change, scroll to top and show displayed cards **/
 // watch(
 //   filterQueriesStore.$state,
@@ -148,15 +143,33 @@ const hasMore = computed(() => {
 //   { deep: true }
 // )
 
-// ==============================
+// ******************************
 // METHODS
-// ==============================
-/* load more batch of cards when sentinel is visible **/
+// ******************************
+// load more batch of cards when sentinel is visible
 const loadMore = () => {
   if (isLoading.value || !hasMore.value) return
   isLoading.value = true
   displayCount.value += ITEMS_PER_BATCH
   isLoading.value = false
+}
+
+// if sentinel is visible, but not all cards are visible, load more cards
+const ensureViewportFilled = () => {
+  const checkSentinel = () => {
+    const containerRect = containerRef?.value?.getBoundingClientRect()
+    const sentinelRect = sentinelRef?.value?.getBoundingClientRect()
+    const isVisible = sentinelRect?.top < containerRect?.bottom
+
+    if (isVisible) {
+      displayCount.value += ITEMS_PER_BATCH
+      requestAnimationFrame(() => {
+        checkSentinel()
+      })
+    }
+  }
+
+  setTimeout(checkSentinel, 100)
 }
 
 const setUpObserver = () => {
@@ -169,19 +182,24 @@ const setUpObserver = () => {
       }
     },
     {
-      root: null, // uses viewport as boundary
+      root: containerRef.value, // uses viewport as boundary
       rootMargin: '100px', // trigger when sentinel is 100px BEFORE entering viewport
-      threshold: 0 // trigger when 10% of the sentinel is visible
+      threshold: 0 // trigger when sentinel is visible
     }
   )
   observer.observe(sentinelRef.value)
 }
 
-// ==============================
+const handleChangeLayoutType = () => {
+  layoutType.value = layoutType.value === 'default' ? 'mini' : 'default'
+}
+
+// ******************************
 // LIFECYCLE HOOKS
-// ==============================
+// ******************************
 onMounted(() => {
   setUpObserver()
+  ensureViewportFilled()
 })
 
 onBeforeUnmount(() => {
@@ -201,17 +219,31 @@ onBeforeUnmount(() => {
 
 .pokemon-cards-container {
   width: 100%;
-  height: 100%;
+  max-height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
   padding: 20px 15px 40px;
   overflow-y: auto;
   justify-items: stretch;
+
+  &.three-row-layout {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  &.six-row-layout {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
 
   &__inner {
     width: 100%;
     aspect-ratio: 1/1;
   }
+}
+
+.sentinel {
+  height: 1px;
+  grid-column: 1 / -1;
+  background-color: blue;
 }
 </style>

@@ -2,12 +2,12 @@
   <div class="navbar">
     <div class="navbar__top">
       <div class="title-container">
-        <el-icon
+        <!-- <el-icon
           v-if="route.path !== '/'"
           class="icon__back"
           @click="router.back()"
           ><ArrowLeft
-        /></el-icon>
+        /></el-icon> -->
         <h1 @click="navigateToHome">{{ navbarTitle }}</h1>
       </div>
       <div class="icon-container">
@@ -28,10 +28,7 @@
         /></el-icon>
       </div>
     </div>
-    <div
-      class="navbar__middle"
-      v-show="showFilters"
-    >
+    <div class="navbar__middle">
       <el-input
         v-model="searchQuery"
         style="width: 100%"
@@ -66,10 +63,6 @@ const layoutStore = useLayoutStore()
 // ==============================
 const searchQuery = ref('')
 
-const showFilters = computed(() => {
-  return route.path !== '/' && route.path !== '/game-dex'
-})
-
 const navbarTitle = computed(() => {
   if (route.name === 'GameDexDetail') {
     return route.params.pokedexName as string
@@ -102,8 +95,7 @@ const navigateToHome = () => {
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
-  max-height: 100px;
-  // background-color: $color-primary;
+  min-height: 120px;
   background-color: $NavbarBg;
   color: $TextPrimary;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

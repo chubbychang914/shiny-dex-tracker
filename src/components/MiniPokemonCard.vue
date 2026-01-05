@@ -61,9 +61,10 @@ $height: calc($width * 1);
   }
 }
 
-.silhouette-effect {
-  filter: brightness(0) contrast(1.5); // silhouette effect
-}
+// .silhouette-effect {
+//   filter: brightness(0) contrast(1.5); // silhouette effect
+// }
+
 %center {
   display: flex;
   justify-content: center;

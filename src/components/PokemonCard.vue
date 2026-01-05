@@ -2,12 +2,19 @@
   <div class="pokemon-card-container">
     <div
       class="pokemon-card"
-      :class="{ 'is-caught': isCaught }"
+      :class="{
+        'is-caught': isCaught,
+        'card-layout-default': layoutType === 'default',
+        'card-layout-mini': layoutType === 'mini'
+      }"
       @click="handleToggleCaughtStatus"
     >
       <div class="slide-in top"></div>
       <div class="slide-in bottom"></div>
-      <div class="pokemon-card__header">
+      <div
+        class="pokemon-card__header"
+        v-show="layoutType === 'default'"
+      >
         <span>#{{ singlePokemonData.id }}</span>
       </div>
       <div class="pokemon-card__body">
@@ -19,7 +26,10 @@
           />
         </div>
       </div>
-      <div class="pokemon-card__footer">
+      <div
+        class="pokemon-card__footer"
+        v-show="layoutType === 'default'"
+      >
         <span :style="{ 'font-size': nameFontSize }">{{ pokemonDisplayName }}</span>
       </div>
     </div>
@@ -37,6 +47,7 @@ import { toggleCaughtStatus, loadFromStorage } from '@/utils/localStorageDB/caug
 // ******************************
 const props = defineProps<{
   singlePokemonData: StructuredPokemonData
+  layoutType: 'default' | 'mini'
 }>()
 
 // ******************************
@@ -98,10 +109,17 @@ $borderRadius: 10px;
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
   overflow: hidden;
   border-radius: $borderRadius;
   border: 1px solid black;
+
+  &.card-layout-default {
+    grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
+  }
+
+  &.card-layout-mini {
+    grid-template-rows: minmax(0, 1fr);
+  }
 
   &__header,
   &__body,
@@ -134,7 +152,7 @@ $borderRadius: 10px;
     width: 100%;
     height: 50%;
     transition: transform 0.25s ease-out;
-    opacity: 0.9;
+    opacity: 0.6;
     &.top {
       top: 0;
       background-color: $SystemPokeballRed;
