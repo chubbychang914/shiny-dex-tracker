@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -9,12 +10,21 @@ const navigateToNationalDex = () => {
 const navigateToGameDex = () => {
   router.push('/game-dex')
 }
+
+const pinnedPokemonGif = computed(() => {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/383.gif`
+})
 </script>
 
 <template>
   <div class="home-container">
-    <div class="favorite-container">
-      <div class="circle"></div>
+    <div class="pinned-container">
+      <div class="pinned-image-container">
+        <img
+          :src="pinnedPokemonGif"
+          alt="gif"
+        />
+      </div>
     </div>
     <div class="progress-tracker">
       <div
@@ -50,16 +60,26 @@ const navigateToGameDex = () => {
   display: grid;
   grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
 }
-.favorite-container {
+.pinned-container {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 }
-.circle {
-  width: 50%;
-  aspect-ratio: 1/1;
+.pinned-image-container {
+  width: 20%;
+  max-width: 200px;
+  border: 1px solid blue;
+  padding: 10px;
   border-radius: 50%;
-  outline: 1px solid red;
+  height: auto;
+  aspect-ratio: 1/1;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 </style>

@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useLayoutStore } from '@/stores/userPreferences/layout'
 import type { StructuredPokemonData } from '@/types/index.ts'
 import PokemonCard from '@/components/molecules/cards/PokemonCard.vue'
@@ -69,6 +69,16 @@ const displayedPokemonList = computed(() => {
 // ******************************
 // WATCH
 // ******************************
+watch(layoutType, () => {
+  if (observer && sentinelRef.value) {
+    observer.disconnect()
+    observer.observe(sentinelRef.value)
+  }
+
+  setTimeout(() => {
+    ensureViewportFilled()
+  }, 100)
+})
 /* when filter queries change, scroll to top and show displayed cards **/
 // watch(
 //   filterQueriesStore.$state,
@@ -98,7 +108,7 @@ const setUpObserver = () => {
     },
     {
       root: containerRef.value, // uses viewport as boundary
-      rootMargin: '100px', // trigger when sentinel is 100px BEFORE entering viewport
+      rootMargin: '200px', // trigger when sentinel is 100px BEFORE entering viewport
       threshold: 0 // trigger when sentinel is visible
     }
   )
@@ -164,12 +174,12 @@ onBeforeUnmount(() => {
 
   &.three-row-layout {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 15px;
+    gap: 10px;
   }
 
   &.six-row-layout {
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 10px;
+    gap: 5px;
   }
 
   &__inner {

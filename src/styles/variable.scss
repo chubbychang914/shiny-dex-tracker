@@ -3,9 +3,13 @@
 // ******************************
 :root {
   // DEFINE COLOR VARIABLES
-  --system-white: #F0F0F0;
-  --system-black: #2A2A2A;
+  --system-white: #E0E0E0;
+  --system-black: #1A1A1A;           // Darkest
+  --system-dark-charcoal: #2A2A2A;   // Medium
+  --system-medium-gray: #4A4A4A;     // Lightest
   --system-dark-blue: #1E2130;
+  --system-dark-purple: #1A1520;
+
   --system-pokeball-red: #FF0000;
   --system-greatball-blue: #0063C5;
   --system-masterball-purple: #7E308E;
@@ -13,8 +17,11 @@
   // Default Theme (Pokeball)
   --navbar-bg: var(--system-pokeball-red);
   --footer-bg: var(--system-white);
-  --bg-primary: var(--system-black);
   --text-primary: var(--system-white);
+  --bg-primary: var(--system-black);
+  --pokemon-card-bg: var(--system-dark-charcoal);
+  --pokemon-card-border: var(--system-medium-gray);
+  --pokemon-card-text: var(--system-white);
 }
 
 // ******************************
@@ -23,15 +30,21 @@
 [data-theme="greatball"] {
   --navbar-bg: var(--system-greatball-blue);
   --footer-bg: var(--system-white);
-  --bg-primary: var(--system-dark-blue);
   --text-primary: var(--system-white);
+  --bg-primary: var(--system-black);
+  --pokemon-card-bg: var(--system-dark-blue);
+  --pokemon-card-border: var(--system-medium-gray);
+  --pokemon-card-text: var(--system-white);
 }
 
 [data-theme="masterball"] {
   --navbar-bg: var(--system-masterball-purple);
   --footer-bg: var(--system-white);
-  --bg-primary: var(--system-dark-blue);
   --text-primary: var(--system-white);
+  --bg-primary: var(--system-black);
+  --pokemon-card-bg: var(--system-dark-purple);
+  --pokemon-card-border: var(--system-medium-gray);
+  --pokemon-card-text: var(--system-white);
 }
 
 
@@ -42,10 +55,16 @@ $BgPrimary: var(--bg-primary);
 $NavbarBg: var(--navbar-bg);
 $FooterBg: var(--footer-bg);
 $TextPrimary: var(--text-primary);
+$PokemonCardBg: var(--pokemon-card-bg);
+$PokemonCardBorder: var(--pokemon-card-border);
+$PokemonCardText: var(--pokemon-card-text);
 
 $SystemWhite: var(--system-white);
 $SystemBlack: var(--system-black);
+$SystemDarkCharcoal: var(--system-dark-charcoal);
+$SystemMediumGray: var(--system-medium-gray);
 $SystemDarkBlue: var(--system-dark-blue);
+$SystemDarkPurple: var(--system-dark-purple);
 $SystemPokeballRed: var(--system-pokeball-red);
 $SystemGreatballBlue: var(--system-greatball-blue);
 $SystemMasterballPurple: var(--system-masterball-purple);

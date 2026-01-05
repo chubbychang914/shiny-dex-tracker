@@ -8,8 +8,10 @@
         <el-icon
           class="icon layout-icon"
           @click="handleChangeLayoutType"
-          ><Grid
-        /></el-icon>
+        >
+          <Menu v-show="layoutStore.gridLayoutType === 'default'" />
+          <Grid v-show="layoutStore.gridLayoutType === 'mini'" />
+        </el-icon>
         <el-icon
           class="icon filter-icon"
           @click="handleClickAdvancedFilters"

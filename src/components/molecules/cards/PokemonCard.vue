@@ -15,7 +15,7 @@
         class="pokemon-card__header"
         v-show="layoutType === 'default'"
       >
-        <span>#{{ singlePokemonData.id }}</span>
+        <span class="dexNum">#{{ singlePokemonData.id }}</span>
       </div>
       <div class="pokemon-card__body">
         <div class="image-container">
@@ -111,7 +111,12 @@ $borderRadius: 10px;
   display: grid;
   overflow: hidden;
   border-radius: $borderRadius;
-  border: 1px solid black;
+  border: 1px solid $PokemonCardBorder;
+  background-color: $PokemonCardBg;
+
+  .dexNum {
+    color: $PokemonCardText;
+  }
 
   &.card-layout-default {
     grid-template-rows: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
@@ -133,6 +138,7 @@ $borderRadius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 5px;
   }
 
   &__body {
@@ -152,18 +158,18 @@ $borderRadius: 10px;
     width: 100%;
     height: 50%;
     transition: transform 0.25s ease-out;
-    opacity: 0.6;
+    opacity: 0.8;
     &.top {
       top: 0;
-      background-color: $SystemPokeballRed;
-      transform: translateY(-100%);
+      background-color: $NavbarBg;
+      transform: translateY(-101%);
       transform-origin: bottom center;
       border-bottom: 6px solid black;
     }
     &.bottom {
       bottom: 0;
       background-color: $SystemWhite;
-      transform: translateY(100%);
+      transform: translateY(101%);
       transform-origin: top center;
       border-top: 6px solid black;
     }
