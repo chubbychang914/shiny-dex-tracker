@@ -92,9 +92,9 @@ import BaseButton from '@/components/atoms/BaseButton.vue'
 import { computed, ref, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer'
-import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries'
 import { capitalizeFirstLetter } from '@/utils/helpers'
+import { REFERENCE_DATA } from '@/constants/referenceData'
 import type { SortByOption } from '@/types'
 
 // ==============================
@@ -102,7 +102,6 @@ import type { SortByOption } from '@/types'
 // ==============================
 const route = useRoute()
 const bottomDrawerStore = useBottomDrawerStore()
-const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()
 
 // ==============================
@@ -158,12 +157,13 @@ const handleChangeSortOption = (option: string) => {
 const selectedRegions = ref<string[]>([])
 
 const allRegions = computed(() => {
-  const filteredRegions = pokeApiDataStore.referenceData.regions.map((region) => {
+  const filteredRegions = REFERENCE_DATA.regions.map((region) => {
     return {
       value: region,
       label: capitalizeFirstLetter(region)
     }
   })
+
   return filteredRegions
 })
 
@@ -179,15 +179,12 @@ const handleSelectRegion = (region: string) => {
 // ==============================
 // POKEMON TYPE ICONS
 // ==============================
+const allTypes = REFERENCE_DATA.types
 const selectedTypes = ref<string[]>([])
 
 const typeIcons: Record<string, string> = import.meta.glob('/src/assets/images/typeIcons/*.png', {
   eager: true,
   import: 'default'
-})
-
-const allTypes = computed(() => {
-  return pokeApiDataStore.referenceData.types.filter((type) => type !== 'unknown' && type !== 'stellar')
 })
 
 const getTypeIcon = (type: string) => {

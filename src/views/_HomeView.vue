@@ -12,7 +12,7 @@ const navigateToGameDex = () => {
 }
 
 const pinnedPokemonGif = computed(() => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/383.gif`
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/10195.gif`
 })
 </script>
 

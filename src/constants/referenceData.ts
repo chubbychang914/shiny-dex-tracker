@@ -117,20 +117,6 @@ export const ALL_POKEDEX_GROUPS = [
   }
 ]
 
-export const GAME_POKEDEX_NAMES = [
-  'letsgo-kanto',
-  'extended-sinnoh',
-  'galar',
-  'isle-of-armor',
-  'crown-tundra',
-  'hisui',
-  'paldea',
-  'kitakami',
-  'blueberry',
-  'lumiose-city',
-  'hyperspace'
-]
-
 export const REFERENCE_DATA = {
   regions: REGIONS,
   types: TYPES,

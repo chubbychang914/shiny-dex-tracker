@@ -199,7 +199,7 @@ $borderRadius: 10px;
     height: 100%;
     object-fit: contain;
     transition: filter 0.3s ease;
-    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
   }
 }
 
