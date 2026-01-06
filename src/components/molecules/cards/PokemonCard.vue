@@ -23,6 +23,7 @@
             :src="pokemonCardImage"
             alt="front-card-image"
             loading="lazy"
+            @error="handleImageError"
           />
         </div>
       </div>
@@ -54,9 +55,18 @@ const props = defineProps<{
 // Data
 // ******************************
 const isCaught = ref(false)
+const useGif = ref(true)
 
 const pokemonCardImage = computed(() => {
-  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${props.singlePokemonData.id}.png`
+  const id = props.singlePokemonData.id
+
+  if (useGif.value) {
+    // Try GIF first
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/${id}.gif`
+  } else {
+    // Fallback to static PNG
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`
+  }
 })
 
 const pokemonDisplayName = computed(() => {
@@ -92,6 +102,10 @@ onMounted(() => {
 const handleToggleCaughtStatus = () => {
   const caughtState = toggleCaughtStatus(props.singlePokemonData.id)
   isCaught.value = caughtState
+}
+
+const handleImageError = () => {
+  useGif.value = false
 }
 </script>
 
@@ -142,7 +156,7 @@ $borderRadius: 10px;
   }
 
   &__body {
-    padding: 5px;
+    padding: 10px;
     @extend %center;
   }
 

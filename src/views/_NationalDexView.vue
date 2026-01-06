@@ -10,6 +10,10 @@ import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 import DexLayout from '@/components/organisms/layouts/DexLayout.vue'
 
+defineOptions({
+  name: 'NationalDexView'
+})
+
 const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()
 

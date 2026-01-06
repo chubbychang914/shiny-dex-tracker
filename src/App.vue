@@ -2,7 +2,11 @@
   <div class="app-layout">
     <NavbarLayout />
     <main class="main-content">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <keep-alive :include="['NationalDexView', 'GameDexDetailView']">
+          <component :is="Component" />
+        </keep-alive>
+      </RouterView>
     </main>
     <FooterLayout />
     <!-- GLOBAL DRAWER -->

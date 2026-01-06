@@ -11,6 +11,10 @@ import { usePokeApiDataStore } from '@/stores/pokeApiData'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 import DexLayout from '@/components/organisms/layouts/DexLayout.vue'
 
+defineOptions({
+  name: 'GameDexDetailView'
+})
+
 const route = useRoute()
 const pokeApiDataStore = usePokeApiDataStore()
 const filterQueriesStore = useFilterQueriesStore()
