@@ -32,6 +32,7 @@ export const TYPES = [
 // ******************************************************************************************
 export const ALL_POKEDEX_GROUPS = [
   {
+    order: 1,
     pokedexName: 'national',
     displayName: 'National',
     group: 'national',
@@ -39,6 +40,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/1/'
   },
   {
+    order: 12,
     pokedexName: 'letsgo-kanto',
     displayName: 'Kanto',
     group: 'lgpe',
@@ -46,6 +48,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/26/'
   },
   {
+    order: 11,
     pokedexName: 'original-sinnoh',
     displayName: 'Sinnoh',
     group: 'bdsp',
@@ -53,6 +56,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/5/'
   },
   {
+    order: 8,
     pokedexName: 'galar',
     displayName: 'Galar',
     group: 'swsh',
@@ -60,6 +64,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/27/'
   },
   {
+    order: 9,
     pokedexName: 'isle-of-armor',
     displayName: 'Isle of Armor',
     group: 'swsh',
@@ -67,6 +72,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/28/'
   },
   {
+    order: 10,
     pokedexName: 'crown-tundra',
     displayName: 'Crown Tundra',
     group: 'swsh',
@@ -74,6 +80,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/29/'
   },
   {
+    order: 7,
     pokedexName: 'hisui',
     displayName: 'Hisui',
     group: 'pla',
@@ -81,6 +88,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/30/'
   },
   {
+    order: 4,
     pokedexName: 'paldea',
     displayName: 'Paldea',
     group: 'sv',
@@ -88,6 +96,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/31/'
   },
   {
+    order: 5,
     pokedexName: 'kitakami',
     displayName: 'Kitakami',
     group: 'sv',
@@ -95,6 +104,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/32/'
   },
   {
+    order: 6,
     pokedexName: 'blueberry',
     displayName: 'Blueberry',
     group: 'sv',
@@ -102,6 +112,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/33/'
   },
   {
+    order: 2,
     pokedexName: 'lumiose-city',
     displayName: 'Lumiose City',
     group: 'plza',
@@ -109,6 +120,7 @@ export const ALL_POKEDEX_GROUPS = [
     url: 'https://pokeapi.co/api/v2/pokedex/34/'
   },
   {
+    order: 3,
     pokedexName: 'hyperspace',
     displayName: 'Hyperspace',
     group: 'plza',

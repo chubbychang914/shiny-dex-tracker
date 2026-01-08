@@ -1,31 +1,20 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { ReferenceData, StructuredPokemonData } from '@/types/index.ts'
+import type { StructuredPokemonData } from '@/types/index.ts'
 
 export const usePokeApiDataStore = defineStore('pokeApiData', () => {
   // State
   const pokeApiData = ref<StructuredPokemonData[]>([])
-  const referenceData = ref<ReferenceData>({
-    regions: [],
-    types: [],
-    gameDexMap: []
-  })
 
   // Actions
   const initData = async () => {
     // 將資料存到 store 供全域使用
-    const [fullData, refData] = await Promise.all([
-      fetch('/raw-pokemon-data.json').then((res) => res.json()),
-      fetch('/reference-data.json').then((res) => res.json())
-    ])
-
+    const fullData = await fetch('/raw-pokemon-data.json').then((res) => res.json())
     pokeApiData.value = fullData
-    referenceData.value = refData
   }
 
   return {
     pokeApiData,
-    referenceData,
     initData
   }
 })

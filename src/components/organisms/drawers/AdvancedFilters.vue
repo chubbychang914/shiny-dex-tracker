@@ -5,9 +5,9 @@
       <div class="main-header-container__actions">
         <div
           class="clear"
-          @click="handleClearFilter"
+          @click="handleResetAllFilter"
         >
-          Clear Filter
+          Reset Filter
         </div>
         <div
           class="close"
@@ -35,7 +35,15 @@
         </div>
       </div>
       <div class="region-container">
-        <div class="region-container__title">Origin Regions</div>
+        <div class="region-container__title">
+          <span>Origin Regions</span>
+          <span
+            v-show="selectedRegions.length"
+            class="clear-all-btn"
+            @click="handlePartialClear('regions')"
+            >Clear all</span
+          >
+        </div>
         <div class="region-container__content">
           <div
             v-for="region in allRegions"
@@ -49,7 +57,15 @@
         </div>
       </div>
       <div class="type-container">
-        <div class="type-container__title">Types</div>
+        <div class="type-container__title">
+          <span>Types</span>
+          <span
+            v-show="selectedTypes.length"
+            class="clear-all-btn"
+            @click="handlePartialClear('types')"
+            >Clear all</span
+          >
+        </div>
         <div class="type-container__content">
           <div
             v-for="type in allTypes"
@@ -89,72 +105,42 @@
 
 <script setup lang="ts">
 import BaseButton from '@/components/atoms/BaseButton.vue'
-import { computed, ref, nextTick } from 'vue'
+import { computed, ref, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBottomDrawerStore } from '@/stores/bottomDrawer'
 import { useFilterQueriesStore } from '@/stores/filterQueries'
 import { capitalizeFirstLetter } from '@/utils/helpers'
 import { REFERENCE_DATA } from '@/constants/referenceData'
-import type { SortByOption } from '@/types'
+import { getSingleDexFilter, clearSingleDexFilter, saveDexFiltersToStorage } from '@/utils/localStorageDB/dexFilters.ts'
+import type { DexFiltersType } from '@/types'
 
-// ==============================
-// STORES
-// ==============================
 const route = useRoute()
 const bottomDrawerStore = useBottomDrawerStore()
 const filterQueriesStore = useFilterQueriesStore()
 
-// ==============================
-// FILTER FUNCTIONS
-// ==============================
-const handleClearFilter = () => {
-  selectedSortOption.value = 'number-asc'
-  selectedTypes.value = []
-  selectedRegions.value = []
-  selectedTypes.value = []
-}
-
-const handleCloseFilter = () => {
-  bottomDrawerStore.closeDrawer()
-}
-
-const handleApplyFilter = () => {
-  const filterKey = `${route.path.split('/')[1]}-filter`
-  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
-  filterQueriesStore.setSelectedRegion(selectedRegions.value)
-  filterQueriesStore.setSelectedTypes(selectedTypes.value)
-  localStorage.setItem(
-    filterKey,
-    JSON.stringify({
-      sortBy: selectedSortOption.value,
-      regions: selectedRegions.value,
-      types: selectedTypes.value
-    })
-  )
-  nextTick(() => {
-    bottomDrawerStore.closeDrawer()
-  })
-}
-// ==============================
-// SORT BY OPTIONS
-// ==============================
+// ******************************
+// STATE
+// ******************************
+const DEFAULT_FILTERS = {
+  sortBy: 'number-asc',
+  regions: [],
+  types: []
+} as DexFiltersType
+const allTypes = REFERENCE_DATA.types
 const selectedSortOption = ref<string>('number-asc')
+const selectedRegions = ref<string[]>([])
+const selectedTypes = ref<string[]>([])
 
-const sortOptions = ref<SortByOption[]>([
+const dexName = computed(() => {
+  return route.path.split('/').pop() as string
+})
+
+const sortOptions = ref<{ value: string; label: string }[]>([
   { value: 'number-asc', label: 'Num ⤴' },
   { value: 'number-desc', label: 'Num ⤵' },
   { value: 'name-asc', label: 'A-Z' },
   { value: 'name-desc', label: 'Z-A' }
 ])
-
-const handleChangeSortOption = (option: string) => {
-  selectedSortOption.value = option
-}
-
-// ==============================
-// REGIONS
-// ==============================
-const selectedRegions = ref<string[]>([])
 
 const allRegions = computed(() => {
   const filteredRegions = REFERENCE_DATA.regions.map((region) => {
@@ -167,6 +153,20 @@ const allRegions = computed(() => {
   return filteredRegions
 })
 
+const typeIcons: Record<string, string> = import.meta.glob('/src/assets/images/typeIcons/*.png', {
+  eager: true,
+  import: 'default'
+})
+
+// ******************************
+// METHODS
+// ******************************
+// Change sort option
+const handleChangeSortOption = (option: string) => {
+  selectedSortOption.value = option
+}
+
+// Select region
 const handleSelectRegion = (region: string) => {
   const index = selectedRegions.value.indexOf(region)
   if (index > -1) {
@@ -175,17 +175,6 @@ const handleSelectRegion = (region: string) => {
     selectedRegions.value.push(region)
   }
 }
-
-// ==============================
-// POKEMON TYPE ICONS
-// ==============================
-const allTypes = REFERENCE_DATA.types
-const selectedTypes = ref<string[]>([])
-
-const typeIcons: Record<string, string> = import.meta.glob('/src/assets/images/typeIcons/*.png', {
-  eager: true,
-  import: 'default'
-})
 
 const getTypeIcon = (type: string) => {
   const iconPath = `/src/assets/images/typeIcons/${type}.png`
@@ -200,10 +189,69 @@ const handleSelectType = (type: string) => {
     selectedTypes.value.push(type)
   }
 }
+
+const loadSavedDexFilter = () => {
+  const savedFilter = getSingleDexFilter(dexName.value) || DEFAULT_FILTERS
+  selectedSortOption.value = savedFilter.sortBy
+  selectedRegions.value = savedFilter.regions
+  selectedTypes.value = savedFilter.types
+}
+
+const handlePartialClear = (block: string) => {
+  switch (block) {
+    case 'regions':
+      selectedRegions.value = []
+      break
+    case 'types':
+      selectedTypes.value = []
+      break
+    default:
+      break
+  }
+}
+
+const handleCloseFilter = () => {
+  bottomDrawerStore.closeDrawer()
+}
+
+const handleResetAllFilter = () => {
+  filterQueriesStore.setSelectedSortOption(DEFAULT_FILTERS.sortBy)
+  filterQueriesStore.setSelectedRegion(DEFAULT_FILTERS.regions)
+  filterQueriesStore.setSelectedTypes(DEFAULT_FILTERS.types)
+  clearSingleDexFilter(dexName.value)
+  saveDexFiltersToStorage(dexName.value, DEFAULT_FILTERS)
+  nextTick(() => {
+    bottomDrawerStore.closeDrawer()
+  })
+}
+
+const handleApplyFilter = () => {
+  filterQueriesStore.setSelectedSortOption(selectedSortOption.value)
+  filterQueriesStore.setSelectedRegion(selectedRegions.value)
+  filterQueriesStore.setSelectedTypes(selectedTypes.value)
+  saveDexFiltersToStorage(dexName.value, {
+    sortBy: selectedSortOption.value,
+    regions: selectedRegions.value,
+    types: selectedTypes.value
+  })
+  nextTick(() => {
+    bottomDrawerStore.closeDrawer()
+  })
+}
+// ******************************
+// WATCHERS
+// ******************************
+watch(
+  () => bottomDrawerStore.isOpen,
+  (newVal) => {
+    if (newVal) loadSavedDexFilter()
+  },
+  { immediate: true }
+)
 </script>
 
 <style lang="scss" scoped>
-$headerHeight: 56px;
+$headerHeight: 60px;
 $footerHeight: 60px;
 $titleFontSize: 1.2rem;
 
@@ -218,16 +266,12 @@ $titleFontSize: 1.2rem;
 .main-header-container {
   width: 100%;
   height: $headerHeight;
-  top: 0;
-  left: 0;
   overflow: hidden;
   padding: 0 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom: 1px solid yellow;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $NavbarBg;
 
   &__title {
     font-size: $titleFontSize;
@@ -251,16 +295,8 @@ $titleFontSize: 1.2rem;
   width: 100%;
   overflow: hidden;
   @extend %center;
-  border-top: 1px solid yellow;
   padding-bottom: calc(12px + constant(safe-area-inset-bottom));
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
-}
-
-.apply-button-container {
-  width: 90%;
-  .apply-icon {
-    margin-right: 10px;
-  }
 }
 
 .sort-by-container {
@@ -277,14 +313,14 @@ $titleFontSize: 1.2rem;
 
 .custom-radio-group-container {
   width: 100%;
-  border: 1px solid yellow;
+  border: 1px solid $NavbarBg;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-radius: 10px;
   overflow: hidden;
 
   .custom-radio-button {
-    border-right: 1px solid yellow;
+    border-right: 1px solid $NavbarBg;
     @extend %center;
     padding: 10px;
     transition:
@@ -297,7 +333,8 @@ $titleFontSize: 1.2rem;
     }
 
     &__selected {
-      background-color: black;
+      background-color: $SystemWhite;
+      color: $SystemBlack;
     }
   }
 }
@@ -309,6 +346,9 @@ $titleFontSize: 1.2rem;
   &__title {
     width: 100%;
     font-size: $titleFontSize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__content {
@@ -319,11 +359,14 @@ $titleFontSize: 1.2rem;
 
   &__item {
     width: 100%;
+    padding: 10px;
+    border: 1px solid $NavbarBg;
+    border-radius: 10px;
     @extend %center;
-    border: 1px solid yellow;
   }
   .region-selected {
-    background-color: blue;
+    background-color: $SystemWhite;
+    color: $SystemBlack;
   }
 }
 
@@ -332,11 +375,21 @@ $titleFontSize: 1.2rem;
   &__title {
     width: 100%;
     font-size: $titleFontSize;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.apply-button-container {
+  width: 90%;
+  .apply-icon {
+    margin-right: 10px;
   }
 }
 
@@ -359,6 +412,8 @@ $titleFontSize: 1.2rem;
 
   &__selected {
     transform: scale(0.88); // 明顯縮小
+    outline: 1px solid $NavbarBg;
+    border-radius: 50px;
     img {
       filter: brightness(0.5); // 明顯變暗
     }
@@ -372,7 +427,6 @@ $titleFontSize: 1.2rem;
   user-select: none;
   font-size: 0.9rem;
   font-weight: 500;
-  -webkit-tap-highlight-color: transparent; // Remove default tap highlight
   transition: transform 0.1s ease;
   color: inherit;
 
@@ -384,6 +438,13 @@ $titleFontSize: 1.2rem;
 .close {
   cursor: pointer;
   user-select: none;
+}
+
+.clear-all-btn {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 %center {

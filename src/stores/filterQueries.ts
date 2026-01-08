@@ -1,29 +1,28 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { SortFilter, RegionFilter, TypeFilter } from '@/types'
 
 export const useFilterQueriesStore = defineStore('filterQueries', () => {
-  // ==============================
+  // ******************************
   // State
-  // ==============================
+  // ******************************
   const searchQuery = ref('')
-  const selectedSortOption = ref<SortFilter>('number-asc')
-  const selectedRegions = ref<RegionFilter>([])
-  const selectedTypes = ref<TypeFilter>([])
+  const selectedSortOption = ref<string>('number-asc')
+  const selectedRegions = ref<string[]>([])
+  const selectedTypes = ref<string[]>([])
 
-  // ==============================
+  // ******************************
   // Actions
-  // ==============================
+  // ******************************
   const setSearchQuery = (input: string) => {
     searchQuery.value = input.trim().toLowerCase()
   }
-  const setSelectedRegion = (selected: RegionFilter) => {
-    selectedRegions.value = selected
-  }
-  const setSelectedSortOption = (selected: SortFilter) => {
+  const setSelectedSortOption = (selected: string) => {
     selectedSortOption.value = selected
   }
-  const setSelectedTypes = (selected: TypeFilter) => {
+  const setSelectedRegion = (selected: string[]) => {
+    selectedRegions.value = selected
+  }
+  const setSelectedTypes = (selected: string[]) => {
     selectedTypes.value = selected
   }
 

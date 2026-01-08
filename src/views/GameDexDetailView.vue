@@ -21,10 +21,10 @@ const filterQueriesStore = useFilterQueriesStore()
 
 const gameDexPokemonList = computed(() => {
   const pokemonList = pokeApiDataStore.pokeApiData
-  const pokedexName = route.params.pokedexName as string
+  const pokedexName = route.params.pokedexName
 
   return pokemonList.filter((pokemon) => {
-    return pokemon.dexMap.hasOwnProperty(pokedexName)
+    return pokemon.dexMap.hasOwnProperty(pokedexName as string)
   })
 })
 

@@ -27,6 +27,7 @@ body {
   line-height: 1.5;
   background-color: $BgPrimary;
   color: $TextPrimary;
+  -webkit-tap-highlight-color: transparent;
 }
 
 img,

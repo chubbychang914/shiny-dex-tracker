@@ -178,14 +178,14 @@ $borderRadius: 10px;
       background-color: $NavbarBg;
       transform: translateY(-101%);
       transform-origin: bottom center;
-      border-bottom: 6px solid black;
+      border-bottom: 4px solid $SystemBlack;
     }
     &.bottom {
       bottom: 0;
       background-color: $SystemWhite;
       transform: translateY(101%);
       transform-origin: top center;
-      border-top: 6px solid black;
+      border-top: 4px solid $SystemBlack;
     }
   }
 }

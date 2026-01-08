@@ -5,13 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { usePokeApiDataStore } from '@/stores/pokeApiData'
+import { computed, onMounted } from 'vue'
+import { usePokeApiDataStore } from '@/stores/pokeApiData.ts'
 import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
+import { getSingleDexFilter } from '@/utils/localStorageDB/dexFilters.ts'
+import type { DexFiltersType } from '@/types'
 import DexLayout from '@/components/organisms/layouts/DexLayout.vue'
 
 defineOptions({
-  name: 'NationalDexView'
+  name: 'NationalDexView' // for keep-alive
 })
 
 const pokeApiDataStore = usePokeApiDataStore()
@@ -20,7 +22,6 @@ const filterQueriesStore = useFilterQueriesStore()
 // ******************************
 // COMPUTED
 // ******************************
-/* Filtered data **/
 const filteredPokedexData = computed(() => {
   let result = pokeApiDataStore.pokeApiData
 
@@ -79,6 +80,29 @@ const filteredPokedexData = computed(() => {
   }
 
   return result
+})
+
+// ******************************
+// METHODS
+// ******************************
+const loadSavedNationalDexFilter = () => {
+  const DEFAULT_FILTERS = {
+    sortBy: 'number-asc',
+    regions: [],
+    types: []
+  } as DexFiltersType
+
+  const savedFilter = getSingleDexFilter('national-dex') || DEFAULT_FILTERS
+  filterQueriesStore.setSelectedSortOption(savedFilter.sortBy)
+  filterQueriesStore.setSelectedRegion(savedFilter.regions)
+  filterQueriesStore.setSelectedTypes(savedFilter.types)
+}
+
+// ******************************
+// LIFECYCLE HOOKS
+// ******************************
+onMounted(() => {
+  loadSavedNationalDexFilter()
 })
 </script>
 
