@@ -19,7 +19,10 @@
         /></el-icon>
       </div>
     </div>
-    <div class="navbar__middle">
+    <div
+      class="navbar__middle"
+      v-if="showSearchBar"
+    >
       <el-input
         v-model="searchQuery"
         style="width: 100%"
@@ -47,7 +50,7 @@ const filterQueriesStore = useFilterQueriesStore()
 const layoutStore = useLayoutStore()
 
 // ******************************
-// DATA
+// STATE
 // ******************************
 const searchQuery = ref('')
 
@@ -58,6 +61,10 @@ const navbarTitle = computed(() => {
   return route.meta.title as string
 })
 
+const showSearchBar = computed(() => {
+  return route.name === 'NationalDex' || route.name === 'GameDexDetail'
+})
+
 // ******************************
 // METHODS
 // ******************************
@@ -66,7 +73,7 @@ const handleClickAdvancedFilters = () => {
 }
 const handleChangeSearchQuery = debounce(() => {
   filterQueriesStore.setSearchQuery(searchQuery.value)
-}, 250)
+}, 100)
 
 const handleChangeLayoutType = () => {
   layoutStore.toggleGridLayoutType()
@@ -80,14 +87,13 @@ const navigateToHome = () => {
 <style lang="scss" scoped>
 .navbar {
   width: 100%;
-  min-height: 120px;
   background-color: $NavbarBg;
   color: $TextPrimary;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 10px;
+  padding: 10px 10px 15px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   &__top {

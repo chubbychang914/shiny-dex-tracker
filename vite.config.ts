@@ -12,9 +12,9 @@ export default defineConfig({
     /* ⚙️ PWA Settings **/
     VitePWA({
       registerType: 'autoUpdate', // 升級版本會自動更新
-      // devOptions: {
-      //   enabled: true,
-      // },
+      devOptions: {
+        enabled: false,
+      },
       // ====================================================================================================
       // 📱 Manifest: Tells devices how to display your installed app
       // ====================================================================================================

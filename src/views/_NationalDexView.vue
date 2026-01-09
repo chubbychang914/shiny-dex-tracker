@@ -1,6 +1,10 @@
 <template>
   <div class="national-dex-view">
-    <DexLayout :pokemon-list="filteredPokedexData" />
+    <DexLayout
+      v-if="filteredPokedexData.length"
+      :pokemon-list="filteredPokedexData"
+    />
+    <NoDataLayout v-else />
   </div>
 </template>
 
@@ -11,6 +15,7 @@ import { useFilterQueriesStore } from '@/stores/filterQueries.ts'
 import { getSingleDexFilter } from '@/utils/localStorageDB/dexFilters.ts'
 import type { DexFiltersType } from '@/types'
 import DexLayout from '@/components/organisms/layouts/DexLayout.vue'
+import NoDataLayout from '@/components/organisms/layouts/NoDataLayout.vue'
 
 defineOptions({
   name: 'NationalDexView' // for keep-alive
