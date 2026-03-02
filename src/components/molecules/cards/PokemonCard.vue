@@ -171,7 +171,7 @@ $borderRadius: 10px;
     z-index: 1;
     width: 100%;
     height: 50%;
-    transition: transform 0.25s ease-out;
+    transition: transform 0.2s ease-out;
     opacity: 0.8;
     &.top {
       top: 0;

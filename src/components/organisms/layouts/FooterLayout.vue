@@ -70,16 +70,16 @@ const getTabFromPath = (currentPath: string) => {
 const handleClick = (itemName: string) => {
   switch (itemName) {
     case 'Home':
-      router.push('/')
+      router.replace('/')
       break
     case 'National':
-      router.push('/national-dex')
+      router.replace('/national-dex')
       break
     case 'Games':
-      router.push('/game-dex')
+      router.replace('/game-dex')
       break
     case 'Settings':
-      router.push('/settings')
+      router.replace('/settings')
       break
     default:
       break
@@ -116,7 +116,6 @@ $iconSize: 28px;
   border-top-right-radius: 10px;
   overflow: hidden;
   background-color: $FooterBg;
-  box-shadow: 0 -4px 10px rgba(255, 255, 255, 0.45);
 }
 
 .footer-content {
@@ -133,8 +132,8 @@ $iconSize: 28px;
   padding-top: 8px;
   padding-bottom: calc(8px + env(safe-area-inset-bottom));
   transition:
-    background-color 0.5s ease,
-    color 0.5s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
 
   &__selected {
     background-color: $NavbarBg;

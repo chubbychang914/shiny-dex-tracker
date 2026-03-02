@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useLayoutStore } from '@/stores/userPreferences/layout'
 import type { StructuredPokemonData } from '@/types/index.ts'
 import PokemonCard from '@/components/molecules/cards/PokemonCard.vue'
@@ -54,7 +54,7 @@ const props = defineProps<{
 }>()
 
 // ******************************
-// DATA
+// STATE
 // ******************************
 const isLoading = ref(false)
 const layoutType = computed(() => layoutStore.gridLayoutType)
@@ -79,14 +79,17 @@ watch(layoutType, () => {
     ensureViewportFilled()
   }, 100)
 })
-/* when filter queries change, scroll to top and show displayed cards **/
 // watch(
-//   filterQueriesStore.$state,
+//   () => props.pokemonList,
 //   () => {
-//     window.scrollTo({ top: 0, behavior: 'instant' })
 //     displayCount.value = INITIAL_BATCH_SIZE
+//     if (containerRef.value) {
+//       containerRef.value.scrollTo({ top: 0, behavior: 'instant' })
+//     }
 //   },
-//   { deep: true }
+//   {
+//     immediate: true
+//   }
 // )
 
 // ******************************
@@ -124,7 +127,7 @@ const ensureViewportFilled = () => {
 
     if (isVisible) {
       displayCount.value += ITEMS_PER_BATCH
-      requestAnimationFrame(() => {
+      nextTick(() => {
         checkSentinel()
       })
     }

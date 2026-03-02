@@ -7,6 +7,7 @@
       <div class="icon-container">
         <el-icon
           class="icon layout-icon"
+          v-show="showBoxOptionButtons"
           @click="handleChangeLayoutType"
         >
           <Menu v-show="layoutStore.gridLayoutType === 'default'" />
@@ -62,6 +63,10 @@ const navbarTitle = computed(() => {
 })
 
 const showSearchBar = computed(() => {
+  return route.name === 'NationalDex' || route.name === 'GameDexDetail'
+})
+
+const showBoxOptionButtons = computed(() => {
   return route.name === 'NationalDex' || route.name === 'GameDexDetail'
 })
 
