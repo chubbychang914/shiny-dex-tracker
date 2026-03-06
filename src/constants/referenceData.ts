@@ -1,3 +1,27 @@
+import lgPikachu from '@/assets/images/gameIcons/lgPikachu.png'
+import lgEevee from '@/assets/images/gameIcons/lgEevee.png'
+import bDiamond from '@/assets/images/gameIcons/bDiamond.png'
+import sPearl from '@/assets/images/gameIcons/sPearl.png'
+import sword from '@/assets/images/gameIcons/sword.png'
+import shield from '@/assets/images/gameIcons/shield.png'
+import plArceus from '@/assets/images/gameIcons/plArceus.png'
+import scarlet from '@/assets/images/gameIcons/scarlet.png'
+import violet from '@/assets/images/gameIcons/violet.png'
+import plZA from '@/assets/images/gameIcons/plZA.png'
+
+export const GAME_ICONS: Record<string, string> = {
+  lgPikachu: lgPikachu,
+  lgEevee: lgEevee,
+  bDiamond: bDiamond,
+  sPearl: sPearl,
+  sword: sword,
+  shield: shield,
+  plArceus: plArceus,
+  scarlet: scarlet,
+  violet: violet,
+  plZA: plZA
+}
+
 // ******************************************************************************************
 // Fetch Regions => 'https://pokeapi.co/api/v2/region'
 // ******************************************************************************************
@@ -36,6 +60,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'national',
     displayName: 'National',
     group: 'national',
+    gameIconList: [],
     pokemonEntries: 1025,
     url: 'https://pokeapi.co/api/v2/pokedex/1/'
   },
@@ -44,6 +69,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'letsgo-kanto',
     displayName: 'Kanto',
     group: 'lgpe',
+    gameIconList: ['lgPikachu', 'lgEevee'],
     pokemonEntries: 153, // HOME 150
     url: 'https://pokeapi.co/api/v2/pokedex/26/'
   },
@@ -52,6 +78,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'original-sinnoh',
     displayName: 'Sinnoh',
     group: 'bdsp',
+    gameIconList: ['bDiamond', 'sPearl'],
     pokemonEntries: 151, // HOME 150
     url: 'https://pokeapi.co/api/v2/pokedex/5/'
   },
@@ -60,6 +87,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'galar',
     displayName: 'Galar',
     group: 'swsh',
+    gameIconList: ['sword', 'shield'],
     pokemonEntries: 400,
     url: 'https://pokeapi.co/api/v2/pokedex/27/'
   },
@@ -68,6 +96,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'isle-of-armor',
     displayName: 'Isle of Armor',
     group: 'swsh',
+    gameIconList: ['sword', 'shield'],
     pokemonEntries: 211, // HOME 210
     url: 'https://pokeapi.co/api/v2/pokedex/28/'
   },
@@ -76,6 +105,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'crown-tundra',
     displayName: 'Crown Tundra',
     group: 'swsh',
+    gameIconList: ['sword', 'shield'],
     pokemonEntries: 210,
     url: 'https://pokeapi.co/api/v2/pokedex/29/'
   },
@@ -84,6 +114,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'hisui',
     displayName: 'Hisui',
     group: 'pla',
+    gameIconList: ['plArceus'],
     pokemonEntries: 242,
     url: 'https://pokeapi.co/api/v2/pokedex/30/'
   },
@@ -92,6 +123,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'paldea',
     displayName: 'Paldea',
     group: 'sv',
+    gameIconList: ['scarlet', 'violet'],
     pokemonEntries: 400,
     url: 'https://pokeapi.co/api/v2/pokedex/31/'
   },
@@ -100,6 +132,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'kitakami',
     displayName: 'Kitakami',
     group: 'sv',
+    gameIconList: ['scarlet', 'violet'],
     pokemonEntries: 200,
     url: 'https://pokeapi.co/api/v2/pokedex/32/'
   },
@@ -108,6 +141,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'blueberry',
     displayName: 'Blueberry',
     group: 'sv',
+    gameIconList: ['scarlet', 'violet'],
     pokemonEntries: 243, // HOME 240
     url: 'https://pokeapi.co/api/v2/pokedex/33/'
   },
@@ -116,6 +150,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'lumiose-city',
     displayName: 'Lumiose City',
     group: 'plza',
+    gameIconList: ['plZA'],
     pokemonEntries: 232,
     url: 'https://pokeapi.co/api/v2/pokedex/34/'
   },
@@ -124,6 +159,7 @@ export const ALL_POKEDEX_GROUPS = [
     pokedexName: 'hyperspace',
     displayName: 'Hyperspace',
     group: 'plza',
+    gameIconList: ['plZA'],
     pokemonEntries: 132,
     url: 'https://pokeapi.co/api/v2/pokedex/35/'
   }

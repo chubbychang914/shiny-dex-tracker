@@ -7,7 +7,7 @@
       <div class="icon-container">
         <el-icon
           class="icon layout-icon"
-          v-show="showBoxOptionButtons"
+          v-show="showDexOptionsButtons"
           @click="handleChangeLayoutType"
         >
           <Menu v-show="layoutStore.gridLayoutType === 'default'" />
@@ -15,6 +15,7 @@
         </el-icon>
         <el-icon
           class="icon filter-icon"
+          v-show="showDexOptionsButtons"
           @click="handleClickAdvancedFilters"
           ><Filter
         /></el-icon>
@@ -66,7 +67,7 @@ const showSearchBar = computed(() => {
   return route.name === 'NationalDex' || route.name === 'GameDexDetail'
 })
 
-const showBoxOptionButtons = computed(() => {
+const showDexOptionsButtons = computed(() => {
   return route.name === 'NationalDex' || route.name === 'GameDexDetail'
 })
 
