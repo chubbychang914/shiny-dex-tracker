@@ -164,6 +164,7 @@ onBeforeUnmount(() => {
 .dex-layout {
   width: 100%;
   height: 100%;
+  padding: 10px;
   overflow: hidden;
 }
 
@@ -171,7 +172,7 @@ onBeforeUnmount(() => {
   width: 100%;
   max-height: 100%;
   display: grid;
-  padding: 20px 15px 40px;
+  padding-bottom: 40px;
   overflow-y: auto;
   justify-items: stretch;
 

@@ -52,7 +52,7 @@ const props = defineProps<{
 }>()
 
 // ******************************
-// Data
+// STATE
 // ******************************
 const isCaught = ref(false)
 const useGif = ref(true)
@@ -86,6 +86,18 @@ const nameFontSize = computed(() => {
 })
 
 // ******************************
+// Methods
+// ******************************
+const handleToggleCaughtStatus = () => {
+  const caughtState = toggleCaughtStatus(props.singlePokemonData.id, props.singlePokemonData.name)
+  isCaught.value = caughtState
+}
+
+const handleImageError = () => {
+  useGif.value = false
+}
+
+// ******************************
 // Lifecycle Hooks
 // ******************************
 onMounted(() => {
@@ -95,18 +107,6 @@ onMounted(() => {
     isCaught.value = true
   }
 })
-
-// ******************************
-// Methods
-// ******************************
-const handleToggleCaughtStatus = () => {
-  const caughtState = toggleCaughtStatus(props.singlePokemonData.id)
-  isCaught.value = caughtState
-}
-
-const handleImageError = () => {
-  useGif.value = false
-}
 </script>
 
 <style lang="scss" scoped>

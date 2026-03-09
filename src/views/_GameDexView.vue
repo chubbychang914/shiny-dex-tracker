@@ -48,12 +48,12 @@ $gameIconWidth: 30px;
 .game-dex-view {
   width: 100%;
   height: 100%;
+  padding: 20px 15px;
   overflow: hidden;
 }
 .title-container {
   width: 100%;
   max-height: 100%;
-  padding: 25px 15px 100px;
   overflow-y: auto;
 }
 .title {
