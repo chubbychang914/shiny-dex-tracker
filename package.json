@@ -16,7 +16,9 @@
     "lint": "eslint . --fix --cache",
     "gen:pokemon-data": "node scripts/generate-pokemon-data.js",
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
-    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
@@ -51,6 +53,17 @@
     "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vitest": "^4.0.14",
-    "vue-tsc": "^3.1.5"
+    "vue-tsc": "^3.1.5",
+    "storybook": "^10.3.3",
+    "@storybook/vue3-vite": "^10.3.3",
+    "@chromatic-com/storybook": "^5.1.1",
+    "@storybook/addon-vitest": "^10.3.3",
+    "@storybook/addon-a11y": "^10.3.3",
+    "@storybook/addon-docs": "^10.3.3",
+    "@storybook/addon-onboarding": "^10.3.3",
+    "eslint-plugin-storybook": "^10.3.3",
+    "playwright": "^1.58.2",
+    "@vitest/browser-playwright": "^4.0.14",
+    "@vitest/coverage-v8": "^4.0.14"
   }
 }
