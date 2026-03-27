@@ -61,7 +61,7 @@
       class="list-row__arrow-icon"
       :class="{ 'bold-arrow-icon': boldTitle }"
     >
-      <i class="icon-arrow-right" />
+      >
     </div>
   </div>
 </template>
@@ -83,34 +83,42 @@ defineOptions({ name: 'ListRow' })
 const slots = useSlots()
 
 defineProps({
+  /** 標題文字 */
   title: {
     type: String,
     default: '標題'
   },
+  /** 說明文字，顯示於標題下方 */
   subtitle: {
     type: String,
     default: ''
   },
+  /** 是否為粗體標題（開啟時 arrow icon 也會同步變粗體） */
   boldTitle: {
     type: Boolean,
     default: false
   },
+  /** 是否顯示右側箭頭圖示 */
   hasArrowIcon: {
     type: Boolean,
     default: false
   },
+  /** 右側文字（灰色摘要樣式） */
   trailingText: {
     type: String,
     default: ''
   },
+  /** 右側文字（主色 + 勾選圖示的已驗證樣式） */
   trailingVerifiedText: {
     type: String,
     default: ''
   },
+  /** 是否將內容垂直置頂（預設為 align-items: center） */
   alignTop: {
     type: Boolean,
     default: false
   },
+  /** 是否移除底部 border-bottom */
   borderless: {
     type: Boolean,
     default: false
