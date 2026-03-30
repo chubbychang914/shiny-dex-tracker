@@ -47,6 +47,8 @@ const drawerComponents = {
   grid-template-rows: auto 1fr auto;
   height: 100vh;
   height: 100dvh;
+  max-width: 400px;
+  margin: 0 auto;
   background-color: $BgPrimary;
   overflow: hidden;
 }

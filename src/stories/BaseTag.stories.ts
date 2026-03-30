@@ -36,17 +36,18 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const defaultSourceCode = '<BaseTag>default</BaseTag>'
 export const Default: Story = {
   name: '預設',
-  render: () => ({
+  render: (args) => ({
     components: { BaseTag },
-    template: defaultSourceCode
+    setup: () => {
+      return { args }
+    },
+    template: '<BaseTag v-bind="args">default</BaseTag>'
   }),
   parameters: {
     docs: {
-      description: { story: '用於描述或分類內容的主題、類別，例如：文章分類、意見反映分類' },
-      source: { code: defaultSourceCode }
+      description: { story: '用於描述或分類內容的主題、類別，例如：文章分類、意見反映分類' }
     }
   }
 }
