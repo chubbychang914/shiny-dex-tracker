@@ -2,7 +2,7 @@ import ListRowSkeleton from '@/components/molecules/lists/ListRowSkeleton.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
-  title: 'List/ListRowSkeleton',
+  title: 'Molecules/List/ListRowSkeleton',
   component: ListRowSkeleton,
   tags: ['autodocs'],
   argTypes: {

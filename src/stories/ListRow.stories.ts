@@ -2,10 +2,9 @@ import ListRow from '@/components/molecules/lists/ListRow.vue'
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
-  title: 'List/ListRow',
+  title: 'Molecules/List/ListRow',
   component: ListRow,
   tags: ['autodocs'],
-  // optional: custom docs options here
   args: {
     title: 'Default Title'
   },
