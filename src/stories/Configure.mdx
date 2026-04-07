@@ -1,3 +1,134 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-# Storybook and the Basics
+## 📖 Storybook 是什麼？
+
+Storybook 是一個用於建構 UI 元件和頁面的工具，它提供了：
+
+- **隔離開發環境**：專注於單一元件的開發
+- **互動式文件**：可測試、可操作的元件說明
+- **設計系統**：統一的 UI 元件管理
+- **視覺測試**：確保元件在不同狀態下的一致性
+
+## 📂 專案結構
+
+專案採用 Atomic Design 的架構：
+
+- **Atoms (原子)**：最基本的 UI 元件，不可再分割的最小單位
+- **Molecules (分子)**：由多個原子組成，具有**單一功能**的元件
+- **Organisms (組織)**：由多個分子組成，具有**多重功能**的複雜元件
+
+```
+src/stories/
+├── atoms/          # 原子元件 (Button, Input, Icon 等)
+├── molecules/      # 分子元件 (Card, List, Dropdown Menus 等)
+├── organisms/      # 組織元件 (Navigation, Footers, Forms 等)
+└── Introduction.mdx # 本文件
+```
+
+## ✍️ 如何撰寫 Story
+
+1. 在 `src/stories` 找到元件的分類的資料夾 (atoms, molecules, organisms)，並在資料夾下建立對應的 `.stories.ts` 檔案
+2. 在 `.stories.ts` 檔案中，引入對應的元件，並撰寫 Story 的 Meta 設定
+3. 設定元件的 `argTypes` 和預設參數 `args`，定義控制面板的互動選項
+4. 在 `.stories.ts` 檔案中，撰寫並列出不同種類的 story
+
+## 1️⃣ 引入元件
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/vue3'
+import MyComponent from '@/components/example/MyComponent.vue'
+```
+
+## 2️⃣ Story 的 Meta 設定
+
+```tsx
+const meta: Meta<typeof MyComponent> = {
+  // 分類路徑，決定在 Storybook 側邊欄中的顯示路徑與名稱
+  title: 'Design Guideline/Atoms/MyComponent',
+  // 指定此 story 對應的 Vue 元件
+  component: MyComponent,
+  // 標籤：用於搜尋和分類，可自定義標籤 (內建tags: 'autodocs', 'dev', 'test')
+  tags: ['!dev', '可自定義標籤'],
+  // 為這頁的每個 story 都提供額外的包裝樣式
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: '<div style="padding: 20px;"><story /></div>'
+    })
+  ],
+  // 控制面板的設定
+  argTypes: {
+    sizeProp: {
+      description: '說明文字',
+      control: 'radio',
+      options: ['xxxlarge', 'xxlarge', 'xlarge', 'large', 'medium', 'small', 'xsmall']
+    }
+  },
+  // Story的靜態資料，例如文件說明、版面配置或背景顏色...等
+  parameters: {
+    docs: {
+      description: {
+        component: '文件說明文字'
+      }
+    }
+  }
+} satisfies Meta<typeof MyComponent>
+
+// 將 meta 設定為預設導出，並定義 Story 的型別
+export default meta
+type Story = StoryObj<typeof meta>
+```
+
+## 3️⃣ 撰寫 Story
+
+### 基本 Story 結構
+
+可參考 Molecules/List 的範例 Story
+
+```tsx
+// 基礎的 Story 結構，可透過控制面板調整參數，並設定預設值
+export const Default: Story = {
+  args: {
+    text: 'Hello world'
+  }
+}
+// 繼承基礎的 Story 結構，並設定不同參數
+export const Large: Story = {
+  name: '大尺寸', // 側邊欄的顯示名稱，若無設定則使用 Story 變數名稱
+  args: {
+    ...Default.args,
+    size: 'Large'
+  }
+}
+```
+
+### 綜合展示範例
+
+可參考 Atoms/Button 或 Atoms/Avatar 的綜合展示範例 Story
+
+```tsx
+const compositeTemplate = `
+<div style="display: flex; gap: 16px; flex-wrap: wrap;">
+  <YourComponent size="small" />
+  <YourComponent size="medium" />
+  <YourComponent size="large" />
+</div>
+`
+
+export const AllSizes: Story = {
+  name: '所有尺寸',
+  parameters: {
+    controls: { disable: true }, // 禁用控制面板
+    docs: {
+      description: {
+        story: '展示所有可用的尺寸選項'
+      },
+      source: { code: compositeTemplate } // 點擊「Show Code」時顯示的樣式(一般情況下會自動生成，但若要自定義則可以手動設定)
+    }
+  },
+  render: () => ({
+    components: { YourComponent },
+    template: compositeTemplate
+  })
+}
+```
